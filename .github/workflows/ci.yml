@@ -1,0 +1,122 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-extension:
+    name: Test Chrome Extension
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: extension/package-lock.json
+          
+      - name: Install dependencies
+        run: |
+          cd extension
+          npm ci
+          
+      - name: Run linting
+        run: |
+          cd extension
+          npm run lint
+          
+      - name: Run type checking
+        run: |
+          cd extension
+          npm run type-check
+          
+      - name: Run tests
+        run: |
+          cd extension
+          npm run test -- --coverage
+          
+      - name: Build extension
+        run: |
+          cd extension
+          npm run build
+          
+      - name: Upload extension build
+        uses: actions/upload-artifact@v3
+        with:
+          name: extension-build
+          path: extension/dist/
+
+  test-website:
+    name: Test Website
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: website/package-lock.json
+          
+      - name: Install dependencies
+        run: |
+          cd website
+          npm ci
+          
+      - name: Run linting
+        run: |
+          cd website
+          npm run lint
+          
+      - name: Run type checking
+        run: |
+          cd website
+          npm run type-check
+          
+      - name: Run tests
+        run: |
+          cd website
+          npm run test
+          
+      - name: Build website
+        run: |
+          cd website
+          npm run build
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          
+      - name: Upload website build
+        uses: actions/upload-artifact@v3
+        with:
+          name: website-build
+          path: website/.next/
+
+  deploy-website:
+    name: Deploy Website
+    needs: [test-extension, test-website]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          working-directory: website
+          vercel-args: '--prod'
