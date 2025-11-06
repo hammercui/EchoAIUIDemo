@@ -38,6 +38,12 @@ const PromptList = ({
   // 搜索框引用（用于快捷键聚焦）
   const searchInputRef = useRef(null);
 
+  // 列表容器引用（用于滚动到底部）
+  const listContainerRef = useRef(null);
+
+  // 滚动状态
+  const [isAtBottom, setIsAtBottom] = useState(false);
+
   // Debounce 提示词搜索（300ms）
   useEffect(() => {
     if (debounceTimerRef.current) {
@@ -119,6 +125,25 @@ const PromptList = ({
     }
   }, [prompts, searchMode, debouncedPromptQuery, selectedTags]);
 
+  // 监听滚动位置，判断是否在底部
+  useEffect(() => {
+    const container = listContainerRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      const { scrollTop, scrollHeight, clientHeight } = container;
+      // 距离底部小于 10px 认为是在底部
+      const atBottom = scrollHeight - scrollTop - clientHeight < 10;
+      setIsAtBottom(atBottom);
+    };
+
+    container.addEventListener('scroll', handleScroll);
+    // 初始检查
+    handleScroll();
+
+    return () => container.removeEventListener('scroll', handleScroll);
+  }, [filteredPrompts]);
+
   // 处理标签选择
   const handleTagSelect = (tag) => {
     if (!selectedTags.includes(tag)) {
@@ -134,6 +159,26 @@ const PromptList = ({
   // 清空所有标签
   const handleClearAllTags = () => {
     setSelectedTags([]);
+  };
+
+  // 滚动到底部
+  const scrollToBottom = () => {
+    if (listContainerRef.current) {
+      listContainerRef.current.scrollTo({
+        top: listContainerRef.current.scrollHeight,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  // 滚动到顶部
+  const scrollToTop = () => {
+    if (listContainerRef.current) {
+      listContainerRef.current.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
   };
 
   return (
@@ -178,7 +223,7 @@ const PromptList = ({
       ) : null}
 
       {/* 滚动列表容器 */}
-      <div className="flex-1 overflow-y-auto p-3 flex flex-col gap-3">
+      <div ref={listContainerRef} className="flex-1 overflow-y-auto p-3 flex flex-col gap-3 relative">
         {filteredPrompts.length > 0 ? (
           filteredPrompts.map(prompt => (
             <PromptItem
@@ -198,6 +243,18 @@ const PromptList = ({
               {searchMode === 'prompt' ? '尝试使用其他关键词' : '尝试选择其他标签'}
             </div>
           </div>
+        )}
+
+        {/* 滚动按钮 - 在底部显示"到顶部"，否则显示"到底部" */}
+        {filteredPrompts.length > 3 && (
+          <button
+            onClick={isAtBottom ? scrollToTop : scrollToBottom}
+            className="sticky bottom-3 left-1/2 -translate-x-1/2 w-10 h-10 bg-[hsl(262,83%,58%)]/70 hover:bg-[hsl(262,83%,58%)]/90 text-white rounded-full shadow-lg transition-all duration-150 flex items-center justify-center cursor-pointer border-0 active:scale-95"
+            title={isAtBottom ? "滚动到顶部" : "滚动到底部"}
+            aria-label={isAtBottom ? "滚动到顶部" : "滚动到底部"}
+          >
+            <span className="text-lg">{isAtBottom ? '⬆' : '⬇'}</span>
+          </button>
         )}
       </div>
     </div>
