@@ -1,7 +1,7 @@
 import React from 'react';
-import TagsPanel from './panels/TagsPanel';
-import AnswerPanel from './panels/AnswerPanel';
-import VersionsPanel from './panels/VersionsPanel';
+import TagsPanel from '../panels/TagsPanel';
+import AnswerPanel from '../panels/AnswerPanel';
+import VersionsPanel from '../panels/VersionsPanel';
 
 /**
  * 编辑管理面板组件 - HeroUI 风格

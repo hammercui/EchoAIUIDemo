@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import FABButton from './components/FABButton';
-import PromptList from './components/PromptList';
+import PromptPanel from './panels/PromptPanel';
 import EditPanel from './components/EditPanel';
 import Toast from './components/Toast';
 import { mockPrompts } from './data/mockData';
@@ -175,7 +175,7 @@ const FABDemo = () => {
       >
         {/* 第一段: 提示词列表 */}
         <div className="bg-background border border-border rounded-xl shadow-lg overflow-hidden w-[30vw] h-[80vh] flex flex-col">
-          <PromptList
+          <PromptPanel
             prompts={prompts}
             selectedId={selectedPrompt?.id}
             onItemSelect={handleItemSelect}
