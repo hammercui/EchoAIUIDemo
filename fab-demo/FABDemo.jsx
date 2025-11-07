@@ -26,6 +26,7 @@ const FABDemo = () => {
   const [activeTab, setActiveTab] = useState('tags');
   const [fabPosition, setFabPosition] = useState('left'); // 'left' or 'right'
   const [toast, setToast] = useState(null); // Toast 通知状态
+  const [prompts, setPrompts] = useState(mockPrompts); // 管理提示词数据
 
   // FAB 按钮点击处理
   const handleFABClick = () => {
@@ -81,6 +82,39 @@ const FABDemo = () => {
   // 切换 FAB 位置
   const togglePosition = () => {
     setFabPosition(prev => prev === 'left' ? 'right' : 'left');
+  };
+
+  // 处理点赞
+  const handleLike = (promptId) => {
+    setPrompts(prevPrompts => 
+      prevPrompts.map(p => {
+        if (p.id === promptId) {
+          const newIsLiked = !p.isLiked;
+          return {
+            ...p,
+            isLiked: newIsLiked,
+            likes: newIsLiked ? p.likes + 1 : p.likes - 1
+          };
+        }
+        return p;
+      })
+    );
+  };
+
+  // 处理标签更新（新增、删除、使用统计）
+  const handleUpdateTags = (promptId, newTags, incrementUsage = false) => {
+    setPrompts(prevPrompts => 
+      prevPrompts.map(p => {
+        if (p.id === promptId) {
+          return {
+            ...p,
+            tags: newTags,
+            usageCount: incrementUsage ? p.usageCount + 1 : p.usageCount
+          };
+        }
+        return p;
+      })
+    );
   };
 
   return (
@@ -142,12 +176,14 @@ const FABDemo = () => {
         {/* 第一段: 提示词列表 */}
         <div className="bg-background border border-border rounded-xl shadow-lg overflow-hidden w-[30vw] h-[80vh] flex flex-col">
           <PromptList
-            prompts={mockPrompts}
+            prompts={prompts}
             selectedId={selectedPrompt?.id}
             onItemSelect={handleItemSelect}
             onCopy={handleCopy}
             onView={handleView}
             onManage={handleManage}
+            onLike={handleLike}
+            onUpdateTags={handleUpdateTags}
           />
         </div>
 

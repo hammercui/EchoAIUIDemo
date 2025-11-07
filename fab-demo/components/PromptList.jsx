@@ -2,20 +2,22 @@ import React, { useState, useMemo, useEffect, useRef, useCallback } from 'react'
 import PromptItem from './PromptItem';
 import SearchBar from './SearchBar';
 import TagSelector from './TagSelector';
+import SortDropdown from './SortDropdown';
+import Pagination from './Pagination';
 
 /**
- * 提示词列表组件（带搜索功能）
+ * 提示词列表组件（带搜索、排序、分页功能）
  *
  * 规范要求:
  * - 面板宽度: 400px
- * - 最大高度: 500px
+ * - 最大高度: 80vh
  * - item 间距: 12px (gap-3)
  * - 垂直滚动列表
  *
- * 搜索功能:
- * - 提示词搜索: 模糊匹配 title + description
- * - 标签搜索: 多选标签，OR 关系过滤
- * - 模式切换: 缓存各自的输入内容
+ * 新增功能:
+ * - Tab页签式Header
+ * - 排序功能（最新/最早/点赞/使用频率）
+ * - 分页功能（每页10条）
  */
 const PromptList = ({
   prompts,
@@ -23,13 +25,22 @@ const PromptList = ({
   onItemSelect,
   onCopy,
   onView,
-  onManage
+  onManage,
+  onLike,
+  onUpdateTags
 }) => {
   // 搜索状态
   const [searchMode, setSearchMode] = useState('prompt'); // 'prompt' | 'tag'
   const [promptQuery, setPromptQuery] = useState('');     // 提示词模式的输入缓存
   const [tagQuery, setTagQuery] = useState('');           // 标签模式的输入缓存
   const [selectedTags, setSelectedTags] = useState([]);   // 已选标签
+
+  // 排序状态
+  const [sortBy, setSortBy] = useState('newest'); // 'newest' | 'oldest' | 'mostLiked' | 'mostUsed'
+
+  // 分页状态
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
   // Debounce 状态
   const [debouncedPromptQuery, setDebouncedPromptQuery] = useState('');
@@ -118,12 +129,53 @@ const PromptList = ({
 
   // 过滤后的提示词列表（使用 debounced query）
   const filteredPrompts = useMemo(() => {
+    let result;
     if (searchMode === 'prompt') {
-      return searchPrompts(prompts, debouncedPromptQuery);
+      result = searchPrompts(prompts, debouncedPromptQuery);
     } else {
-      return filterByTags(prompts, selectedTags);
+      result = filterByTags(prompts, selectedTags);
     }
+    return result;
   }, [prompts, searchMode, debouncedPromptQuery, selectedTags]);
+
+  // 排序后的列表
+  const sortedPrompts = useMemo(() => {
+    const sorted = [...filteredPrompts];
+    
+    switch (sortBy) {
+      case 'newest':
+        sorted.sort((a, b) => b.dateTimestamp - a.dateTimestamp);
+        break;
+      case 'oldest':
+        sorted.sort((a, b) => a.dateTimestamp - b.dateTimestamp);
+        break;
+      case 'mostLiked':
+        sorted.sort((a, b) => b.likes - a.likes);
+        break;
+      case 'mostUsed':
+        sorted.sort((a, b) => b.usageCount - a.usageCount);
+        break;
+      default:
+        break;
+    }
+    
+    return sorted;
+  }, [filteredPrompts, sortBy]);
+
+  // 分页后的列表
+  const paginatedPrompts = useMemo(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return sortedPrompts.slice(startIndex, endIndex);
+  }, [sortedPrompts, currentPage, itemsPerPage]);
+
+  // 总页数
+  const totalPages = Math.ceil(sortedPrompts.length / itemsPerPage);
+
+  // 当过滤条件变化时，重置到第一页
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchMode, debouncedPromptQuery, selectedTags, sortBy]);
 
   // 监听滚动位置，判断是否在底部
   useEffect(() => {
@@ -142,7 +194,7 @@ const PromptList = ({
     handleScroll();
 
     return () => container.removeEventListener('scroll', handleScroll);
-  }, [filteredPrompts]);
+  }, [paginatedPrompts]);
 
   // 处理标签选择
   const handleTagSelect = (tag) => {
@@ -182,27 +234,29 @@ const PromptList = ({
   };
 
   return (
-    <div className="flex flex-col h-full">
-      {/* 列表头部 */}
-      <div className="p-4 border-b border-border flex justify-between items-center bg-muted/30">
-        <h2 className="text-base font-semibold m-0" style={{ color: 'hsl(262, 83%, 58%)' }}>
-          提示词列表
-        </h2>
-        <span className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded-full">
-          {prompts.length} 个
-        </span>
+    <div className="flex flex-col h-full max-h-[80vh] min-h-[300px]">
+      {/* Tab页签式Header */}
+      <div className="px-4 py-3 border-b border-border bg-muted/30 flex items-center justify-between">
+        {/* 左侧：Tab标签 */}
+        <div className="flex items-center gap-2">
+          <div className="px-3 py-1.5 bg-[hsl(262,83%,58%)] text-white text-sm font-semibold rounded-lg shadow-sm">
+            📝 提示词列表
+          </div>
+        </div>
       </div>
 
       {/* 搜索栏 */}
-      <SearchBar
-        ref={searchInputRef}
-        mode={searchMode}
-        promptQuery={promptQuery}
-        tagQuery={tagQuery}
-        onPromptQueryChange={setPromptQuery}
-        onTagQueryChange={setTagQuery}
-        onModeChange={setSearchMode}
-      />
+      <div className="px-4 py-3 border-b border-border bg-background">
+        <SearchBar
+          ref={searchInputRef}
+          mode={searchMode}
+          promptQuery={promptQuery}
+          tagQuery={tagQuery}
+          onPromptQueryChange={setPromptQuery}
+          onTagQueryChange={setTagQuery}
+          onModeChange={setSearchMode}
+        />
+      </div>
 
       {/* 标签选择器（仅标签模式显示） */}
       {searchMode === 'tag' && (
@@ -215,17 +269,31 @@ const PromptList = ({
         />
       )}
 
+      {/* 排序和分页 - 同一行 */}
+      <div className="px-4 py-3 border-b border-border bg-background flex items-center justify-between gap-4">
+        <div className="flex-shrink-0">
+          <SortDropdown value={sortBy} onChange={setSortBy} />
+        </div>
+        <div className="flex-1 flex justify-end">
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            totalItems={sortedPrompts.length}
+            onPageChange={setCurrentPage}
+          />
+        </div>
+      </div>
       {/* 搜索结果计数 */}
       {(searchMode === 'prompt' && promptQuery) || (searchMode === 'tag' && selectedTags.length > 0) ? (
         <div className="px-3 py-2 text-xs text-muted-foreground border-b border-border">
-          找到 {filteredPrompts.length} 个提示词
+          找到 {sortedPrompts.length} 个提示词
         </div>
       ) : null}
 
       {/* 滚动列表容器 */}
       <div ref={listContainerRef} className="flex-1 overflow-y-auto p-3 flex flex-col gap-3 relative">
-        {filteredPrompts.length > 0 ? (
-          filteredPrompts.map(prompt => (
+        {paginatedPrompts.length > 0 ? (
+          paginatedPrompts.map(prompt => (
             <PromptItem
               key={prompt.id}
               prompt={prompt}
@@ -234,6 +302,8 @@ const PromptList = ({
               onCopy={onCopy}
               onView={onView}
               onManage={onManage}
+              onLike={onLike}
+              onUpdateTags={onUpdateTags}
             />
           ))
         ) : (
@@ -246,7 +316,7 @@ const PromptList = ({
         )}
 
         {/* 滚动按钮 - 在底部显示"到顶部"，否则显示"到底部" */}
-        {filteredPrompts.length > 3 && (
+        {paginatedPrompts.length > 3 && (
           <button
             onClick={isAtBottom ? scrollToTop : scrollToBottom}
             className="sticky bottom-3 left-1/2 -translate-x-1/2 w-10 h-10 bg-[hsl(262,83%,58%)]/70 hover:bg-[hsl(262,83%,58%)]/90 text-white rounded-full shadow-lg transition-all duration-150 flex items-center justify-center cursor-pointer border-0 active:scale-95"

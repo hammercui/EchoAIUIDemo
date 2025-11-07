@@ -1,7 +1,7 @@
 import React from 'react';
 
 /**
- * 标签选择器组件
+ * 标签选择器组件 - HeroUI 风格
  * 
  * 功能:
  * - 显示候选标签（根据输入匹配）
@@ -9,11 +9,23 @@ import React from 'react';
  * - 支持多选标签
  * 
  * 规范:
- * - 候选框最大高度: 200px
- * - 标签高度: 32px
- * - 圆角: 6px
+ * - 圆角: rounded-full
+ * - 渐变色选中状态
  * - 动画: 150ms
  */
+
+const PlusIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+    <path d="M8 3v10M3 8h10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+  </svg>
+);
+
+const CloseIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+    <path d="M10.5 3.5l-7 7M3.5 3.5l7 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+  </svg>
+);
+
 const TagSelector = ({ 
   candidateTags,    // 候选标签数组
   selectedTags,     // 已选标签数组
@@ -36,7 +48,7 @@ const TagSelector = ({
                 <button
                   key={index}
                   onClick={() => onTagSelect(tag)}
-                  className="h-8 px-3 text-xs font-medium bg-muted border border-border rounded-md cursor-pointer transition-all duration-150 hover:border-[hsl(262,83%,58%)] hover:bg-[hsl(262,90%,97%)] hover:text-[hsl(262,83%,58%)] active:scale-95"
+                  className="h-7 px-3 text-xs font-medium bg-muted/50 hover:bg-muted border border-border rounded-full cursor-pointer transition-all duration-150 hover:border-[hsl(262,83%,58%)] hover:text-[hsl(262,83%,58%)] active:scale-95"
                 >
                   {tag}
                 </button>
@@ -51,7 +63,7 @@ const TagSelector = ({
         <div>
           <div className="flex items-center justify-between mb-2">
             <div className="text-xs text-muted-foreground">
-              已选 {selectedTags.length} 个标签:
+              已选 {selectedTags.length} 个标签
             </div>
             <button
               onClick={onClearAll}
@@ -64,20 +76,18 @@ const TagSelector = ({
             {selectedTags.map((tag, index) => (
               <div
                 key={index}
-                className="h-8 px-3 flex items-center gap-2 text-xs font-medium rounded-md transition-all duration-150"
+                className="h-7 px-3 flex items-center gap-2 text-xs font-medium rounded-full transition-all duration-150 text-white shadow-sm"
                 style={{
-                  backgroundColor: 'hsl(262, 90%, 97%)',
-                  border: '1px solid hsl(262, 83%, 58%)',
-                  color: 'hsl(262, 83%, 58%)'
+                  background: 'linear-gradient(135deg, hsl(262, 83%, 58%), hsl(262, 83%, 48%))'
                 }}
               >
                 <span>{tag}</span>
                 <button
                   onClick={() => onTagRemove(tag)}
-                  className="text-current hover:opacity-70 transition-opacity duration-150 cursor-pointer bg-transparent border-0 p-0 flex items-center text-xs"
+                  className="text-white hover:opacity-70 transition-opacity duration-150 cursor-pointer bg-transparent border-0 p-0 flex items-center w-3.5 h-3.5"
                   aria-label={`移除 ${tag}`}
                 >
-                  ✕
+                  <CloseIcon />
                 </button>
               </div>
             ))}
