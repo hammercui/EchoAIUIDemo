@@ -1,13 +1,14 @@
 import React from 'react';
+import Button from './Button';
 
 /**
  * 标签选择器组件 - HeroUI 风格
- * 
+ *
  * 功能:
  * - 显示候选标签（根据输入匹配）
  * - 显示已选标签（可删除）
  * - 支持多选标签
- * 
+ *
  * 规范:
  * - 圆角: rounded-full
  * - 渐变色选中状态
@@ -45,13 +46,16 @@ const TagSelector = ({
           <div className="max-h-[200px] overflow-y-auto">
             <div className="flex flex-wrap gap-2">
               {availableTags.map((tag, index) => (
-                <button
+                <Button
                   key={index}
+                  size="sm"
+                  radius="full"
+                  variant="bordered"
                   onClick={() => onTagSelect(tag)}
-                  className="h-7 px-3 text-xs font-medium bg-muted/50 hover:bg-muted border border-border rounded-full cursor-pointer transition-all duration-150 hover:border-[hsl(262,83%,58%)] hover:text-[hsl(262,83%,58%)] active:scale-95"
+                  className="bg-muted/50 hover:bg-muted hover:border-[hsl(262,83%,58%)] hover:text-[hsl(262,83%,58%)]"
                 >
                   {tag}
-                </button>
+                </Button>
               ))}
             </div>
           </div>
@@ -65,12 +69,14 @@ const TagSelector = ({
             <div className="text-xs text-muted-foreground">
               已选 {selectedTags.length} 个标签
             </div>
-            <button
+            <Button
+              size="sm"
+              variant="light"
               onClick={onClearAll}
-              className="text-xs text-muted-foreground hover:text-foreground transition-colors duration-150 cursor-pointer bg-transparent border-0 p-0 underline"
+              className="h-auto px-0 text-xs underline min-w-0"
             >
               清空全部
-            </button>
+            </Button>
           </div>
           <div className="flex flex-wrap gap-2">
             {selectedTags.map((tag, index) => (
@@ -82,13 +88,17 @@ const TagSelector = ({
                 }}
               >
                 <span>{tag}</span>
-                <button
+                <Button
+                  isIconOnly
+                  size="sm"
+                  variant="light"
                   onClick={() => onTagRemove(tag)}
-                  className="text-white hover:opacity-70 transition-opacity duration-150 cursor-pointer bg-transparent border-0 p-0 flex items-center w-3.5 h-3.5"
+                  className="w-3.5 h-3.5 min-w-3.5 text-white hover:opacity-70"
                   aria-label={`移除 ${tag}`}
+                  disableRipple
                 >
                   <CloseIcon />
-                </button>
+                </Button>
               </div>
             ))}
           </div>

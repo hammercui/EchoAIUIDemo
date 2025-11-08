@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react';
+import Button from './Button';
 
 /**
  * 搜索栏组件 - HeroUI 风格
@@ -110,32 +111,26 @@ const SearchBar = forwardRef(({
     <div className="w-full flex items-center gap-3">
       {/* 模式切换器 - 紧凑胶囊式设计 */}
       <div className="flex gap-0.5 p-0.5 bg-muted/50 rounded-full shrink-0">
-        <button
+        <Button
+          size="sm"
+          radius="full"
+          variant={mode === 'prompt' ? 'solid' : 'light'}
+          color={mode === 'prompt' ? 'primary' : 'default'}
           onClick={() => handleModeSwitch('prompt')}
-          className={`h-9 px-3.5 text-xs font-medium rounded-full transition-all duration-150 cursor-pointer whitespace-nowrap ${
-            mode === 'prompt'
-              ? 'text-white shadow-sm'
-              : 'bg-transparent text-muted-foreground hover:text-foreground hover:bg-muted/30'
-          }`}
-          style={mode === 'prompt' ? {
-            background: 'linear-gradient(135deg, hsl(262, 83%, 58%), hsl(262, 83%, 48%))'
-          } : {}}
+          className="h-9 px-3.5 text-xs whitespace-nowrap"
         >
           提示词
-        </button>
-        <button
+        </Button>
+        <Button
+          size="sm"
+          radius="full"
+          variant={mode === 'tag' ? 'solid' : 'light'}
+          color={mode === 'tag' ? 'primary' : 'default'}
           onClick={() => handleModeSwitch('tag')}
-          className={`h-9 px-3.5 text-xs font-medium rounded-full transition-all duration-150 cursor-pointer whitespace-nowrap ${
-            mode === 'tag'
-              ? 'text-white shadow-sm'
-              : 'bg-transparent text-muted-foreground hover:text-foreground hover:bg-muted/30'
-          }`}
-          style={mode === 'tag' ? {
-            background: 'linear-gradient(135deg, hsl(262, 83%, 58%), hsl(262, 83%, 48%))'
-          } : {}}
+          className="h-9 px-3.5 text-xs whitespace-nowrap"
         >
           标签
-        </button>
+        </Button>
       </div>
 
       {/* 搜索输入框 - 现代简约风格 */}
@@ -153,13 +148,17 @@ const SearchBar = forwardRef(({
         />
         {/* 清空按钮 */}
         {currentQuery && (
-          <button
+          <Button
+            isIconOnly
+            size="sm"
+            radius="full"
+            variant="light"
             onClick={handleClear}
-            className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted/80 transition-all duration-150 cursor-pointer bg-transparent border-0 p-0"
+            className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 min-w-5"
             aria-label="清空"
           >
             <CloseIcon />
-          </button>
+          </Button>
         )}
       </div>
     </div>
