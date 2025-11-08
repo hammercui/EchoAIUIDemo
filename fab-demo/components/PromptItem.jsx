@@ -92,8 +92,8 @@ const PromptItem = ({
       >
         {/* 3 行文本结构 */}
         <div className="pointer-events-none pr-12">
-          {/* 第 1 行: 标题（缩小字号） */}
-          <h3 className="text-xs font-semibold text-foreground mb-1 leading-tight">
+          {/* 第 1 行: 标题（靠近顶部边缘） */}
+          <h3 className="text-xs font-semibold text-foreground mb-1.5 leading-tight">
             {prompt.title}
           </h3>
           {/* 第 2 行: 描述 (3行省略) */}
@@ -105,12 +105,12 @@ const PromptItem = ({
               content: "bg-gray-900 text-white px-3 py-2 text-xs rounded-lg shadow-lg"
             }}
           >
-            <p className="text-xs text-muted-foreground mb-1.5 leading-tight line-clamp-3 pointer-events-auto">
+            <p className="text-xs text-muted-foreground mb-2.5 leading-tight line-clamp-3 pointer-events-auto">
               {prompt.description}
             </p>
           </Tooltip>
-          {/* 第 3 行: 标签 + 点赞 + 时间 */}
-          <div className="flex justify-between items-center text-[10px] pointer-events-auto">
+          {/* 第 3 行: 标签 + 点赞 + 时间（下移并靠近底部边缘） */}
+          <div className="flex justify-between items-center text-[10px] pointer-events-auto mt-auto">
             {/* 左侧：标签区 */}
             <div className="flex gap-1.5 items-center flex-wrap">
               {prompt.tags.map((tag, idx) => (
@@ -144,8 +144,8 @@ const PromptItem = ({
               </button>
             </div>
 
-            {/* 右侧：点赞 + 时间 */}
-            <div className="flex items-center gap-2">
+            {/* 右侧：点赞 + 时间（优化布局） */}
+            <div className="flex items-center gap-2 ml-2 flex-shrink-0">
               {/* 点赞按钮 */}
               <button
                 onClick={handleLike}
@@ -156,14 +156,14 @@ const PromptItem = ({
                 }`}
                 title={prompt.isLiked ? '取消点赞' : '点赞'}
               >
-                <span className="text-sm">
+                <span className="text-sm leading-none">
                   {prompt.isLiked ? '👍' : '👍🏻'}
                 </span>
-                <span className="font-medium">{prompt.likes}</span>
+                <span className="font-medium leading-none">{prompt.likes}</span>
               </button>
 
               {/* 时间 */}
-              <span className="text-muted-foreground">{prompt.date}</span>
+              <span className="text-muted-foreground leading-none">{prompt.date}</span>
             </div>
           </div>
         </div>

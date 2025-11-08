@@ -3,7 +3,7 @@ export const mockPrompts = [
   {
     id: 1,
     title: '代码生成 - React 组件',
-    description: '根据需求生成符合最佳实践的 React 函数组件',
+    description: '根据需求生成符合最佳实践的 React 函数组件\n支持 Hooks、TypeScript 类型定义和完整的 Props 验证\n自动生成组件文档和使用示例，提升开发效率',
     tags: ['前端', '组件'],
     date: '2 天前',
     dateTimestamp: Date.now() - 2 * 24 * 60 * 60 * 1000,
@@ -15,7 +15,7 @@ export const mockPrompts = [
   {
     id: 2,
     title: '代码重构 - 优化函数',
-    description: '优化现有函数以提高性能和可读性',
+    description: '优化现有函数以提高性能和可读性\n通过提取重复逻辑、简化条件语句和优化算法复杂度\n使代码更易维护，减少潜在 bug，提升团队协作效率',
     tags: ['后端', '重构'],
     date: '1 天前',
     dateTimestamp: Date.now() - 1 * 24 * 60 * 60 * 1000,
@@ -27,7 +27,7 @@ export const mockPrompts = [
   {
     id: 3,
     title: 'Bug 修复 - 错误排查',
-    description: '修复异步请求的错误处理逻辑',
+    description: '修复异步请求的错误处理逻辑\n添加完善的异常捕获机制和重试策略\n确保系统稳定性，提供友好的错误提示和日志记录',
     tags: ['后端', '调试'],
     date: '1 天前',
     dateTimestamp: Date.now() - 1 * 24 * 60 * 60 * 1000,
@@ -39,7 +39,7 @@ export const mockPrompts = [
   {
     id: 4,
     title: '性能优化 - 渲染优化',
-    description: '优化大量数据的渲染性能',
+    description: '优化大量数据的渲染性能\n采用虚拟滚动、懒加载和分页策略减少 DOM 操作\n提升用户体验，降低内存占用，支持万级数据流畅展示',
     tags: ['性能', '前端'],
     date: '3 天前',
     dateTimestamp: Date.now() - 3 * 24 * 60 * 60 * 1000,
