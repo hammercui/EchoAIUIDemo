@@ -107,40 +107,15 @@ const SearchBar = forwardRef(({
   };
 
   return (
-    <div className="w-full">
-      {/* 搜索输入框 - HeroUI 风格 */}
-      <div className="relative">
-        <div className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none w-4 h-4">
-          <SearchIcon />
-        </div>
-        <input
-          ref={ref}
-          type="text"
-          value={currentQuery}
-          onChange={handleInputChange}
-          placeholder={placeholder}
-          className="w-full h-10 pl-10 pr-10 bg-muted/50 border border-border rounded-full text-sm text-foreground placeholder:text-muted-foreground transition-all duration-150 focus:outline-none focus:bg-background focus:border-[hsl(262,83%,58%)] hover:bg-muted"
-        />
-        {/* 清空按钮 */}
-        {currentQuery && (
-          <button
-            onClick={handleClear}
-            className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-all duration-150 cursor-pointer bg-transparent border-0 p-0"
-            aria-label="清空"
-          >
-            <CloseIcon />
-          </button>
-        )}
-      </div>
-
-      {/* 模式切换器 - HeroUI 胶囊式设计 */}
-      <div className="flex gap-1 p-1 bg-muted/50 rounded-full mt-2 w-fit">
+    <div className="w-full flex items-center gap-3">
+      {/* 模式切换器 - 紧凑胶囊式设计 */}
+      <div className="flex gap-0.5 p-0.5 bg-muted/50 rounded-full shrink-0">
         <button
           onClick={() => handleModeSwitch('prompt')}
-          className={`flex-1 h-8 px-4 text-sm font-medium rounded-full transition-all duration-150 cursor-pointer ${
+          className={`h-9 px-3.5 text-xs font-medium rounded-full transition-all duration-150 cursor-pointer whitespace-nowrap ${
             mode === 'prompt'
-              ? 'text-white shadow-md'
-              : 'bg-transparent text-muted-foreground hover:text-foreground'
+              ? 'text-white shadow-sm'
+              : 'bg-transparent text-muted-foreground hover:text-foreground hover:bg-muted/30'
           }`}
           style={mode === 'prompt' ? {
             background: 'linear-gradient(135deg, hsl(262, 83%, 58%), hsl(262, 83%, 48%))'
@@ -150,10 +125,10 @@ const SearchBar = forwardRef(({
         </button>
         <button
           onClick={() => handleModeSwitch('tag')}
-          className={`flex-1 h-8 px-4 text-sm font-medium rounded-full transition-all duration-150 cursor-pointer ${
+          className={`h-9 px-3.5 text-xs font-medium rounded-full transition-all duration-150 cursor-pointer whitespace-nowrap ${
             mode === 'tag'
-              ? 'text-white shadow-md'
-              : 'bg-transparent text-muted-foreground hover:text-foreground'
+              ? 'text-white shadow-sm'
+              : 'bg-transparent text-muted-foreground hover:text-foreground hover:bg-muted/30'
           }`}
           style={mode === 'tag' ? {
             background: 'linear-gradient(135deg, hsl(262, 83%, 58%), hsl(262, 83%, 48%))'
@@ -161,6 +136,31 @@ const SearchBar = forwardRef(({
         >
           标签
         </button>
+      </div>
+
+      {/* 搜索输入框 - 现代简约风格 */}
+      <div className="relative flex-1">
+        <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none w-4 h-4">
+          <SearchIcon />
+        </div>
+        <input
+          ref={ref}
+          type="text"
+          value={currentQuery}
+          onChange={handleInputChange}
+          placeholder={placeholder}
+          className="w-full h-10 pl-10 pr-10 bg-muted/50 border border-border rounded-full text-sm text-foreground placeholder:text-muted-foreground transition-all duration-150 focus:outline-none focus:bg-background focus:border-[hsl(262,83%,58%)] focus:shadow-[0_0_0_3px_hsl(262,83%,58%,0.1)] hover:bg-muted/70"
+        />
+        {/* 清空按钮 */}
+        {currentQuery && (
+          <button
+            onClick={handleClear}
+            className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted/80 transition-all duration-150 cursor-pointer bg-transparent border-0 p-0"
+            aria-label="清空"
+          >
+            <CloseIcon />
+          </button>
+        )}
       </div>
     </div>
   );
