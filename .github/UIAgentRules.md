@@ -21,7 +21,7 @@
 | 类别 | 推荐工具 | 状态 |
 |:-----|:---------|:-----|
 | 动效 | Framer Motion / Motion One | ✅ |
-| 图标 | Heroicons / Lucide | ✅ |
+| 图标 | **Lucide React**（强制） | ✅ |
 | 表单 | React Hook Form / Zod | ✅ |
 | 多主题 | Tailwind variants / CSS vars | ✅ |
 
@@ -117,7 +117,33 @@
 - ❌ 禁止硬编码颜色值（配置在主题中）
 - ❌ 禁止使用纯黑 `#000` 或纯白 `#fff`
 
-### 2. 布局标准（Layout Tokens）
+### 2. 图标系统
+
+**图标库**：Lucide React（强制使用）
+
+**安装**：
+```bash
+npm install lucide-react
+```
+
+**使用原则**：
+- ✅ 统一使用 Lucide React 图标库
+- ✅ 图标大小与文字大小保持一致
+- ✅ 图标颜色继承父元素文字颜色
+- ❌ 禁止混用其他图标库（Heroicons、Font Awesome 等）
+
+**常用图标尺寸**：
+- `size={16}` - 配合小文字
+- `size={20}` - 配合正文（默认）
+- `size={24}` - 配合大标题
+
+**常用图标分类**：
+- **操作**：Plus, Minus, X, Check, Edit, Trash2, Save, Copy
+- **导航**：ChevronLeft, ChevronRight, ChevronDown, ChevronUp, Menu, Home, ArrowLeft
+- **状态**：AlertCircle, CheckCircle, XCircle, Info, Loader2, AlertTriangle
+- **功能**：Search, Settings, User, Mail, Bell, Heart, Star, Download, Upload
+
+### 3. 布局标准（Layout Tokens）
 
 **字体尺寸**：
 - `tiny`: 0.75rem (12px)
