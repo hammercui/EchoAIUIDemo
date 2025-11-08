@@ -148,17 +148,19 @@ const SearchBar = forwardRef(({
         />
         {/* 清空按钮 */}
         {currentQuery && (
-          <Button
-            isIconOnly
-            size="sm"
-            radius="full"
-            variant="light"
-            onClick={handleClear}
-            className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 min-w-5"
-            aria-label="清空"
-          >
-            <CloseIcon />
-          </Button>
+          <div className="absolute right-2 top-1/2 -translate-y-1/2">
+            <Button
+              isIconOnly
+              size="sm"
+              radius="full"
+              variant="light"
+              onClick={handleClear}
+              className="w-6 h-6 min-w-6 text-muted-foreground hover:text-foreground"
+              aria-label="清空"
+            >
+              <CloseIcon />
+            </Button>
+          </div>
         )}
       </div>
     </div>
