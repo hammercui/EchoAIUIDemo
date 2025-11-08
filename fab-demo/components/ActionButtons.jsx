@@ -1,17 +1,14 @@
-import React from 'react';
+import { Tooltip } from '@heroui/tooltip';
+import { Copy, Eye, Settings } from 'lucide-react';
 
 /**
- * Action Buttons 组件
- * 
- * 规范要求:
- * - 竖向排列 (flex-col)
- * - Ghost 风格 (纯图标,hover 显示背景)
- * - 按钮尺寸: 32x32px
- * - 淡入动画: 150ms
- * - 位置: item 右侧
- * 
- * 新增：使用统计
- * - 点击任意按钮触发 onUsage 回调
+ * Action Buttons 组件 - 优化版
+ *
+ * 优化内容:
+ * - 使用 lucide-react 图标
+ * - 使用 @heroui/tooltip 快速提示
+ * - 紧凑布局，不超过 PromptItem 高度
+ * - 快速响应的 Tooltip (delay: 0)
  */
 const ActionButtons = ({ onCopy, onView, onManage, onUsage }) => {
   const handleClick = (action) => (e) => {
@@ -20,29 +17,60 @@ const ActionButtons = ({ onCopy, onView, onManage, onUsage }) => {
     action();
   };
 
+  const buttonClass = "w-7 h-7 border-0 rounded-md bg-transparent cursor-pointer flex items-center justify-center transition-all duration-150 text-muted-foreground hover:bg-muted hover:text-foreground active:scale-90";
+
   return (
-    <div className="absolute top-1/2 right-3 -translate-y-1/2 flex flex-col gap-1 opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-hover:pointer-events-auto pointer-events-none">
-      <button 
-        className="w-8 h-8 border-0 rounded-lg bg-transparent cursor-pointer text-sm flex items-center justify-center transition-all duration-150 text-muted-foreground hover:bg-muted hover:text-foreground active:scale-95"
-        onClick={handleClick(onCopy)}
-        title="复制"
+    <div className="absolute top-1/2 right-2 -translate-y-1/2 flex flex-col gap-0.5 opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-hover:pointer-events-auto pointer-events-none">
+      <Tooltip
+        content="复制"
+        placement="left"
+        delay={0}
+        closeDelay={0}
+        classNames={{
+          content: "bg-foreground text-background px-2 py-1 text-xs rounded-md"
+        }}
       >
-        📋
-      </button>
-      <button 
-        className="w-8 h-8 border-0 rounded-lg bg-transparent cursor-pointer text-sm flex items-center justify-center transition-all duration-150 text-muted-foreground hover:bg-muted hover:text-foreground active:scale-95"
-        onClick={handleClick(onView)}
-        title="查看答案"
+        <button
+          className={buttonClass}
+          onClick={handleClick(onCopy)}
+        >
+          <Copy className="w-4 h-4" />
+        </button>
+      </Tooltip>
+
+      <Tooltip
+        content="查看答案"
+        placement="left"
+        delay={0}
+        closeDelay={0}
+        classNames={{
+          content: "bg-foreground text-background px-2 py-1 text-xs rounded-md"
+        }}
       >
-        👁️
-      </button>
-      <button 
-        className="w-8 h-8 border-0 rounded-lg bg-transparent cursor-pointer text-sm flex items-center justify-center transition-all duration-150 text-muted-foreground hover:bg-muted hover:text-foreground active:scale-95"
-        onClick={handleClick(onManage)}
-        title="管理"
+        <button
+          className={buttonClass}
+          onClick={handleClick(onView)}
+        >
+          <Eye className="w-4 h-4" />
+        </button>
+      </Tooltip>
+
+      <Tooltip
+        content="管理"
+        placement="left"
+        delay={0}
+        closeDelay={0}
+        classNames={{
+          content: "bg-foreground text-background px-2 py-1 text-xs rounded-md"
+        }}
       >
-        ⚙️
-      </button>
+        <button
+          className={buttonClass}
+          onClick={handleClick(onManage)}
+        >
+          <Settings className="w-4 h-4" />
+        </button>
+      </Tooltip>
     </div>
   );
 };
