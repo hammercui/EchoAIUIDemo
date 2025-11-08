@@ -30,8 +30,7 @@ const PromptPanel = ({
   onLike,
   onUpdateTags
 }) => {
-  // Tab 状态
-  const [activeTab, setActiveTab] = useState('list');
+
 
   // 搜索状态
   const [searchMode, setSearchMode] = useState('prompt'); // 'prompt' | 'tag'
@@ -197,8 +196,8 @@ const PromptPanel = ({
 
   return (
     <div className="flex flex-col h-full max-h-[80vh] min-h-[300px]">
-      {/* Header - Tab页签 */}
-      <PromptListHeader activeTab={activeTab} onTabChange={setActiveTab} />
+      {/* Header */}
+      <PromptListHeader />
 
       {/* 搜索栏 */}
       <div className="px-4 py-3 border-b border-border bg-background">

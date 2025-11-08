@@ -1,16 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
+import Button from './Button';
+import { X } from 'lucide-react';
 
 /**
  * 标签对话框组件
- * 
+ *
  * 功能：
  * 1. 新增标签对话框（弹窗输入）
  * 2. 删除标签确认对话框
+ *
+ * 设计风格：HeroUI Modal 风格
  */
 
-// 通用对话框容器
-const Dialog = ({ isOpen, onClose, title, children }) => {
-  const dialogRef = useRef(null);
+// HeroUI 风格的 Modal 组件
+const Modal = ({ isOpen, onClose, children, size = 'md' }) => {
+  const backdropRef = useRef(null);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -21,45 +25,77 @@ const Dialog = ({ isOpen, onClose, title, children }) => {
       }
     };
 
-    const handleClickOutside = (e) => {
-      if (dialogRef.current && !dialogRef.current.contains(e.target)) {
-        onClose();
-      }
-    };
-
     document.addEventListener('keydown', handleEscape);
-    document.addEventListener('mousedown', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('keydown', handleEscape);
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
+    return () => document.removeEventListener('keydown', handleEscape);
   }, [isOpen, onClose]);
+
+  const handleBackdropClick = (e) => {
+    if (e.target === backdropRef.current) {
+      onClose();
+    }
+  };
 
   if (!isOpen) return null;
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 animate-in fade-in-0 duration-150">
-      <div
-        ref={dialogRef}
-        className="bg-background border border-border rounded-xl shadow-2xl max-w-md w-full mx-4 animate-in fade-in-0 zoom-in-95 duration-150"
-      >
-        {/* 标题栏 */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-border">
-          <h3 className="text-base font-semibold text-foreground">{title}</h3>
-          <button
-            onClick={onClose}
-            className="text-muted-foreground hover:text-foreground transition-colors duration-150"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
+  const sizeClasses = {
+    sm: 'max-w-sm',
+    md: 'max-w-md',
+    lg: 'max-w-lg',
+    xl: 'max-w-xl',
+  };
 
-        {/* 内容区 */}
-        <div className="p-6">{children}</div>
+  return (
+    <div
+      ref={backdropRef}
+      onClick={handleBackdropClick}
+      className="fixed inset-0 z-[150] flex items-center animate-in fade-in-0 duration-150"
+      style={{
+        // 与提示词列表面板居中对齐
+        // 面板宽度: 30vw, 位置: left-[68px] 或 right-[68px]
+        justifyContent: 'center',
+        paddingLeft: '68px',
+        paddingRight: '68px'
+      }}
+    >
+      <div
+        className={`${sizeClasses[size]} w-full bg-background rounded-xl border border-border animate-in fade-in-0 zoom-in-95 duration-150`}
+        style={{
+          maxWidth: '30vw', // 与提示词列表面板宽度一致
+          boxShadow: '0 40px 80px -20px rgba(0, 0, 0, 0.4), 0 20px 40px -10px rgba(0, 0, 0, 0.3), 0 10px 20px -5px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.08)'
+        }}
+      >
+        {children}
       </div>
+    </div>
+  );
+};
+
+// HeroUI 风格的 Input 组件
+const Input = ({ label, value, onChange, onKeyDown, placeholder, autoFocus, className = '' }) => {
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (autoFocus && inputRef.current) {
+      setTimeout(() => inputRef.current?.focus(), 100);
+    }
+  }, [autoFocus]);
+
+  return (
+    <div className={`relative ${className}`}>
+      {label && (
+        <label className="block text-sm font-medium text-foreground mb-2">
+          {label}
+        </label>
+      )}
+      <input
+        ref={inputRef}
+        type="text"
+        value={value}
+        onChange={onChange}
+        onKeyDown={onKeyDown}
+        placeholder={placeholder}
+        className="w-full px-3 py-2 text-sm border border-input rounded-lg bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring/20 focus:border-ring hover:border-muted-foreground transition-all duration-150"
+      />
     </div>
   );
 };
@@ -67,15 +103,10 @@ const Dialog = ({ isOpen, onClose, title, children }) => {
 // 新增标签对话框
 export const AddTagDialog = ({ isOpen, onClose, onConfirm }) => {
   const [tagName, setTagName] = useState('');
-  const inputRef = useRef(null);
 
   useEffect(() => {
     if (isOpen) {
       setTagName('');
-      // 延迟聚焦，等待动画完成
-      setTimeout(() => {
-        inputRef.current?.focus();
-      }, 150);
     }
   }, [isOpen]);
 
@@ -94,72 +125,102 @@ export const AddTagDialog = ({ isOpen, onClose, onConfirm }) => {
   };
 
   return (
-    <Dialog isOpen={isOpen} onClose={onClose} title="添加标签">
-      <div className="space-y-4">
-        <div>
-          <label className="block text-sm font-medium text-foreground mb-2">
-            标签名称
-          </label>
-          <input
-            ref={inputRef}
-            type="text"
-            value={tagName}
-            onChange={(e) => setTagName(e.target.value)}
-            onKeyDown={handleKeyDown}
-            placeholder="请输入标签名称"
-            className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[hsl(262,83%,58%)] focus:border-transparent transition-all duration-150"
-          />
-        </div>
-
-        {/* 按钮组 */}
-        <div className="flex justify-end gap-2 pt-2">
-          <button
-            onClick={onClose}
-            className="px-4 py-2 text-sm font-medium text-foreground bg-muted hover:bg-muted/70 rounded-lg transition-colors duration-150"
-          >
-            取消
-          </button>
-          <button
-            onClick={handleConfirm}
-            disabled={!tagName.trim()}
-            className="px-4 py-2 text-sm font-medium text-white bg-[hsl(262,83%,58%)] hover:bg-[hsl(262,83%,50%)] disabled:opacity-50 disabled:cursor-not-allowed rounded-lg transition-all duration-150"
-          >
-            确认
-          </button>
-        </div>
+    <Modal isOpen={isOpen} onClose={onClose} size="md">
+      {/* Header */}
+      <div className="flex items-center justify-between px-6 py-4 border-b border-border">
+        <h3 className="text-base font-semibold text-foreground">
+          添加标签
+        </h3>
+        <button
+          onClick={onClose}
+          className="text-muted-foreground hover:text-foreground transition-colors duration-150"
+        >
+          <X className="w-5 h-5" />
+        </button>
       </div>
-    </Dialog>
+
+      {/* Body */}
+      <div className="px-6 py-6">
+        <Input
+          autoFocus
+          label="标签名称"
+          placeholder="请输入标签名称"
+          value={tagName}
+          onChange={(e) => setTagName(e.target.value)}
+          onKeyDown={handleKeyDown}
+        />
+      </div>
+
+      {/* Footer */}
+      <div className="flex items-center justify-end gap-2 px-6 py-4 border-t border-border">
+        <Button
+          variant="flat"
+          color="default"
+          size="sm"
+          onPress={onClose}
+        >
+          取消
+        </Button>
+        <Button
+          className="bg-primary-gradient text-white"
+          size="sm"
+          onPress={handleConfirm}
+          isDisabled={!tagName.trim()}
+        >
+          确认
+        </Button>
+      </div>
+    </Modal>
   );
 };
 
 // 删除标签确认对话框
 export const DeleteTagDialog = ({ isOpen, onClose, onConfirm, tagName }) => {
+  const handleConfirm = () => {
+    onConfirm();
+    onClose();
+  };
+
   return (
-    <Dialog isOpen={isOpen} onClose={onClose} title="删除标签">
-      <div className="space-y-4">
+    <Modal isOpen={isOpen} onClose={onClose} size="md">
+      {/* Header */}
+      <div className="flex items-center justify-between px-6 py-4 border-b border-border">
+        <h3 className="text-base font-semibold text-foreground">
+          删除标签
+        </h3>
+        <button
+          onClick={onClose}
+          className="text-muted-foreground hover:text-foreground transition-colors duration-150"
+        >
+          <X className="w-5 h-5" />
+        </button>
+      </div>
+
+      {/* Body */}
+      <div className="px-6 py-6">
         <p className="text-sm text-muted-foreground">
           确定要删除标签 <span className="font-semibold text-foreground">"{tagName}"</span> 吗？
         </p>
-
-        {/* 按钮组 */}
-        <div className="flex justify-end gap-2 pt-2">
-          <button
-            onClick={onClose}
-            className="px-4 py-2 text-sm font-medium text-foreground bg-muted hover:bg-muted/70 rounded-lg transition-colors duration-150"
-          >
-            取消
-          </button>
-          <button
-            onClick={() => {
-              onConfirm();
-              onClose();
-            }}
-            className="px-4 py-2 text-sm font-medium text-white bg-red-500 hover:bg-red-600 rounded-lg transition-all duration-150"
-          >
-            删除
-          </button>
-        </div>
       </div>
-    </Dialog>
+
+      {/* Footer */}
+      <div className="flex items-center justify-end gap-2 px-6 py-4 border-t border-border">
+        <Button
+          variant="flat"
+          color="default"
+          size="sm"
+          onPress={onClose}
+        >
+          取消
+        </Button>
+        <Button
+          color="danger"
+          size="sm"
+          onPress={handleConfirm}
+        >
+          删除
+        </Button>
+      </div>
+    </Modal>
   );
 };
