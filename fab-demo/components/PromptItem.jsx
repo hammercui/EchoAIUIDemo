@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Tooltip } from '@heroui/tooltip';
 import ActionButtons from './ActionButtons';
 import { AddTagDialog, DeleteTagDialog } from './TagDialog';
 
@@ -27,7 +28,6 @@ const PromptItem = ({
   onLike,
   onUpdateTags
 }) => {
-  const [showTooltip, setShowTooltip] = useState(false);
   const [isDeleteMode, setIsDeleteMode] = useState(false);
   const [showAddDialog, setShowAddDialog] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
@@ -97,23 +97,18 @@ const PromptItem = ({
             {prompt.title}
           </h3>
           {/* 第 2 行: 描述 (3行省略) */}
-          <div 
-            className="relative"
-            onMouseEnter={() => setShowTooltip(true)}
-            onMouseLeave={() => setShowTooltip(false)}
+          <Tooltip 
+            content={prompt.description} 
+            placement="top" 
+            classNames={{
+              base: "max-w-xs",
+              content: "bg-gray-900 text-white px-3 py-2 text-xs rounded-lg shadow-lg"
+            }}
           >
             <p className="text-xs text-muted-foreground mb-1.5 leading-tight line-clamp-3 pointer-events-auto">
               {prompt.description}
             </p>
-            {/* Tooltip - 显示在上方 */}
-            {showTooltip && (
-              <div className="absolute left-0 bottom-full mb-2 z-50 max-w-xs p-3 bg-gray-900 text-white text-xs rounded-lg shadow-xl pointer-events-none animate-in fade-in-0 slide-in-from-bottom-2 duration-150">
-                {prompt.description}
-                {/* 小三角箭头 */}
-                <div className="absolute left-4 top-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
-              </div>
-            )}
-          </div>
+          </Tooltip>
           {/* 第 3 行: 标签 + 点赞 + 时间 */}
           <div className="flex justify-between items-center text-[10px] pointer-events-auto">
             {/* 左侧：标签区 */}

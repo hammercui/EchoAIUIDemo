@@ -130,7 +130,7 @@ const FABDemo = () => {
 
       {/* 位置切换按钮 */}
       <button 
-        className="absolute top-5 left-1/2 -translate-x-1/2 h-10 px-6 bg-background border border-border rounded-full cursor-pointer text-base font-semibold text-foreground transition-all duration-150 z-[1000] hover:bg-muted hover:scale-105 active:scale-95 shadow-sm"
+        className="absolute top-5 left-1/2 -translate-x-1/2 h-10 px-6 bg-background border border-border rounded-full cursor-pointer text-base font-semibold text-foreground transition-all duration-150 z-[200] hover:bg-muted hover:scale-105 active:scale-95 shadow-sm"
         onClick={togglePosition}
       >
         切换到 {fabPosition === 'left' ? '右侧' : '左侧'}
@@ -138,7 +138,7 @@ const FABDemo = () => {
 
       {/* 背景遮罩层 */}
       <div 
-        className={`fixed inset-0 transition-opacity duration-[180ms] z-[999] ${
+        className={`fixed inset-0 transition-opacity duration-[180ms] z-[50] ${
           isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
         }`}
         style={{
@@ -156,7 +156,7 @@ const FABDemo = () => {
 
       {/* 面板容器 */}
       <div 
-        className={`fixed bottom-6 flex transition-all duration-[180ms] z-[1000] ${
+        className={`fixed bottom-6 flex transition-all duration-[180ms] z-[100] ${
           fabPosition === 'left' 
             ? 'left-[68px]' // FAB(40px) + 间距(24px) + 间距(4px) = 68px
             : 'right-[68px]'
