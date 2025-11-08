@@ -69,7 +69,7 @@ const Button = forwardRef(({
       // Solid 变体
       solid: {
         default: 'bg-foreground text-background hover:bg-foreground/90 active:scale-[0.97]',
-        primary: 'text-white shadow-sm hover:shadow-md active:scale-[0.97]',
+        primary: 'bg-primary-gradient text-white shadow-sm hover:shadow-md active:scale-[0.97]',
         secondary: 'bg-secondary text-white hover:bg-secondary/90 active:scale-[0.97]',
         success: 'bg-green-500 text-white hover:bg-green-600 active:scale-[0.97]',
         warning: 'bg-yellow-500 text-white hover:bg-yellow-600 active:scale-[0.97]',
@@ -87,7 +87,7 @@ const Button = forwardRef(({
       // Light 变体
       light: {
         default: 'bg-transparent text-foreground hover:bg-muted active:scale-[0.97]',
-        primary: 'bg-transparent text-[hsl(262,83%,58%)] hover:bg-[hsl(262,83%,58%)]/10 active:scale-[0.97]',
+        primary: 'bg-transparent text-ring hover:bg-ring/10 active:scale-[0.97]',
         secondary: 'bg-transparent text-secondary hover:bg-secondary/10 active:scale-[0.97]',
         success: 'bg-transparent text-green-600 hover:bg-green-50 active:scale-[0.97]',
         warning: 'bg-transparent text-yellow-600 hover:bg-yellow-50 active:scale-[0.97]',
@@ -96,7 +96,7 @@ const Button = forwardRef(({
       // Flat 变体
       flat: {
         default: 'bg-muted text-foreground hover:bg-muted/70 active:scale-[0.97]',
-        primary: 'bg-[hsl(262,83%,58%)]/10 text-[hsl(262,83%,58%)] hover:bg-[hsl(262,83%,58%)]/20 active:scale-[0.97]',
+        primary: 'bg-ring/10 text-ring hover:bg-ring/20 active:scale-[0.97]',
         secondary: 'bg-secondary/10 text-secondary hover:bg-secondary/20 active:scale-[0.97]',
         success: 'bg-green-50 text-green-600 hover:bg-green-100 active:scale-[0.97]',
         warning: 'bg-yellow-50 text-yellow-600 hover:bg-yellow-100 active:scale-[0.97]',
@@ -105,7 +105,7 @@ const Button = forwardRef(({
       // Ghost 变体
       ghost: {
         default: 'bg-transparent border border-border text-foreground hover:bg-foreground hover:text-background active:scale-[0.97]',
-        primary: 'bg-transparent border border-[hsl(262,83%,58%)] text-[hsl(262,83%,58%)] hover:text-white active:scale-[0.97]',
+        primary: 'bg-transparent border border-ring text-ring hover:bg-primary-gradient hover:text-white hover:border-transparent active:scale-[0.97]',
         secondary: 'bg-transparent border border-secondary text-secondary hover:bg-secondary hover:text-white active:scale-[0.97]',
         success: 'bg-transparent border border-green-500 text-green-600 hover:bg-green-500 hover:text-white active:scale-[0.97]',
         warning: 'bg-transparent border border-yellow-500 text-yellow-600 hover:bg-yellow-500 hover:text-white active:scale-[0.97]',
@@ -119,14 +119,10 @@ const Button = forwardRef(({
   // Primary 颜色的渐变背景（仅 solid 变体）
   const getPrimaryGradient = () => {
     if (variant === 'solid' && color === 'primary') {
-      return {
-        background: 'linear-gradient(135deg, hsl(262, 83%, 58%), hsl(262, 83%, 48%))'
-      };
+      return {};  // 使用 CSS 类 bg-primary-gradient
     }
     if (variant === 'ghost' && color === 'primary') {
-      return {
-        '--hover-bg': 'linear-gradient(135deg, hsl(262, 83%, 58%), hsl(262, 83%, 48%))'
-      };
+      return {};  // 使用 CSS 类处理
     }
     return {};
   };

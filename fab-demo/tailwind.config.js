@@ -3,7 +3,8 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
-    "./*.{js,ts,jsx,tsx,html}"
+    "./*.{js,ts,jsx,tsx,html}",
+    "./components/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
     extend: {
@@ -60,6 +61,9 @@ export default {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      backgroundImage: {
+        'primary-gradient': 'linear-gradient(135deg, hsl(262, 83%, 58%), hsl(262, 83%, 48%))',
       },
     },
   },

@@ -84,13 +84,10 @@ const PromptItem = ({
     <>
       <div
         className={`relative bg-muted border border-border rounded-xl p-3 cursor-pointer transition-all duration-150 shadow-sm group ${
-          isSelected 
-            ? 'border-[hsl(262,83%,58%)] shadow-[0_0_0_2px_hsl(262,83%,58%,0.1)]' 
+          isSelected
+            ? 'border-ring shadow-[0_0_0_2px_hsl(262,83%,58%,0.1)] bg-[hsl(262,90%,97%)]'
             : 'hover:scale-[1.02] hover:shadow-md'
         }`}
-        style={isSelected ? {
-          background: 'linear-gradient(135deg, hsl(262, 90%, 97%), hsl(262, 90%, 95%))'
-        } : {}}
         onClick={handleCardClick}
       >
         {/* 3 行文本结构 */}
@@ -122,16 +119,11 @@ const PromptItem = ({
             {/* 左侧：标签区 */}
             <div className="flex gap-1.5 items-center flex-wrap">
               {prompt.tags.map((tag, idx) => (
-                <span 
+                <span
                   key={idx}
-                  className={`relative px-1.5 py-0.5 rounded-md border transition-all duration-150 ${
+                  className={`relative px-1.5 py-0.5 rounded-md border border-[hsl(var(--accent-violet))] text-[hsl(var(--accent-violet))] bg-transparent transition-all duration-150 ${
                     isDeleteMode ? 'pr-4' : ''
                   }`}
-                  style={{ 
-                    color: 'hsl(262, 90%, 70%)',
-                    borderColor: 'hsl(262, 90%, 70%)',
-                    backgroundColor: 'transparent'
-                  }}
                   onContextMenu={(e) => handleTagRightClick(e, tag)}
                   onClick={(e) => isDeleteMode && handleDeleteTag(e, tag)}
                 >
@@ -163,9 +155,9 @@ const PromptItem = ({
               <button
                 onClick={handleLike}
                 className={`flex items-center gap-0.5 transition-all duration-150 ${
-                  prompt.isLiked 
-                    ? 'text-[hsl(262,83%,58%)]' 
-                    : 'text-muted-foreground hover:text-[hsl(262,83%,58%)]'
+                  prompt.isLiked
+                    ? 'text-ring'
+                    : 'text-muted-foreground hover:text-ring'
                 }`}
                 title={prompt.isLiked ? '取消点赞' : '点赞'}
               >

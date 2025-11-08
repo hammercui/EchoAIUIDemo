@@ -13,11 +13,10 @@ import React from 'react';
 const FABButton = ({ isOpen, onClick, position }) => {
   return (
     <button
-      className={`fixed bottom-6 w-12 h-12 rounded-full text-white border-0 cursor-pointer flex items-center justify-center z-[9999] transition-all duration-150 hover:scale-110 active:scale-95 shadow-xl ${
+      className={`fixed bottom-6 w-12 h-12 rounded-full text-white border-0 cursor-pointer flex items-center justify-center z-[9999] transition-all duration-150 hover:scale-110 active:scale-95 shadow-xl bg-primary-gradient ${
         position === 'left' ? 'left-6' : 'right-6'
       }`}
       style={{
-        background: 'linear-gradient(135deg, hsl(262, 83%, 58%), hsl(262, 83%, 48%))',
         boxShadow: '0 0 24px hsla(262, 83%, 58%, 0.5), 0 8px 16px rgba(0, 0, 0, 0.15)'
       }}
       onClick={onClick}

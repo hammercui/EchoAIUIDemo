@@ -82,10 +82,7 @@ const TagSelector = ({
             {selectedTags.map((tag, index) => (
               <div
                 key={index}
-                className="h-7 px-3 flex items-center gap-2 text-xs font-medium rounded-full transition-all duration-150 text-white shadow-sm"
-                style={{
-                  background: 'linear-gradient(135deg, hsl(262, 83%, 58%), hsl(262, 83%, 48%))'
-                }}
+                className="h-7 px-3 flex items-center gap-2 text-xs font-medium rounded-full transition-all duration-150 text-white shadow-sm bg-primary-gradient"
               >
                 <span>{tag}</span>
                 <Button

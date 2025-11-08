@@ -144,7 +144,7 @@ const SearchBar = forwardRef(({
           value={currentQuery}
           onChange={handleInputChange}
           placeholder={placeholder}
-          className="w-full h-10 pl-10 pr-10 bg-muted/50 border border-border rounded-full text-sm text-foreground placeholder:text-muted-foreground transition-all duration-150 focus:outline-none focus:bg-background focus:border-[hsl(262,83%,58%)] focus:shadow-[0_0_0_3px_hsl(262,83%,58%,0.1)] hover:bg-muted/70"
+          className="w-full h-10 pl-10 pr-10 bg-muted/50 border border-border rounded-full text-sm text-foreground placeholder:text-muted-foreground transition-all duration-150 focus:outline-none focus:bg-background focus:border-ring focus:ring-4 focus:ring-ring/10 hover:bg-muted/70"
         />
         {/* 清空按钮 */}
         {currentQuery && (

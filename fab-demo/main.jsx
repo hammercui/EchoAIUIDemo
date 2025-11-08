@@ -71,6 +71,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <span className="px-3 py-1 bg-sky-100 text-sky-800 rounded-full text-sm font-medium">Tailwind CSS</span>
             <span className="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">shadcn/ui</span>
           </div>
+          {/* 测试 bg-primary-gradient */}
+          <div className="mt-4">
+            <div className="bg-primary-gradient text-white px-4 py-2 rounded-lg inline-block">
+              测试紫色渐变背景
+            </div>
+          </div>
         </div>
       </div>
 
