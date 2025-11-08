@@ -1,42 +1,64 @@
-# UI Agent Rules - shadcn/ui 设计规范
+# UI Agent Rules - HeroUI 设计规范
 
 > AI 编程助手 UI 设计核心规范 - **强制执行**
 
-使用 shadcn/ui + tailwindcss 作为设计系统，实现统一的 UI 规范。
+使用 **shadcn/ui + HeroUI 皮肤 + Tailwind CSS** 作为设计系统，实现统一的 UI 规范。
 
-## 📚 文档导航
+## 🎯 设计系统组合
 
-- **UIAgentRules.md**（当前）- 核心设计原则与指南
-- **copilot-shadcn-base-style.md** - 完整样式实现细节（色彩系统、字体、字号、间距、Tailwind样式）,使用时按功能模块查询
-- **UIAgentAnimaRules.md** - 微交互动效原则和指南
-- **copilot-shadcn-anima-style.md** - 完整的微交互的动效实现细节，使用时按照功能模块查询
+🧠 **shadcn/ui** - 工程级组件控制力
+🎨 **HeroUI 风格皮肤** - 品牌级视觉美感
+🪶 **Tailwind CSS** - 系统级样式自由度
+
+**核心优势**：
+- ✅ 现代美学（HeroUI）
+- ✅ 无限扩展（shadcn/ui）
+- ✅ 工程友好（Tailwind CSS）
+- ✅ 高可维护、品牌统一、长期演进
+
+## 📚 兼容工具链
+
+| 类别 | 推荐工具 | 状态 |
+|:-----|:---------|:-----|
+| 动效 | Framer Motion / Motion One | ✅ |
+| 图标 | Heroicons / Lucide | ✅ |
+| 表单 | React Hook Form / Zod | ✅ |
+| 多主题 | Tailwind variants / CSS vars | ✅ |
 
 ## 🎯 核心设计原则
+
 ### 基本原则
-1. 《写给大家看的设计书》 - CRAP四原则
-   * Contrast (对比)
-   * Repetition (重复)
-   * Alignment (对齐)
-   * Proximity (亲密性)
-2. 《Don't Make Me Think》 - 交互自明性
-自解释性、减少认知负担、即时反馈、视觉层级
-3. 《Designing Interface Animation》 - 动效设计
-有目的的动效、速度与缓动、连贯性、性能优先
-4. 《Laws of UX》 - UX定律
-Hick's Law、Fitts's Law、Miller's Law、Jakob's Law、Peak-End Rule
-5. 《Refactoring UI》 - 前端实战
-从功能出发、建立设计系统、少用边框、留白高级感、层次化灰色
-6. 《简约至上》 - 简化四原则
-删除、组织、隐藏、转移
+1. **CRAP 四原则**（《写给大家看的设计书》）
+   - Contrast (对比)
+   - Repetition (重复)
+   - Alignment (对齐)
+   - Proximity (亲密性)
 
-### shadcn/ui 设计哲学
+2. **交互自明性**（《Don't Make Me Think》）
+   - 自解释性、减少认知负担、即时反馈、视觉层级
 
-**现代 · 优雅 · 实用 · 灵活**
+3. **动效设计**（《Designing Interface Animation》）
+   - 有目的的动效、速度与缓动、连贯性、性能优先
 
-1. **实用主义**：功能第一，装饰第二
-2. **组合式设计**：用 Tailwind 实用类构建，而非固定组件
-3. **深色优先**：天然支持深浅色模式切换
-4. **语义化**：使用 CSS 变量，而非硬编码颜色
+4. **UX 定律**（《Laws of UX》）
+   - Hick's Law、Fitts's Law、Miller's Law、Jakob's Law、Peak-End Rule
+
+5. **前端实战**（《Refactoring UI》）
+   - 从功能出发、建立设计系统、少用边框、留白高级感、层次化灰色
+
+6. **简化四原则**（《简约至上》）
+   - 删除、组织、隐藏、转移
+
+### HeroUI 设计哲学
+
+**Beautiful · Fast · Modern**
+
+参考：[HeroUI 设计原则](https://www.heroui.com/docs/guide/design-principles)
+
+1. **美观优先**：现代化视觉设计，开箱即用的美感
+2. **性能至上**：基于 React Aria，确保高性能和可访问性
+3. **灵活定制**：基于 Tailwind CSS，完全可定制
+4. **开发体验**：简洁的 API，易于使用和扩展
 
 ### 微交互原则
 
@@ -49,136 +71,250 @@ Hick's Law、Fitts's Law、Miller's Law、Jakob's Law、Peak-End Rule
 
 | 来源 | 用途 | 链接 |
 |------|------|------|
+| 🎨 HeroUI | 组件设计与规范 | [heroui.com](https://www.heroui.com/) |
 | 🎬 motion.dev | 动效参考 | [motion.dev/examples](https://motion.dev/examples) |
-| ✨ magicui.design | 高级特效 | [magicui.design](https://magicui.design/)，可是使用mcp server 21st-dev/magic查询组件 |
 | 🎠 embla-carousel | 轮播交互 | 官方文档 |
-| 🎨 heroui.com | 组件设计 | [heroui.com](https://www.heroui.com/) |
-| 🏢 Sider.ai | 按钮风格 | [sider.ai](https://sider.ai/) |
 
 ---
 
 ## ✅ 必须遵守的规则
 
-### 0. 色彩使用规范
+### 1. HeroUI 色彩系统
 
-**基础色彩系统**：
-- `--background`: 页面背景色（浅色模式：白色，深色模式：深灰）
-- `--foreground`: 主要文字色（浅色模式：深灰，深色模式：浅灰）
-- `--muted`: 次要背景色（用于卡片、输入框背景）
-- `--muted-foreground`: 次要文字色（用于辅助说明文字）
-- `--border`: 边框色（统一的边框颜色）
-- `--primary`: 主色调 `hsl(222, 47%, 11%)` - Slate-900
-- `--primary-foreground`: 主色调上的文字色
+**语义化颜色**（Semantic Colors）：
 
-**使用场景**：
-- 页面背景：`bg-background`
-- 主要文字：`text-foreground`
-- 卡片背景：`bg-muted`
-- 辅助文字：`text-muted-foreground`
-- 边框：`border-border`
-- 主按钮：`bg-primary text-primary-foreground`
-- 次要按钮：`bg-muted text-foreground`
+**基础色彩**：
+- `background` - 页面背景色
+- `foreground` - 主要文字色
+- `divider` - 分割线和边框
+- `overlay` - 遮罩层
+- `focus` - 聚焦状态轮廓
 
-**强调色使用**：
-- 紫色渐变：`linear-gradient(135deg, hsl(262, 83%, 58%), hsl(262, 83%, 48%))` - 强调色
-- 紫色浅色：`hsl(262, 90%, 70%)` - Violet-400
-- 紫色背景：`linear-gradient(135deg, hsl(262, 90%, 97%), hsl(262, 90%, 95%))` - Violet-50
-- 成功状态：`bg-green-50 text-green-600`
-- 警告状态：`bg-yellow-50 text-yellow-600`
-- 错误状态：`bg-red-50 text-red-600`
+**内容层级**：
+- `content1` - 卡片、模态框、弹出框等
+- `content2` - 次级内容容器
+- `content3` - 三级内容容器
+- `content4` - 四级内容容器
 
-### 1. 使用 CSS 变量，禁止硬编码
+**品牌色**：
+- `default` - 默认色：`hsl(222, 47%, 11%)` (Slate-900)
+- `primary` - 主色调：紫色渐变 `linear-gradient(135deg, hsl(262, 83%, 58%), hsl(262, 83%, 48%))`
+- `secondary` - 次要色：`hsl(262, 90%, 70%)` (Violet-400)
+- `success` - 成功状态（绿色系）
+- `warning` - 警告状态（黄色系）
+- `danger` - 危险/错误状态（红色系）
 
-### 2. 深色模式支持
+**色彩使用场景**：
+- **默认色 (Slate-900)**：主按钮、重要元素、深色背景
+- **主色调 (紫色渐变)**：强调元素、CTA 按钮、重要提示（小面积使用）
+- **次要色 (Violet-400)**：图标背景、hover 状态、链接文字、小面积点缀
+- **浅色背景**：`hsl(262, 90%, 97%)` 和 `hsl(262, 90%, 95%)` (Violet-50)
 
-所有 UI 通过 CSS 变量自动适配深浅色模式。
+**使用原则**：
+- ✅ 优先使用语义化颜色名称（如 `color="primary"`）
+- ✅ 使用 Tailwind 类名（如 `bg-primary text-primary-foreground`）
+- ✅ 紫色系仅用于小面积点缀，避免大块紫色背景
+- ❌ 禁止硬编码颜色值（配置在主题中）
+- ❌ 禁止使用纯黑 `#000` 或纯白 `#fff`
 
-### 3. Tailwind 实用类优先
+### 2. 布局标准（Layout Tokens）
 
-优先使用 Tailwind 实用类，避免自定义 CSS。
+**字体尺寸**：
+- `tiny`: 0.75rem (12px)
+- `small`: 0.875rem (14px)
+- `medium`: 1rem (16px)
+- `large`: 1.125rem (18px)
+
+**行高**：
+- `tiny`: 1rem
+- `small`: 1.25rem
+- `medium`: 1.5rem
+- `large`: 1.75rem
+
+**圆角**：
+- `small`: 8px
+- `medium`: 12px
+- `large`: 14px
+- `full`: 完全圆角（用于按钮、徽章）
+
+**边框宽度**：
+- `small`: 1px
+- `medium`: 2px
+- `large`: 3px
+
+**其他**：
+- `disabledOpacity`: 0.5
+- `dividerWeight`: 1px
+
+### 3. 主题配置
+
+**推荐配置**（tailwind.config.js）：
+
+```javascript
+const {heroui} = require("@heroui/react");
+
+module.exports = {
+  plugins: [
+    heroui({
+      themes: {
+        light: {
+          colors: {
+            default: {
+              DEFAULT: "hsl(222, 47%, 11%)", // Slate-900
+              foreground: "#FFFFFF",
+            },
+            primary: {
+              DEFAULT: "hsl(262, 83%, 58%)", // 紫色主色
+              foreground: "#FFFFFF",
+            },
+            secondary: {
+              DEFAULT: "hsl(262, 90%, 70%)", // Violet-400
+              foreground: "#000000",
+            },
+            focus: "hsl(262, 83%, 58%)",
+          },
+        },
+        dark: {
+          colors: {
+            default: {
+              DEFAULT: "hsl(222, 47%, 11%)",
+              foreground: "#FFFFFF",
+            },
+            primary: {
+              DEFAULT: "hsl(262, 83%, 48%)", // 深色模式紫色
+              foreground: "#FFFFFF",
+            },
+            secondary: {
+              DEFAULT: "hsl(262, 90%, 70%)",
+              foreground: "#000000",
+            },
+            focus: "hsl(262, 83%, 48%)",
+          },
+        },
+      },
+    }),
+  ],
+};
+```
+
+### 4. 深色模式支持
+
+**实现方式**：
+- 使用 `HeroUIProvider` 包裹应用
+- 使用 `useTheme` hook 进行主题切换
+- 主题类名：`light` / `dark` / 自定义主题名
+- 所有颜色自动适配深浅色模式
+
+**主题切换**：
+- 通过 `setTheme("light")` 或 `setTheme("dark")` 切换
+- 支持自定义主题（在 tailwind.config.js 中配置）
 
 ### 4. 微交互必备
-所有交互元素必须包含 hover、active、transition 效果。
 
-```html
-<button class="transition-all duration-150 hover:opacity-90 active:scale-[0.98]">
-  点击我
-</button>
-```
+**所有交互元素必须包含**：
+- ✅ hover 状态（悬停反馈）
+- ✅ active 状态（点击反馈）
+- ✅ transition 过渡（150-300ms）
+- ✅ 禁用状态样式（opacity: 0.5）
+
+**推荐动画时长**：
+- 按钮反馈：150ms
+- 悬停效果：200ms
+- 卡片展开：300ms
 
 ## ❌ 严格禁止
 
 | 禁止项 | 原因 | 替代方案 |
 |--------|------|---------|
-| 纯黑 `#000` / 纯白 `#fff` | 视觉刺眼，缺乏层次 | `var(--foreground)` / `var(--background)` |
-| 硬编码颜色值 | 无法适配深色模式 | 使用 CSS 变量 |
-| 长动画（>300ms） | 拖慢交互节奏 | 150-200ms |
-| 玻璃拟态 | 性能差，可访问性低 | 微妙阴影 + 边框 |
-| 不一致的间距 | 视觉混乱 | 统一使用 Tailwind 间距类 |
+| 纯黑 `#000` / 纯白 `#fff` | 视觉刺眼，缺乏层次 | 使用语义化颜色 |
+| 硬编码颜色值 | 无法适配深色模式 | 使用 HeroUI 颜色系统 |
 | 大块紫色背景 | 视觉过于强烈 | 仅用于小面积点缀 |
+| 长动画（>300ms） | 拖慢交互节奏 | 150-200ms |
+| 不一致的间距 | 视觉混乱 | 使用 HeroUI layout tokens |
+| 忽略可访问性 | 用户体验差 | 使用 HeroUI 组件（基于 React Aria） |
 
-## 配色原则
+## 🎨 配色原则
 
-1. **主色调**
-   - 深灰色 (gray-900/slate-900) 用于主按钮和重要元素
-   - 白色背景 + 黑色边框为默认按钮样式
-   - 避免使用大块紫色背景
+### 主色调使用
+- **默认色 (Slate-900)**：用于主按钮、导航栏、重要文字
+- **白色背景 + 深色边框**：默认按钮样式
+- **避免大面积深色**：保持页面轻盈感
 
-2. **强调色**
-   - 紫色 (violet-500/600) 仅用于小面积点缀
-   - 适用场景：图标背景、hover 状态、链接文字
-   - 浅色背景使用 violet-50/100
+### 强调色使用
+- **紫色渐变**：仅用于 CTA 按钮、重要提示、品牌元素
+- **Violet-400**：图标背景、hover 状态、链接文字
+- **Violet-50**：浅色背景、信息卡片背景
+- **小面积原则**：紫色系占比不超过页面的 20%
 
-### 按钮设计规范
+### 状态色使用
+- **成功**：`bg-green-50 text-green-600`
+- **警告**：`bg-yellow-50 text-yellow-600`
+- **错误**：`bg-red-50 text-red-600`
+- **信息**：`bg-violet-50 text-violet-600`
 
-**尺寸标准**（严格遵守）：
-- 高度：40px 固定
-- 内边距：24px 左右
-- 字体：16px 半粗体
-- 圆角：完全圆角
+## 🎨 组件设计规范
 
-**按钮层级**：
-1. **Primary 按钮** - 白色背景 + 黑色边框
-2. **Secondary 按钮** - 深色背景
-3. **Ghost 按钮** - 纯文字
+### 按钮（Button）
 
-### 组件设计规范
+**变体（Variant）**：
+- `solid` - 实心按钮（默认）
+- `bordered` - 边框按钮
+- `light` - 轻量按钮
+- `flat` - 扁平按钮
+- `faded` - 褪色按钮
+- `shadow` - 阴影按钮
+- `ghost` - 幽灵按钮
 
-**圆角标准**：
-- 按钮：完全圆角
-- 卡片：12px
-- 小组件：8px
-- 图标容器：8px
+**尺寸（Size）**：
+- `sm` - 小尺寸
+- `md` - 中等尺寸（默认）
+- `lg` - 大尺寸
 
-**图标容器尺寸**：
-- 标准：40x40px
-- 小型：32x32px
-- 图标：20x20px 或 16x16px
+**圆角（Radius）**：
+- `none` - 无圆角
+- `sm` - 小圆角
+- `md` - 中等圆角
+- `lg` - 大圆角
+- `full` - 完全圆角
 
-**卡片层级**：
-- 基础卡片：浅色背景 + 微妙阴影
-- 信息卡片：紫色浅背景 + 紫色边框
-- 强调卡片：深色背景 + 强阴影
+### 卡片（Card）
 
-### 其他组件规范
+**结构**：
+- `Card` - 卡片容器
+- `CardHeader` - 卡片头部
+- `CardBody` - 卡片主体内容
+- `CardFooter` - 卡片底部
 
-**标签和徽章**：
-- 状态徽章：方形圆角，12px 字体
-- Pill 徽章：完全圆角，带图标
+**变体**：
+- `shadow` - 带阴影（默认）
+- `bordered` - 带边框
+- `flat` - 扁平样式
 
-**Tab 选择器**：
-- Sider.ai 胶囊式设计
-- 激活状态深色背景
+### 输入框（Input）
 
-**列表组件**：
-- 支持 Group hover 联动
-- 图标容器响应悬停
+**变体（Variant）**：
+- `flat` - 扁平样式（默认）
+- `bordered` - 边框样式
+- `faded` - 褪色样式
+- `underlined` - 下划线样式
 
-**进度条**：
-- 基础款：单色
-- 高级款：渐变色
-## 💡 实现指南
+**状态**：
+- `isDisabled` - 禁用状态
+- `isInvalid` - 错误状态
+- `isReadOnly` - 只读状态
+- `isRequired` - 必填状态
 
-**查看完整实现细节**：
-- 色彩系统、字体、间距 → 参考 `copilot-shadcn-base-style.md`
-- 动效实现、时长配置 → 参考 `copilot-shadcn-anima-style.md`
+## 💡 最佳实践
+
+1. **优先使用 HeroUI 组件**：充分利用内置的可访问性和响应式设计
+2. **遵循语义化颜色**：使用 `primary`、`secondary` 等语义化颜色，而非具体颜色值
+3. **利用 Tailwind 扩展**：在 HeroUI 基础上使用 Tailwind 类进行微调
+4. **保持一致性**：统一使用 HeroUI 的 layout tokens（radius、spacing 等）
+5. **性能优先**：利用 HeroUI 基于 React Aria 的高性能实现
+
+## � 参考文档
+
+- [HeroUI 官方文档](https://www.heroui.com/docs/guide/introduction)
+- [HeroUI 设计原则](https://www.heroui.com/docs/guide/design-principles)
+- [HeroUI 主题定制](https://www.heroui.com/docs/customization/theme)
+- [Tailwind CSS 文档](https://tailwindcss.com/docs)
