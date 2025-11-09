@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import FABButton from './components/FABButton';
 import PromptPanel from './panels/PromptPanel';
-import EditPanel from './components/EditPanel';
+import EditPanel from './panels/EditPanel';
 import Toast from './components/Toast';
 import { mockPrompts } from './data/mockData';
 
