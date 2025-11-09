@@ -27,7 +27,8 @@ const PromptItem = ({
   onView, 
   onManage,
   onLike,
-  onUpdateTags
+  onUpdateTags,
+  allAvailableTags = [] // 系统中所有可用的标签
 }) => {
   const [isDeleteMode, setIsDeleteMode] = useState(false);
   const [showAddDialog, setShowAddDialog] = useState(false);
@@ -52,10 +53,10 @@ const PromptItem = ({
     setShowAddDialog(true);
   };
 
-  const handleConfirmAddTag = (tagName) => {
-    if (!prompt.tags.includes(tagName)) {
-      onUpdateTags?.(prompt.id, [...prompt.tags, tagName]);
-    }
+  const handleConfirmAddTag = (newTags) => {
+    // newTags 是一个数组，包含所有要添加的标签
+    const updatedTags = [...new Set([...prompt.tags, ...newTags])]; // 去重
+    onUpdateTags?.(prompt.id, updatedTags);
   };
 
   // 处理删除标签（右键触发删除模式）
@@ -205,6 +206,8 @@ const PromptItem = ({
         isOpen={showAddDialog}
         onClose={() => setShowAddDialog(false)}
         onConfirm={handleConfirmAddTag}
+        currentTags={prompt.tags}
+        allAvailableTags={allAvailableTags}
       />
       <DeleteTagDialog
         isOpen={showDeleteDialog}

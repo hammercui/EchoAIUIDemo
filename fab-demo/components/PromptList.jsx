@@ -25,7 +25,8 @@ const PromptList = ({
   onManage,
   onLike,
   onUpdateTags,
-  searchMode = 'prompt'
+  searchMode = 'prompt',
+  allAvailableTags = []
 }) => {
   const listContainerRef = useRef(null);
   const [isAtBottom, setIsAtBottom] = useState(false);
@@ -70,6 +71,7 @@ const PromptList = ({
             onManage={onManage}
             onLike={onLike}
             onUpdateTags={onUpdateTags}
+            allAvailableTags={allAvailableTags}
           />
         ))
       ) : (

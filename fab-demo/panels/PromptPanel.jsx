@@ -251,6 +251,7 @@ const PromptPanel = ({
         onLike={onLike}
         onUpdateTags={onUpdateTags}
         searchMode={searchMode}
+        allAvailableTags={allTags}
       />
     </div>
   );
