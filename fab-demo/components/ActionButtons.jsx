@@ -20,11 +20,11 @@ const ActionButtons = ({ onCopy, onView, onManage, onUsage }) => {
     action();
   };
 
-  // 按钮样式 - 磨砂玻璃效果
-  const buttonClass = "w-8 h-8 rounded-lg bg-background/80 backdrop-blur-sm border border-border/50 cursor-pointer flex items-center justify-center transition-all duration-150 text-muted-foreground hover:bg-accent hover:text-accent-foreground hover:border-accent hover:shadow-md active:scale-95";
+  // 按钮样式 - 磨砂玻璃效果（缩小尺寸）
+  const buttonClass = "w-7 h-7 rounded-lg bg-background/80 backdrop-blur-sm border border-border/50 cursor-pointer flex items-center justify-center transition-all duration-150 text-muted-foreground hover:bg-accent hover:text-accent-foreground hover:border-accent hover:shadow-md active:scale-95";
 
   return (
-    <div className="absolute top-1/2 right-3 -translate-y-1/2 flex flex-col gap-1.5 opacity-0 scale-95 transition-all duration-200 group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto pointer-events-none">
+    <div className="absolute top-1/2 right-0 -translate-y-1/2 flex flex-col gap-1 opacity-0 scale-95 transition-all duration-200 group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto pointer-events-none">
       <Tooltip
         content="复制"
         placement="left"
@@ -38,7 +38,7 @@ const ActionButtons = ({ onCopy, onView, onManage, onUsage }) => {
           className={buttonClass}
           onClick={handleClick(onCopy)}
         >
-          <Copy className="w-4 h-4" />
+          <Copy className="w-3.5 h-3.5" />
         </button>
       </Tooltip>
 
@@ -55,7 +55,7 @@ const ActionButtons = ({ onCopy, onView, onManage, onUsage }) => {
           className={buttonClass}
           onClick={handleClick(onView)}
         >
-          <Eye className="w-4 h-4" />
+          <Eye className="w-3.5 h-3.5" />
         </button>
       </Tooltip>
 
@@ -72,7 +72,7 @@ const ActionButtons = ({ onCopy, onView, onManage, onUsage }) => {
           className={buttonClass}
           onClick={handleClick(onManage)}
         >
-          <Settings className="w-4 h-4" />
+          <Settings className="w-3.5 h-3.5" />
         </button>
       </Tooltip>
     </div>

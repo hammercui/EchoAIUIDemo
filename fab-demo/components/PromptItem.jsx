@@ -147,7 +147,7 @@ const PromptItem = ({
             </div>
 
             {/* 右侧：点赞 + 时间 */}
-            <div className="flex items-center gap-2 ml-2 flex-shrink-0">
+            <div className="flex items-center gap-2 ml-2 mr-10 flex-shrink-0">
               {/* 点赞按钮 */}
               <button
                 onClick={handleLike}
