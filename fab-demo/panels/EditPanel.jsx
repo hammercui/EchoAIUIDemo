@@ -19,7 +19,7 @@ const EditPanel = ({ prompt, activeTab, onTabChange, onClose, onCopy }) => {
   return (
     <div className="flex flex-col h-[80vh] bg-content1 rounded-xl overflow-hidden shadow-lg">
       {/* 头部 - Tab导航与关闭按钮同行 */}
-      <div className="p-3 border-b border-border flex justify-between items-center bg-muted/30 gap-3">
+      <div className="h-[42px] px-4 border-b border-border flex justify-between items-center bg-muted/30 gap-3">
         {/* Tab 导航 - HeroUI Tabs */}
         <Tabs
           selectedKey={activeTab}
@@ -85,7 +85,7 @@ const EditPanel = ({ prompt, activeTab, onTabChange, onClose, onCopy }) => {
       </div>
 
       {/* 底部操作按钮 */}
-      <div className="p-4 border-t border-border bg-muted/30 flex gap-3">
+      {/* <div className="p-4 border-t border-border bg-muted/30 flex gap-3">
         <button 
           className="flex-1 h-10 px-6 text-sm font-semibold rounded-full transition-all duration-150 text-white border-0 cursor-pointer hover:opacity-90 active:scale-95 shadow-sm"
           style={{
@@ -97,7 +97,7 @@ const EditPanel = ({ prompt, activeTab, onTabChange, onClose, onCopy }) => {
         <button className="flex-1 h-10 px-6 text-sm font-semibold rounded-full transition-all duration-150 bg-background text-foreground border border-border cursor-pointer hover:bg-muted active:scale-95">
           取消
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };

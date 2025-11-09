@@ -1,3 +1,70 @@
+// 统一的答案文本（所有平台共用）
+const commonAnswer = `# React 函数组件最佳实践
+
+## 组件示例代码
+
+\`\`\`tsx
+import React, { useState, useEffect } from 'react';
+
+interface UserCardProps {
+  name: string;
+  age: number;
+  email: string;
+  onUpdate?: (data: UserData) => void;
+}
+
+const UserCard: React.FC<UserCardProps> = ({ name, age, email, onUpdate }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [formData, setFormData] = useState({ name, age, email });
+
+  useEffect(() => {
+    console.log('User data updated:', formData);
+  }, [formData]);
+
+  const handleSave = () => {
+    onUpdate?.(formData);
+    setIsEditing(false);
+  };
+
+  return (
+    <div className="user-card">
+      {isEditing ? (
+        <EditMode data={formData} onChange={setFormData} onSave={handleSave} />
+      ) : (
+        <ViewMode data={formData} onEdit={() => setIsEditing(true)} />
+      )}
+    </div>
+  );
+};
+
+export default UserCard;
+\`\`\`
+
+## Props 类型定义对比
+
+| 属性 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| name | string | ✅ | - | 用户姓名 |
+| age | number | ✅ | - | 用户年龄 |
+| email | string | ✅ | - | 电子邮件 |
+| onUpdate | function | ❌ | undefined | 更新回调 |
+
+## 最佳实践要点
+
+1. **使用 TypeScript** - 提供类型安全和自动补全
+2. **Props 解构** - 提高代码可读性
+3. **使用 Hooks** - useState、useEffect 等现代化状态管理
+4. **条件渲染** - 使用三元运算符或逻辑运算符
+5. **事件处理** - 使用箭头函数避免 this 绑定问题
+
+## 性能优化建议
+
+- ✅ **React.memo** - 避免不必要的重渲染
+- ✅ **useCallback** - 缓存回调函数
+- ✅ **useMemo** - 缓存计算结果
+- ✅ **代码分割** - 使用 React.lazy 和 Suspense
+`;
+
 // 提示词模拟数据
 export const mockPrompts = [
   {
@@ -11,7 +78,7 @@ export const mockPrompts = [
     isLiked: false,
     usageCount: 25,
     sources: ['deepseek', 'kimi'],
-    answer: '这是一个示例答案内容...'
+    answer: commonAnswer
   },
   {
     id: 2,
@@ -24,7 +91,7 @@ export const mockPrompts = [
     isLiked: true,
     usageCount: 18,
     sources: ['chatgpt', 'claude', 'kimi'],
-    answer: '## 代码重构建议\n\n1. 提取重复逻辑\n2. 简化条件语句'
+    answer: commonAnswer
   },
   {
     id: 3,
