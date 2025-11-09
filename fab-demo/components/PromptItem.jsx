@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Tooltip } from '@heroui/tooltip';
+import { ThumbsUp, ThumbsDown } from 'lucide-react';
 import ActionButtons from './ActionButtons';
 import { AddTagDialog, DeleteTagDialog } from './TagDialog';
 
@@ -33,10 +34,16 @@ const PromptItem = ({
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [tagToDelete, setTagToDelete] = useState('');
 
-  // 处理点赞
+  // 处理点赞（+1）
   const handleLike = (e) => {
     e.stopPropagation();
-    onLike?.(prompt.id);
+    onLike?.(prompt.id, 1); // +1
+  };
+
+  // 处理取消赞（-1）
+  const handleDislike = (e) => {
+    e.stopPropagation();
+    onLike?.(prompt.id, -1); // -1
   };
 
   // 处理新增标签
@@ -148,21 +155,35 @@ const PromptItem = ({
 
             {/* 右侧：点赞 + 时间 */}
             <div className="flex items-center gap-2 ml-2 mr-10 flex-shrink-0">
-              {/* 点赞按钮 */}
-              <button
-                onClick={handleLike}
-                className={`flex items-center gap-0.5 transition-all duration-150 ${
-                  prompt.isLiked
-                    ? 'text-ring'
-                    : 'text-muted-foreground hover:text-ring'
-                }`}
-                title={prompt.isLiked ? '取消点赞' : '点赞'}
-              >
-                <span className="text-sm leading-none">
-                  {prompt.isLiked ? '👍' : '👍🏻'}
+              {/* 点赞按钮组 - 使用 Lucide React 图标 */}
+              <div className="flex items-center gap-0.5 px-1.5 py-0.5 bg-muted-foreground/10 rounded-md">
+                {/* 点赞按钮 (+1) */}
+                <button
+                  onClick={handleLike}
+                  className="group/like flex items-center gap-0.5 px-1.5 py-0.5 rounded transition-all duration-200 hover:bg-violet-100 active:scale-95"
+                  title="点赞 +1"
+                >
+                  <ThumbsUp 
+                    className="w-3 h-3 text-muted-foreground transition-all duration-200 group-hover/like:text-violet-600 group-hover/like:scale-110 group-active/like:fill-violet-600"
+                  />
+                </button>
+
+                {/* 点赞数量 */}
+                <span className="text-[10px] font-medium leading-none text-foreground min-w-[16px] text-center">
+                  {prompt.likes}
                 </span>
-                <span className="font-medium leading-none">{prompt.likes}</span>
-              </button>
+
+                {/* 取消赞按钮 (-1) */}
+                <button
+                  onClick={handleDislike}
+                  className="group/dislike flex items-center gap-0.5 px-1.5 py-0.5 rounded transition-all duration-200 hover:bg-red-100 active:scale-95"
+                  title="取消赞 -1"
+                >
+                  <ThumbsDown 
+                    className="w-3 h-3 text-muted-foreground transition-all duration-200 group-hover/dislike:text-red-600 group-hover/dislike:scale-110 group-active/dislike:fill-red-600"
+                  />
+                </button>
+              </div>
 
               {/* 时间 */}
               <span className="text-muted-foreground leading-none">{prompt.date}</span>

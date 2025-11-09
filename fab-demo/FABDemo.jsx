@@ -84,16 +84,14 @@ const FABDemo = () => {
     setFabPosition(prev => prev === 'left' ? 'right' : 'left');
   };
 
-  // 处理点赞
-  const handleLike = (promptId) => {
+  // 处理点赞/取消赞
+  const handleLike = (promptId, delta) => {
     setPrompts(prevPrompts => 
       prevPrompts.map(p => {
         if (p.id === promptId) {
-          const newIsLiked = !p.isLiked;
           return {
             ...p,
-            isLiked: newIsLiked,
-            likes: newIsLiked ? p.likes + 1 : p.likes - 1
+            likes: Math.max(0, p.likes + delta) // 确保点赞数不会小于0
           };
         }
         return p;
