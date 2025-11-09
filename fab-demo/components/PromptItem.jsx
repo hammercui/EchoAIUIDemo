@@ -3,6 +3,7 @@ import { Tooltip } from '@heroui/tooltip';
 import { ThumbsUp, ThumbsDown } from 'lucide-react';
 import ActionButtons from './ActionButtons';
 import { AddTagDialog, DeleteTagDialog } from './TagDialog';
+import { SOURCE_ICONS, getSourceName } from './SourceLogos';
 
 /**
  * 提示词卡片组件
@@ -154,10 +155,63 @@ const PromptItem = ({
               </button>
             </div>
 
-            {/* 右侧：点赞 + 时间 */}
-            <div className="flex items-center gap-2 ml-2 mr-10 flex-shrink-0">
+            {/* 右侧：来源 + 点赞 + 时间 */}
+            <div className="flex items-center gap-2.5 ml-2 mr-8 flex-shrink-0">
+              {/* 来源网站 Logo - 堆叠显示 */}
+              {prompt.sources && prompt.sources.length > 0 && (
+                <div className="flex items-center h-5">
+                  {/* 显示前3个logo */}
+                  <div className="flex items-center -space-x-0.5">
+                    {prompt.sources.slice(0, 3).map((source, idx) => {
+                      const IconComponent = SOURCE_ICONS[source];
+                      if (!IconComponent) return null;
+                      return (
+                        <Tooltip 
+                          key={idx}
+                          content={getSourceName(source)}
+                          placement="top"
+                          classNames={{
+                            content: "bg-gray-900 text-white px-2 py-1 text-[10px] rounded"
+                          }}
+                        >
+                          <div 
+                            className="w-5 h-5 rounded-full bg-white border border-border flex items-center justify-center hover:z-10 transition-transform hover:scale-110"
+                            style={{ zIndex: 3 - idx }}
+                          >
+                            <IconComponent className="w-3.5 h-3.5" />
+                          </div>
+                        </Tooltip>
+                      );
+                    })}
+                    {/* 如果超过3个，显示+N */}
+                    {prompt.sources.length > 3 && (
+                      <Tooltip 
+                        content={
+                          <div className="flex flex-col gap-1">
+                            {prompt.sources.slice(3).map((source, idx) => (
+                              <div key={idx} className="flex items-center gap-1.5">
+                                {SOURCE_ICONS[source] && React.createElement(SOURCE_ICONS[source], { className: "w-3 h-3" })}
+                                <span className="text-[10px]">{getSourceName(source)}</span>
+                              </div>
+                            ))}
+                          </div>
+                        }
+                        placement="top"
+                        classNames={{
+                          content: "bg-gray-900 text-white px-2 py-1.5 rounded"
+                        }}
+                      >
+                        <div className="w-5 h-5 rounded-full bg-muted-foreground/20 border border-border flex items-center justify-center text-[8px] font-medium text-muted-foreground hover:bg-muted-foreground/30 hover:z-10 transition-all cursor-pointer">
+                          +{prompt.sources.length - 3}
+                        </div>
+                      </Tooltip>
+                    )}
+                  </div>
+                </div>
+              )}
+
               {/* 点赞按钮组 - 使用 Lucide React 图标 */}
-              <div className="flex items-center gap-0.5 px-1.5 py-0.5 bg-muted-foreground/10 rounded-md">
+              <div className="flex items-center gap-0.5 px-1.5 py-0.5 bg-muted-foreground/10 rounded-md h-5">
                 {/* 点赞按钮 (+1) */}
                 <button
                   onClick={handleLike}
@@ -187,7 +241,7 @@ const PromptItem = ({
               </div>
 
               {/* 时间 */}
-              <span className="text-muted-foreground leading-none">{prompt.date}</span>
+              <span className="text-muted-foreground leading-none h-5 flex items-center">{prompt.date}</span>
             </div>
           </div>
         </div>

@@ -10,6 +10,7 @@ export const mockPrompts = [
     likes: 12,
     isLiked: false,
     usageCount: 25,
+    sources: ['deepseek', 'kimi'],
     answer: '这是一个示例答案内容...'
   },
   {
@@ -22,6 +23,7 @@ export const mockPrompts = [
     likes: 8,
     isLiked: true,
     usageCount: 18,
+    sources: ['chatgpt', 'claude', 'kimi'],
     answer: '## 代码重构建议\n\n1. 提取重复逻辑\n2. 简化条件语句'
   },
   {
@@ -34,6 +36,7 @@ export const mockPrompts = [
     likes: 15,
     isLiked: false,
     usageCount: 32,
+    sources: ['deepseek'],
     answer: '## Bug 修复方案\n\n1. 检查错误处理\n2. 添加重试机制'
   },
   {
@@ -46,6 +49,7 @@ export const mockPrompts = [
     likes: 20,
     isLiked: false,
     usageCount: 45,
+    sources: ['chatgpt', 'deepseek', 'kimi', 'claude'],
     answer: '使用虚拟滚动技术...'
   },
   {
@@ -58,6 +62,7 @@ export const mockPrompts = [
     likes: 5,
     isLiked: false,
     usageCount: 12,
+    sources: ['claude', 'chatgpt'],
     answer: '## 测试用例\n\n1. 边界条件测试\n2. 异常处理测试'
   },
   {
@@ -70,6 +75,7 @@ export const mockPrompts = [
     likes: 3,
     isLiked: false,
     usageCount: 8,
+    sources: ['chatgpt', 'deepseek', 'kimi', 'claude', 'deepseek', 'chatgpt'], // 测试超过5个的情况
     answer: '使用 Swagger 生成文档...'
   },
   {
@@ -82,6 +88,7 @@ export const mockPrompts = [
     likes: 18,
     isLiked: true,
     usageCount: 40,
+    sources: ['kimi', 'deepseek'],
     answer: '数据库表设计方案...'
   },
   {
@@ -94,6 +101,7 @@ export const mockPrompts = [
     likes: 10,
     isLiked: false,
     usageCount: 22,
+    sources: ['chatgpt'],
     answer: '使用索引和查询优化...'
   },
   {
@@ -106,6 +114,7 @@ export const mockPrompts = [
     likes: 14,
     isLiked: false,
     usageCount: 28,
+    sources: ['claude', 'kimi', 'deepseek'],
     answer: '响应式布局最佳实践...'
   },
   {
@@ -118,6 +127,7 @@ export const mockPrompts = [
     likes: 7,
     isLiked: false,
     usageCount: 15,
+    sources: ['deepseek', 'chatgpt', 'claude'],
     answer: '快速排序算法实现...'
   }
 ];
