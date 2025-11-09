@@ -20,9 +20,9 @@
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
 
-    /* 主色调：Slate-900 深灰色 */
-    --primary: 222 47% 11%;
-    --primary-foreground: 210 40% 98%;
+    /* 主色调：紫色渐变 */
+    --primary: 262 83% 58%;
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -38,10 +38,6 @@
 
     /* 次要强调色：Violet-400 (用于标签等) */
     --accent-violet: 262 90% 70%;
-
-    /* 成功状态 */
-    --success: 142 76% 36%;
-    --success-foreground: 138 76% 97%;
 
     --radius: 0.5rem;
   }
@@ -63,6 +59,11 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+  
+  /* 紫色渐变背景 */
+  .bg-primary-gradient {
+    background: linear-gradient(135deg, hsl(262, 83%, 58%), hsl(262, 83%, 48%));
   }
 }
 

@@ -83,20 +83,21 @@ const PromptItem = ({
   return (
     <>
       <div
-        className={`relative bg-muted border border-border rounded-xl p-3 cursor-pointer transition-all duration-150 shadow-sm group ${
+        className={`relative bg-muted border border-border rounded-xl cursor-pointer transition-all duration-150 shadow-sm group ${
           isSelected
             ? 'border-ring shadow-[0_0_0_2px_hsl(262,83%,58%,0.1)] bg-[hsl(262,90%,97%)]'
             : 'hover:scale-[1.02] hover:shadow-md'
         }`}
         onClick={handleCardClick}
       >
-        {/* 3 行文本结构 */}
-        <div className="pointer-events-none pr-12">
+        {/* 3 行文本结构 - 统一 px-3 py-3 左右边距 */}
+        <div className="px-3 py-3 pointer-events-none">
           {/* 第 1 行: 标题（靠近顶部边缘） */}
           <h3 className="text-xs font-semibold text-foreground mb-1.5 leading-tight">
             {prompt.title}
           </h3>
-          {/* 第 2 行: 描述 (3行省略) */}
+          
+          {/* 第 2 行: 描述 (3行省略) - 左右边距与标题一致 */}
           <Tooltip 
             content={prompt.description} 
             placement="top" 
@@ -109,7 +110,8 @@ const PromptItem = ({
               {prompt.description}
             </p>
           </Tooltip>
-          {/* 第 3 行: 标签 + 点赞 + 时间（下移并靠近底部边缘） */}
+          
+          {/* 第 3 行: 标签 + 点赞 + 时间 - 左右边距与标题一致 */}
           <div className="flex justify-between items-center text-[10px] pointer-events-auto mt-auto">
             {/* 左侧：标签区 */}
             <div className="flex gap-1.5 items-center flex-wrap">
@@ -144,7 +146,7 @@ const PromptItem = ({
               </button>
             </div>
 
-            {/* 右侧：点赞 + 时间（优化布局） */}
+            {/* 右侧：点赞 + 时间 */}
             <div className="flex items-center gap-2 ml-2 flex-shrink-0">
               {/* 点赞按钮 */}
               <button
@@ -168,7 +170,7 @@ const PromptItem = ({
           </div>
         </div>
 
-        {/* Action Buttons (竖向排列) */}
+        {/* Action Buttons - 固定在右侧悬浮，仅 hover 显示，不占用内容空间 */}
         <ActionButtons
           onCopy={() => onCopy(prompt)}
           onView={() => onView(prompt)}
