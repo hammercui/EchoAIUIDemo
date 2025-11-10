@@ -50,7 +50,7 @@ const EditPanel = ({ prompt, activeTab, onTabChange, onClose, onCopy }) => {
                   z-10
                   ${isSelected
                     ? 'text-white'
-                    : 'text-default-600 hover:text-default-900'
+                    : 'text-slate-500 hover:text-slate-900'
                   }
                 `}
               >

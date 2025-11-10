@@ -33,7 +33,7 @@ const AnswerPanel = ({ prompt, onCopy }) => {
     <div className="answer-panel">
       {/* 平台切换Tab */}
       {prompt.sources && prompt.sources.length > 1 && (
-        <div className="mb-2 px-4">
+        <div className="mb-2 px-4 -mt-1">
           <div className="flex gap-6 relative">
             {prompt.sources.map((source) => {
               const IconComponent = SOURCE_ICONS[source];
@@ -42,7 +42,7 @@ const AnswerPanel = ({ prompt, onCopy }) => {
                 <button
                   key={source}
                   onClick={() => setSelectedSource(source)}
-                  className="flex items-center gap-1.5 h-10 px-0 pb-2 relative cursor-pointer border-0 bg-transparent"
+                  className="flex items-center gap-1.5 h-10 px-0 pb-1 relative cursor-pointer border-0 bg-transparent"
                 >
                   <motion.div
                     className={`flex items-center gap-1.5 transition-colors duration-200 ${
@@ -65,7 +65,7 @@ const AnswerPanel = ({ prompt, onCopy }) => {
                   {isSelected && (
                     <motion.span
                       layoutId="tab-indicator"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 rounded-t-full bg-violet-600"
+                      className="absolute bottom-0.5 left-0 right-0 h-0.5 rounded-t-full bg-violet-600"
                       initial={false}
                       transition={{
                         type: "spring",
@@ -83,7 +83,7 @@ const AnswerPanel = ({ prompt, onCopy }) => {
       )}
 
       {/* Markdown答案内容 */}
-      <div className="px-4 mb-4 relative">
+      <div className="px-4 mb-4 relative ">
         {/* 固定位置浮动复制按钮 */}
         <Tooltip
           content={copied ? "已复制" : "复制答案"}
