@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tabs, Tab } from '@heroui/react';
+import { motion } from 'framer-motion';
 import { Tags, Lightbulb, GitBranch, X } from 'lucide-react';
 import TagsPanel from '../panels/TagsPanel';
 import AnswerPanel from '../panels/AnswerPanel';
@@ -16,61 +16,83 @@ import VersionsPanel from '../panels/VersionsPanel';
  */
 
 const EditPanel = ({ prompt, activeTab, onTabChange, onClose, onCopy }) => {
+  // Tab 配置
+  const tabs = [
+    { key: 'answer', label: '答案', icon: Lightbulb },
+    { key: 'versions', label: '提示词版本', icon: GitBranch },
+    { key: 'tags', label: '提示词标签', icon: Tags }
+  ];
+
   return (
     <div className="flex flex-col h-[80vh] bg-content1 rounded-xl overflow-hidden shadow-lg">
       {/* 头部 - Tab导航与关闭按钮同行 */}
       <div className="h-[42px] px-4 border-b border-border flex justify-between items-center bg-muted/30 gap-3">
-        {/* Tab 导航 - HeroUI Tabs */}
-        <Tabs
-          selectedKey={activeTab}
-          onSelectionChange={onTabChange}
-          size="sm"
-          radius="full"
-          color="primary"
-          variant="solid"
-          classNames={{
-            tabList: "gap-2 p-0 bg-transparent",
-            cursor: "shadow-sm",
-            tab: "h-7 px-3 data-[selected=true]:text-white",
-            tabContent: "text-xs font-medium group-data-[selected=true]:text-white"
-          }}
-          style={{
-            '--heroui-cursor-background': 'linear-gradient(135deg, hsl(262, 83%, 58%), hsl(262, 83%, 48%))'
-          }}
+        {/* Tab 导航 - 源码实现 HeroUI 风格 + Framer Motion 动效 */}
+        <div
+          className="relative flex gap-1 p-1 bg-default-100 rounded-full"
+          role="tablist"
         >
-          <Tab
-            key="answer"
-            title={
-              <div className="flex items-center gap-1.5">
-                <Lightbulb size={14} />
-                <span>答案</span>
-              </div>
-            }
-          />
-          <Tab
-            key="versions"
-            title={
-              <div className="flex items-center gap-1.5">
-                <GitBranch size={14} />
-                <span>提示词版本</span>
-              </div>
-            }
-          />
-          <Tab
-            key="tags"
-            title={
-              <div className="flex items-center gap-1.5">
-                <Tags size={14} />
-                <span>提示词标签</span>
-              </div>
-            }
-          />
-        </Tabs>
+          {tabs.map((tab) => {
+            const Icon = tab.icon;
+            const isSelected = activeTab === tab.key;
+
+            return (
+              <button
+                key={tab.key}
+                role="tab"
+                aria-selected={isSelected}
+                onClick={() => onTabChange(tab.key)}
+                className={`
+                  relative h-7 px-3 rounded-full text-xs font-medium
+                  flex items-center gap-1.5
+                  border-0 cursor-pointer
+                  transition-colors duration-200
+                  z-10
+                  ${isSelected
+                    ? 'text-white'
+                    : 'text-default-600 hover:text-default-900'
+                  }
+                `}
+              >
+                {/* 选中状态的背景动画 */}
+                {isSelected && (
+                  <motion.div
+                    layoutId="activeTab"
+                    className="absolute inset-0 rounded-full shadow-sm"
+                    style={{
+                      background: 'linear-gradient(135deg, hsl(262, 83%, 58%), hsl(262, 83%, 48%))'
+                    }}
+                    transition={{
+                      type: 'spring',
+                      stiffness: 500,
+                      damping: 30
+                    }}
+                  />
+                )}
+
+                {/* 图标和文字 */}
+                <motion.div
+                  className="relative z-10 flex items-center gap-1.5"
+                  initial={false}
+                  animate={{
+                    scale: isSelected ? 1 : 0.95,
+                  }}
+                  transition={{
+                    duration: 0.2
+                  }}
+                >
+                  <Icon size={14} />
+                  <span>{tab.label}</span>
+                </motion.div>
+              </button>
+            );
+          })}
+        </div>
 
         {/* 关闭按钮 */}
-        <button 
+        <button
           className="w-7 h-7 border-0 bg-transparent cursor-pointer rounded-full transition-all duration-150 hover:bg-muted text-muted-foreground hover:text-foreground active:scale-95 flex items-center justify-center flex-shrink-0"
-          onClick={onClose} 
+          onClick={onClose}
           aria-label="关闭编辑面板"
         >
           <X size={16} />
