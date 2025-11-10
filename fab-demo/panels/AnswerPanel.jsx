@@ -83,8 +83,8 @@ const AnswerPanel = ({ prompt, onCopy }) => {
       )}
 
       {/* Markdown答案内容 */}
-      <div className="px-4 mb-4 relative group">
-        {/* 浮动复制按钮 */}
+      <div className="px-4 mb-4 relative">
+        {/* 固定位置浮动复制按钮 */}
         <Tooltip
           content={copied ? "已复制" : "复制答案"}
           placement="left"
@@ -96,7 +96,7 @@ const AnswerPanel = ({ prompt, onCopy }) => {
         >
           <button
             onClick={handleCopy}
-            className="absolute top-3 right-3 z-10 w-8 h-8 rounded-lg bg-background/90 backdrop-blur-sm border border-border/50 cursor-pointer flex items-center justify-center transition-all duration-200 text-muted-foreground hover:bg-accent hover:text-accent-foreground hover:border-accent hover:shadow-md active:scale-95 opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100"
+            className="fixed top-20 right-6 z-[100] w-10 h-10 rounded-lg bg-background/95 backdrop-blur-md border border-border shadow-lg cursor-pointer flex items-center justify-center transition-all duration-200 text-muted-foreground hover:bg-accent hover:text-accent-foreground hover:border-accent hover:shadow-xl active:scale-95"
           >
             {copied ? <Check className="w-4 h-4 text-green-600" /> : <Copy className="w-4 h-4" />}
           </button>
