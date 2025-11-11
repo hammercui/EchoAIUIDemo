@@ -1,0 +1,306 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>版本历史 - 项目名称</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Flowbite for components (if needed, but keeping it minimal for this custom design) -->
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.0.0/dist/flowbite.min.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <!-- Custom Theme CSS -->
+    <link rel="stylesheet" href="theme_1.css">
+    <style>
+        /* Custom styles for version tree structure and animations */
+        :root {
+            /* Ensure these are loaded if theme_1.css has issues */
+            --background: oklch(0.985 0.005 270);
+            --foreground: oklch(0.15 0.005 270);
+            --primary: oklch(0.55 0.15 60);
+            --secondary: oklch(0.95 0.005 270);
+            --muted: oklch(0.92 0.005 270);
+            --border: oklch(0.88 0.005 270);
+            --shadow: 0 4px 8px hsl(0 0% 0% / 0.08);
+            --shadow-md: 0 6px 12px hsl(0 0% 0% / 0.09);
+            --shadow-lg: 0 8px 16px hsl(0 0% 0% / 0.10);
+            --shadow-xl: 0 12px 24px hsl(0 0% 0% / 0.12);
+            --font-sans: 'Inter', 'Plus Jakarta Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+            --radius: 0.5rem;
+        }
+
+        body {
+            font-family: var(--font-sans) !important;
+            background-color: var(--background) !important;
+            color: var(--foreground) !important;
+            margin: 0;
+            overflow: hidden; /* Prevent body scroll, let version tree scroll */
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .version-tree-container {
+            position: relative;
+            flex-grow: 1;
+            overflow-y: auto; /* Enable vertical scrolling for the tree */
+            padding: 4rem 1rem; /* Adjust padding as needed */
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .version-node-wrapper {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100px; /* Space for each node and its connection */
+        }
+
+        .version-node {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--card);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-mono);
+            font-weight: 600;
+            color: var(--foreground);
+            cursor: grab;
+            user-select: none;
+            box-shadow: var(--shadow);
+            transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, border-color 0.15s ease-out;
+        }
+
+        .version-node:hover {
+            transform: scale(1.03);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .version-node.is-dragging {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-xl);
+            cursor: grabbing;
+        }
+
+        /* Positioning for alternating nodes */
+        .node-left { left: 15%; } /* Adjust as needed for visual balance */
+        .node-right { right: 15%; } /* Adjust as needed for visual balance */
+        .node-center { left: 50%; transform: translateX(-50%); }
+
+        /* Version 1 permanent ripple animation */
+        .version-node.version-1-ripple {
+            position: relative;
+            overflow: visible;
+        }
+        .version-node.version-1-ripple::before,
+        .version-node.version-1-ripple::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: var(--primary); /* Ripple color */
+            opacity: 0;
+            animation: ripple-effect 2s linear infinite;
+            pointer-events: none; /* Allow interaction with the node itself */
+        }
+        .version-node.version-1-ripple::after {
+            animation-delay: 1s; /* Stagger the second ripple */
+        }
+
+        @keyframes ripple-effect {
+            0% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(1.5); /* Adjust scale for desired ripple size */
+                opacity: 0;
+            }
+        }
+
+        /* Connecting Lines (SVG overlay for complex paths) */
+        .version-connections {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Allow clicks to pass through */
+            z-index: 5; /* Below nodes */
+        }
+        .version-connections path {
+            stroke: var(--border);
+            stroke-width: 2px;
+            fill: none;
+            transition: stroke 0.15s ease-out;
+        }
+        .version-connections path:hover { /* Example hover effect on lines */
+             stroke: var(--muted-foreground);
+        }
+
+        /* Framer Motion style button click simulation */
+        .btn-press:active {
+            transform: scale(0.95);
+            transition: transform 0.1s ease-out;
+        }
+
+        /* Page load animations (simplified CSS for demonstration) */
+        @keyframes header-fade-in {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .header-animated {
+            animation: header-fade-in 0.4s ease-out forwards;
+        }
+
+        @keyframes node-fade-in {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .node-animated {
+            animation: node-fade-in 0.6s ease-out forwards; /* Staggered by JS typically */
+        }
+    </style>
+</head>
+<body class="bg-background text-foreground">
+
+    <!-- Header Area -->
+    <header class="header-animated flex items-center justify-between p-4 border-b border-border bg-card shadow-sm z-20">
+        <div class="flex items-center gap-4">
+            <button class="text-foreground hover:text-primary transition-colors btn-press">
+                <i data-lucide="chevron-left" class="w-6 h-6"></i>
+            </button>
+            <h1 class="text-xl font-semibold">版本历史 - 项目名称</h1>
+        </div>
+        <div class="flex items-center gap-4">
+            <button class="bg-primary text-primary-foreground py-2 px-4 rounded-md font-medium text-sm shadow hover:bg-opacity-90 transition-all btn-press">
+                <i data-lucide="plus" class="inline-block w-4 h-4 mr-1"></i>
+                新增版本
+            </button>
+            <button class="text-foreground hover:text-primary transition-colors btn-press">
+                <i data-lucide="save" class="w-5 h-5"></i>
+            </button>
+            <button class="text-foreground hover:text-primary transition-colors btn-press">
+                <i data-lucide="book-text" class="w-5 h-5"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Version Tree Area -->
+    <div class="version-tree-container">
+        <!-- SVG for connecting lines -->
+        <svg class="version-connections">
+            <!-- Example paths - these would be dynamically generated by JS -->
+            <path d="M 50% 80% C 30% 70%, 30% 60%, 15% 55%" class="node-animated" style="animation-delay: 0.7s;"></path>
+            <path d="M 50% 80% C 70% 70%, 70% 60%, 85% 55%" class="node-animated" style="animation-delay: 0.8s;"></path>
+            <path d="M 15% 45% C 10% 40%, 10% 30%, 50% 25%" class="node-animated" style="animation-delay: 0.9s;"></path>
+            <path d="M 85% 45% C 90% 40%, 90% 30%, 50% 25%" class="node-animated" style="animation-delay: 1s;"></path>
+        </svg>
+
+        <!-- Version Nodes -->
+        <!-- Version 1 (Root Node) - Always with ripple effect -->
+        <div class="version-node-wrapper node-animated" style="animation-delay: 0.6s;">
+            <div class="version-node version-1-ripple node-center" style="bottom: 4rem;">
+                版本 1
+            </div>
+        </div>
+
+        <!-- Version 2 -->
+        <div class="version-node-wrapper node-animated" style="animation-delay: 0.8s;">
+            <div class="version-node node-left" style="bottom: 10rem;">
+                版本 2
+            </div>
+        </div>
+
+        <!-- Version 3 -->
+        <div class="version-node-wrapper node-animated" style="animation-delay: 1s;">
+            <div class="version-node node-right" style="bottom: 16rem;">
+                版本 3
+            </div>
+        </div>
+
+        <!-- Version 4 -->
+        <div class="version-node-wrapper node-animated" style="animation-delay: 1.2s;">
+            <div class="version-node node-left" style="bottom: 22rem;">
+                版本 4
+            </div>
+        </div>
+
+        <!-- Version 5 (Latest Node) -->
+        <div class="version-node-wrapper node-animated" style="animation-delay: 1.4s;">
+            <div class="version-node node-right" style="bottom: 28rem;">
+                版本 5
+            </div>
+        </div>
+
+        <!-- Placeholder for more nodes - adjust 'bottom' style for vertical positioning -->
+        <!--
+        <div class="version-node-wrapper">
+            <div class="version-node node-center" style="bottom: 34rem;">
+                版本 6
+            </div>
+        </div>
+        -->
+
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // --- JavaScript for dynamic interactions (Framer Motion style simulation) ---
+
+        // Simulate drag start/end for nodes (visual only)
+        document.querySelectorAll('.version-node').forEach(node => {
+            node.addEventListener('mousedown', (e) => {
+                node.classList.add('is-dragging');
+                // In a real Framer Motion setup, drag handlers would manage position and state
+                // This is purely for visual feedback
+            });
+
+            node.addEventListener('mouseup', () => {
+                node.classList.remove('is-dragging');
+            });
+
+            // Prevent text selection during drag
+            node.addEventListener('dragstart', (e) => {
+                e.preventDefault();
+            });
+        });
+
+        // Framer Motion style "stagger" for node entry animation (simplified)
+        // In a real app, you'd use a JS framework (React/Vue) with Framer Motion
+        // For this single HTML file, we manually set animation delays
+        const nodes = document.querySelectorAll('.version-node-wrapper');
+        nodes.forEach((node, index) => {
+            node.style.animationDelay = `${0.6 + index * 0.2}s`;
+        });
+        const paths = document.querySelectorAll('.version-connections path');
+        paths.forEach((path, index) => {
+            path.style.animationDelay = `${0.7 + index * 0.1}s`;
+        });
+
+        // NOTE: Full drag & drop, dynamic SVG path generation, and true Framer Motion
+        // spring physics would require a JavaScript framework (e.g., React/Vue)
+        // and a dedicated library (e.g., Framer Motion, D3.js for SVG manipulation).
+        // This HTML provides the structural and stylistic foundation.
+    </script>
+</body>
+</html>
