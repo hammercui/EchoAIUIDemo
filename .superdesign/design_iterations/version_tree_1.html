@@ -1,306 +1,344 @@
-
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>版本历史 - 项目名称</title>
+    <title>Violet Branch - Version Control UI</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Flowbite for components (if needed, but keeping it minimal for this custom design) -->
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.0.0/dist/flowbite.min.js"></script>
-    <!-- Lucide Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucid Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-    <!-- Custom Theme CSS -->
-    <link rel="stylesheet" href="theme_1.css">
-    <style>
-        /* Custom styles for version tree structure and animations */
-        :root {
-            /* Ensure these are loaded if theme_1.css has issues */
-            --background: oklch(0.985 0.005 270);
-            --foreground: oklch(0.15 0.005 270);
-            --primary: oklch(0.55 0.15 60);
-            --secondary: oklch(0.95 0.005 270);
-            --muted: oklch(0.92 0.005 270);
-            --border: oklch(0.88 0.005 270);
-            --shadow: 0 4px 8px hsl(0 0% 0% / 0.08);
-            --shadow-md: 0 6px 12px hsl(0 0% 0% / 0.09);
-            --shadow-lg: 0 8px 16px hsl(0 0% 0% / 0.10);
-            --shadow-xl: 0 12px 24px hsl(0 0% 0% / 0.12);
-            --font-sans: 'Inter', 'Plus Jakarta Sans', sans-serif;
-            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
-            --radius: 0.5rem;
-        }
 
+    <!-- Custom Theme -->
+    <link rel="stylesheet" href="theme_violet_branch_1.css">
+    
+    <style>
+        /* Applying theme variables */
         body {
-            font-family: var(--font-sans) !important;
             background-color: var(--background) !important;
             color: var(--foreground) !important;
-            margin: 0;
-            overflow: hidden; /* Prevent body scroll, let version tree scroll */
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
+            font-family: var(--font-sans) !important;
+            overflow-x: hidden;
         }
 
-        .version-tree-container {
-            position: relative;
-            flex-grow: 1;
-            overflow-y: auto; /* Enable vertical scrolling for the tree */
-            padding: 4rem 1rem; /* Adjust padding as needed */
-            -webkit-overflow-scrolling: touch;
+        .version-card {
+            background-color: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            transition: transform 250ms ease-out, box-shadow 250ms ease-out;
         }
 
-        .version-node-wrapper {
-            position: relative;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: 100px; /* Space for each node and its connection */
+        .version-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Disable transitions during drag to prevent flickering */
+        .sortable-drag .version-card {
+            transition: none !important;
         }
 
         .version-node {
-            position: absolute;
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background-color: var(--card);
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--font-mono);
-            font-weight: 600;
-            color: var(--foreground);
-            cursor: grab;
-            user-select: none;
-            box-shadow: var(--shadow);
-            transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, border-color 0.15s ease-out;
+            background-color: var(--muted);
+            border: 2px solid var(--border);
+            transition: transform 200ms ease-out, box-shadow 200ms ease-out;
         }
-
+        
         .version-node:hover {
-            transform: scale(1.03);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--primary);
+            transform: scale(1.15);
         }
-
-        .version-node.is-dragging {
-            transform: scale(1.05);
-            box-shadow: var(--shadow-xl);
-            cursor: grabbing;
+        
+        .version-item.active .version-node {
+            background-color: var(--primary);
+            border-color: var(--secondary);
+            box-shadow: 0 0 15px 3px var(--secondary);
         }
-
-        /* Positioning for alternating nodes */
-        .node-left { left: 15%; } /* Adjust as needed for visual balance */
-        .node-right { right: 15%; } /* Adjust as needed for visual balance */
-        .node-center { left: 50%; transform: translateX(-50%); }
-
-        /* Version 1 permanent ripple animation */
-        .version-node.version-1-ripple {
-            position: relative;
-            overflow: visible;
-        }
-        .version-node.version-1-ripple::before,
-        .version-node.version-1-ripple::after {
-            content: '';
+        
+        /* Ripple effect for active node */
+        .ripple-container {
             position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .ripple {
+            position: absolute;
             border-radius: 50%;
-            background-color: var(--primary); /* Ripple color */
+            background-color: var(--primary);
+            animation: ripple-animation 2s infinite ease-out;
             opacity: 0;
-            animation: ripple-effect 2s linear infinite;
-            pointer-events: none; /* Allow interaction with the node itself */
         }
-        .version-node.version-1-ripple::after {
-            animation-delay: 1s; /* Stagger the second ripple */
-        }
-
-        @keyframes ripple-effect {
+        @keyframes ripple-animation {
             0% {
                 transform: scale(1);
-                opacity: 0.5;
+                opacity: 0.6;
             }
             100% {
-                transform: scale(1.5); /* Adjust scale for desired ripple size */
+                transform: scale(4);
                 opacity: 0;
             }
         }
-
-        /* Connecting Lines (SVG overlay for complex paths) */
-        .version-connections {
+        
+        /* The main timeline trunk */
+        .timeline-trunk {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            background-color: var(--border);
             height: 100%;
-            pointer-events: none; /* Allow clicks to pass through */
-            z-index: 5; /* Below nodes */
+            z-index: -1;
+            animation: trunk-growth 1s ease-in-out forwards;
+            transform-origin: bottom;
         }
-        .version-connections path {
-            stroke: var(--border);
-            stroke-width: 2px;
-            fill: none;
-            transition: stroke 0.15s ease-out;
-        }
-        .version-connections path:hover { /* Example hover effect on lines */
-             stroke: var(--muted-foreground);
-        }
-
-        /* Framer Motion style button click simulation */
-        .btn-press:active {
-            transform: scale(0.95);
-            transition: transform 0.1s ease-out;
+        @keyframes trunk-growth {
+            from {
+                transform: translateX(-50%) scaleY(0);
+            }
+            to {
+                transform: translateX(-50%) scaleY(1);
+            }
         }
 
-        /* Page load animations (simplified CSS for demonstration) */
-        @keyframes header-fade-in {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .header-animated {
-            animation: header-fade-in 0.4s ease-out forwards;
+        /* Branch lines */
+        .branch-line {
+            position: absolute;
+            height: 2px;
+            background-color: var(--border);
+            top: 50%;
+            transform: translateY(-50%);
         }
 
-        @keyframes node-fade-in {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Staggered entry animation for items */
+        .version-item {
+            animation: item-fade-in 0.5s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
         }
-        .node-animated {
-            animation: node-fade-in 0.6s ease-out forwards; /* Staggered by JS typically */
+
+        @keyframes item-fade-in {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Drag and Drop styles from SortableJS */
+        .sortable-ghost {
+            opacity: 0.4;
+            background: var(--muted);
+            border: 2px dashed var(--primary);
+            transform: rotate(-2deg);
+        }
+        .sortable-chosen .version-card {
+            transform: scale(1.05) rotate(-2deg);
+            box-shadow: var(--shadow-xl);
+            z-index: 1000;
+        }
+        .sortable-drag {
+            z-index: 1001;
+        }
+        /* Highlight drop zones */
+        .sortable-swap {
+            background-color: var(--accent);
+            opacity: 0.3;
+            border-radius: var(--radius);
         }
     </style>
 </head>
-<body class="bg-background text-foreground">
+<body class="antialiased min-h-screen p-4 sm:p-8">
 
-    <!-- Header Area -->
-    <header class="header-animated flex items-center justify-between p-4 border-b border-border bg-card shadow-sm z-20">
-        <div class="flex items-center gap-4">
-            <button class="text-foreground hover:text-primary transition-colors btn-press">
-                <i data-lucide="chevron-left" class="w-6 h-6"></i>
-            </button>
-            <h1 class="text-xl font-semibold">版本历史 - 项目名称</h1>
-        </div>
-        <div class="flex items-center gap-4">
-            <button class="bg-primary text-primary-foreground py-2 px-4 rounded-md font-medium text-sm shadow hover:bg-opacity-90 transition-all btn-press">
-                <i data-lucide="plus" class="inline-block w-4 h-4 mr-1"></i>
-                新增版本
-            </button>
-            <button class="text-foreground hover:text-primary transition-colors btn-press">
-                <i data-lucide="save" class="w-5 h-5"></i>
-            </button>
-            <button class="text-foreground hover:text-primary transition-colors btn-press">
-                <i data-lucide="book-text" class="w-5 h-5"></i>
+    <div class="max-w-4xl mx-auto py-12 relative">
+        <!-- Add new version button -->
+        <div class="flex justify-center mb-10">
+            <button id="add-version-btn" class="flex items-center gap-2 px-6 py-3 font-semibold text-lg text-primary-foreground rounded-full" style="background: linear-gradient(135deg, hsl(262, 83%, 58%), hsl(262, 83%, 48%));">
+                <i data-lucide="plus-circle"></i>
+                <span>Add New Version</span>
             </button>
         </div>
-    </header>
 
-    <!-- Version Tree Area -->
-    <div class="version-tree-container">
-        <!-- SVG for connecting lines -->
-        <svg class="version-connections">
-            <!-- Example paths - these would be dynamically generated by JS -->
-            <path d="M 50% 80% C 30% 70%, 30% 60%, 15% 55%" class="node-animated" style="animation-delay: 0.7s;"></path>
-            <path d="M 50% 80% C 70% 70%, 70% 60%, 85% 55%" class="node-animated" style="animation-delay: 0.8s;"></path>
-            <path d="M 15% 45% C 10% 40%, 10% 30%, 50% 25%" class="node-animated" style="animation-delay: 0.9s;"></path>
-            <path d="M 85% 45% C 90% 40%, 90% 30%, 50% 25%" class="node-animated" style="animation-delay: 1s;"></path>
-        </svg>
+        <!-- Timeline Container -->
+        <div id="version-timeline" class="relative">
+            <!-- Central Trunk Line -->
+            <div class="timeline-trunk"></div>
+            
+            <!-- Inverted list of versions, from 5 down to 1 -->
+            <div id="version-list" class="flex flex-col-reverse gap-y-2">
+                
+                <!-- Version 1 (Active) -->
+                <div class="version-item active w-full" style="animation-delay: 800ms;">
+                    <div class="relative w-full flex items-center justify-start">
+                        <div class="w-1/2 pr-8 flex justify-end">
+                            <div class="version-card w-full max-w-sm p-5 cursor-grab">
+                                <h3 class="text-xl font-bold text-foreground">Version 1</h3>
+                                <p class="text-muted-foreground text-sm mt-1">Initial commit - Project setup</p>
+                                <span class="text-xs text-muted-foreground/80 mt-3 block">Updated 5 days ago</span>
+                            </div>
+                        </div>
+                        <div class="w-16 h-16 rounded-full flex-shrink-0 absolute left-1/2 -translate-x-1/2 flex items-center justify-center">
+                            <div class="version-node w-6 h-6 rounded-full relative">
+                                <div class="ripple-container"><div class="ripple"></div></div>
+                            </div>
+                            <div class="branch-line w-8 right-full"></div>
+                        </div>
+                    </div>
+                </div>
 
-        <!-- Version Nodes -->
-        <!-- Version 1 (Root Node) - Always with ripple effect -->
-        <div class="version-node-wrapper node-animated" style="animation-delay: 0.6s;">
-            <div class="version-node version-1-ripple node-center" style="bottom: 4rem;">
-                版本 1
+                <!-- Version 2 -->
+                <div class="version-item w-full" style="animation-delay: 600ms;">
+                    <div class="relative w-full flex items-center justify-end">
+                        <div class="w-16 h-16 rounded-full flex-shrink-0 absolute left-1/2 -translate-x-1/2 flex items-center justify-center">
+                             <div class="version-node w-6 h-6 rounded-full"></div>
+                             <div class="branch-line w-8 left-full"></div>
+                        </div>
+                        <div class="w-1/2 pl-8 flex justify-start">
+                            <div class="version-card w-full max-w-sm p-5 cursor-grab">
+                                <h3 class="text-xl font-bold text-foreground">Version 2</h3>
+                                <p class="text-muted-foreground text-sm mt-1">Added user authentication</p>
+                                <span class="text-xs text-muted-foreground/80 mt-3 block">Updated 4 days ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Version 3 -->
+                <div class="version-item w-full" style="animation-delay: 400ms;">
+                    <div class="relative w-full flex items-center justify-start">
+                         <div class="w-1/2 pr-8 flex justify-end">
+                            <div class="version-card w-full max-w-sm p-5 cursor-grab">
+                                <h3 class="text-xl font-bold text-foreground">Version 3</h3>
+                                <p class="text-muted-foreground text-sm mt-1">Implemented dashboard layout</p>
+                                <span class="text-xs text-muted-foreground/80 mt-3 block">Updated 3 days ago</span>
+                            </div>
+                        </div>
+                        <div class="w-16 h-16 rounded-full flex-shrink-0 absolute left-1/2 -translate-x-1/2 flex items-center justify-center">
+                            <div class="version-node w-6 h-6 rounded-full"></div>
+                            <div class="branch-line w-8 right-full"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Version 4 -->
+                <div class="version-item w-full" style="animation-delay: 200ms;">
+                    <div class="relative w-full flex items-center justify-end">
+                         <div class="w-16 h-16 rounded-full flex-shrink-0 absolute left-1/2 -translate-x-1/2 flex items-center justify-center">
+                             <div class="version-node w-6 h-6 rounded-full"></div>
+                             <div class="branch-line w-8 left-full"></div>
+                        </div>
+                        <div class="w-1/2 pl-8 flex justify-start">
+                            <div class="version-card w-full max-w-sm p-5 cursor-grab">
+                                <h3 class="text-xl font-bold text-foreground">Version 4</h3>
+                                <p class="text-muted-foreground text-sm mt-1">Fixed critical bug in API</p>
+                                <span class="text-xs text-muted-foreground/80 mt-3 block">Updated 1 day ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Version 5 -->
+                <div class="version-item w-full" style="animation-delay: 0ms;">
+                    <div class="relative w-full flex items-center justify-start">
+                        <div class="w-1/2 pr-8 flex justify-end">
+                            <div class="version-card w-full max-w-sm p-5 cursor-grab">
+                                <h3 class="text-xl font-bold text-foreground">Version 5</h3>
+                                <p class="text-muted-foreground text-sm mt-1">Deployed to production</p>
+                                <span class="text-xs text-muted-foreground/80 mt-3 block">Updated 2 hours ago</span>
+                            </div>
+                        </div>
+                        <div class="w-16 h-16 rounded-full flex-shrink-0 absolute left-1/2 -translate-x-1/2 flex items-center justify-center">
+                            <div class="version-node w-6 h-6 rounded-full"></div>
+                            <div class="branch-line w-8 right-full"></div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
-
-        <!-- Version 2 -->
-        <div class="version-node-wrapper node-animated" style="animation-delay: 0.8s;">
-            <div class="version-node node-left" style="bottom: 10rem;">
-                版本 2
-            </div>
-        </div>
-
-        <!-- Version 3 -->
-        <div class="version-node-wrapper node-animated" style="animation-delay: 1s;">
-            <div class="version-node node-right" style="bottom: 16rem;">
-                版本 3
-            </div>
-        </div>
-
-        <!-- Version 4 -->
-        <div class="version-node-wrapper node-animated" style="animation-delay: 1.2s;">
-            <div class="version-node node-left" style="bottom: 22rem;">
-                版本 4
-            </div>
-        </div>
-
-        <!-- Version 5 (Latest Node) -->
-        <div class="version-node-wrapper node-animated" style="animation-delay: 1.4s;">
-            <div class="version-node node-right" style="bottom: 28rem;">
-                版本 5
-            </div>
-        </div>
-
-        <!-- Placeholder for more nodes - adjust 'bottom' style for vertical positioning -->
-        <!--
-        <div class="version-node-wrapper">
-            <div class="version-node node-center" style="bottom: 34rem;">
-                版本 6
-            </div>
-        </div>
-        -->
-
     </div>
 
+    <!-- SortableJS Library -->
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+
     <script>
-        // Initialize Lucide icons
+        // Initialize Lucid Icons
         lucide.createIcons();
 
-        // --- JavaScript for dynamic interactions (Framer Motion style simulation) ---
-
-        // Simulate drag start/end for nodes (visual only)
-        document.querySelectorAll('.version-node').forEach(node => {
-            node.addEventListener('mousedown', (e) => {
-                node.classList.add('is-dragging');
-                // In a real Framer Motion setup, drag handlers would manage position and state
-                // This is purely for visual feedback
-            });
-
-            node.addEventListener('mouseup', () => {
-                node.classList.remove('is-dragging');
-            });
-
-            // Prevent text selection during drag
-            node.addEventListener('dragstart', (e) => {
-                e.preventDefault();
-            });
+        // Drag and Drop functionality
+        const versionList = document.getElementById('version-list');
+        new Sortable(versionList, {
+            animation: 400,
+            ghostClass: 'sortable-ghost',
+            chosenClass: 'sortable-chosen',
+            handle: '.version-card',
+            onEnd: function (evt) {
+                // The item's content has been swapped visually.
+                // No further logic needed for this demo as we only swap content.
+                // The version numbers (nodes) remain in place.
+            },
         });
 
-        // Framer Motion style "stagger" for node entry animation (simplified)
-        // In a real app, you'd use a JS framework (React/Vue) with Framer Motion
-        // For this single HTML file, we manually set animation delays
-        const nodes = document.querySelectorAll('.version-node-wrapper');
-        nodes.forEach((node, index) => {
-            node.style.animationDelay = `${0.6 + index * 0.2}s`;
-        });
-        const paths = document.querySelectorAll('.version-connections path');
-        paths.forEach((path, index) => {
-            path.style.animationDelay = `${0.7 + index * 0.1}s`;
+        // Add New Version functionality
+        const addBtn = document.getElementById('add-version-btn');
+        addBtn.addEventListener('click', () => {
+            const itemCount = versionList.children.length;
+            const newVersionNumber = itemCount + 1;
+            const isLeft = (newVersionNumber % 2) !== 0;
+
+            const newItem = document.createElement('div');
+            newItem.className = 'version-item w-full';
+            newItem.style.opacity = '0'; // Start hidden for animation
+
+            const content = `
+                <div class="relative w-full flex items-center ${isLeft ? 'justify-start' : 'justify-end'}">
+                    ${isLeft ? `
+                    <div class="w-1/2 pr-8 flex justify-end">
+                        <div class="version-card w-full max-w-sm p-5 cursor-grab">
+                            <h3 class="text-xl font-bold text-foreground">Version ${newVersionNumber}</h3>
+                            <p class="text-muted-foreground text-sm mt-1">New version description...</p>
+                            <span class="text-xs text-muted-foreground/80 mt-3 block">Updated just now</span>
+                        </div>
+                    </div>
+                    <div class="w-16 h-16 rounded-full flex-shrink-0 absolute left-1/2 -translate-x-1/2 flex items-center justify-center">
+                        <div class="version-node w-6 h-6 rounded-full"></div>
+                        <div class="branch-line w-8 right-full"></div>
+                    </div>
+                    ` : `
+                    <div class="w-16 h-16 rounded-full flex-shrink-0 absolute left-1/2 -translate-x-1/2 flex items-center justify-center">
+                         <div class="version-node w-6 h-6 rounded-full"></div>
+                         <div class="branch-line w-8 left-full"></div>
+                    </div>
+                    <div class="w-1/2 pl-8 flex justify-start">
+                        <div class="version-card w-full max-w-sm p-5 cursor-grab">
+                            <h3 class="text-xl font-bold text-foreground">Version ${newVersionNumber}</h3>
+                            <p class="text-muted-foreground text-sm mt-1">New version description...</p>
+                            <span class="text-xs text-muted-foreground/80 mt-3 block">Updated just now</span>
+                        </div>
+                    </div>
+                    `}
+                </div>
+            `;
+            
+            newItem.innerHTML = content;
+            versionList.prepend(newItem); // Prepend because of flex-col-reverse
+
+            // Trigger fade-in animation
+            setTimeout(() => {
+                newItem.style.opacity = '1';
+                newItem.style.transform = 'translateY(0)';
+            }, 50);
         });
 
-        // NOTE: Full drag & drop, dynamic SVG path generation, and true Framer Motion
-        // spring physics would require a JavaScript framework (e.g., React/Vue)
-        // and a dedicated library (e.g., Framer Motion, D3.js for SVG manipulation).
-        // This HTML provides the structural and stylistic foundation.
     </script>
+
 </body>
 </html>
