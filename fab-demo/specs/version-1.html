@@ -1,0 +1,3782 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+    @font-face {
+    font-family: 'sourcesanspro';
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+    src: url(https://design.penpot.app/fonts/sourcesanspro-regular.woff) format('woff');
+  }
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: block;
+  src: url(https://design.penpot.app/internal/gfonts/font/plusjakartasans/v12/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_d0n9QB_VIKg.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: block;
+  src: url(https://design.penpot.app/internal/gfonts/font/plusjakartasans/v12/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_d0n9Qh_VIKg.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: block;
+  src: url(https://design.penpot.app/internal/gfonts/font/plusjakartasans/v12/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_d0n9Qx_VIKg.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: block;
+  src: url(https://design.penpot.app/internal/gfonts/font/plusjakartasans/v12/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_d0n9TR_V.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: block;
+  src: url(https://design.penpot.app/internal/gfonts/font/plusjakartasans/v12/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_m079QB_VIKg.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: block;
+  src: url(https://design.penpot.app/internal/gfonts/font/plusjakartasans/v12/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_m079Qh_VIKg.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: block;
+  src: url(https://design.penpot.app/internal/gfonts/font/plusjakartasans/v12/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_m079Qx_VIKg.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: block;
+  src: url(https://design.penpot.app/internal/gfonts/font/plusjakartasans/v12/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_m079TR_V.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: block;
+  src: url(https://design.penpot.app/internal/gfonts/font/plusjakartasans/v12/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_Tkn9QB_VIKg.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: block;
+  src: url(https://design.penpot.app/internal/gfonts/font/plusjakartasans/v12/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_Tkn9Qh_VIKg.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: block;
+  src: url(https://design.penpot.app/internal/gfonts/font/plusjakartasans/v12/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_Tkn9Qx_VIKg.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: block;
+  src: url(https://design.penpot.app/internal/gfonts/font/plusjakartasans/v12/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_Tkn9TR_V.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url(https://design.penpot.app/internal/gfonts/font/plusjakartasans/v12/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_qU79QB_VIKg.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url(https://design.penpot.app/internal/gfonts/font/plusjakartasans/v12/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_qU79Qh_VIKg.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url(https://design.penpot.app/internal/gfonts/font/plusjakartasans/v12/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_qU79Qx_VIKg.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url(https://design.penpot.app/internal/gfonts/font/plusjakartasans/v12/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_qU79TR_V.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  min-width: 100%;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.text-node { background-clip: text !important; -webkit-background-clip: text !important; }
+
+/* SubAddButton-Text */
+.sub-add-butt-1c1840aed24c {
+  position: absolute;
+  left: 276px;
+  top: 1070px;
+  height: 24px;
+}
+.sub-add-butt-1c1840aed24c .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.sub-add-butt-1c1840aed24c .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.sub-add-butt-1c1840aed24c .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+.sub-add-butt-1c1840aed24c .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(22, 78, 99, 0.8);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 20px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(22, 78, 99, 0.8);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* SubAddButton-Icon */
+.sub-add-butt-1c1840a9b706 {
+  position: absolute;
+  left: 256px;
+  top: 1067px;
+  height: 24px;
+}
+.sub-add-butt-1c1840a9b706 .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.sub-add-butt-1c1840a9b706 .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.sub-add-butt-1c1840a9b706 .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+.sub-add-butt-1c1840a9b706 .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(6, 182, 212, 1);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 20px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(6, 182, 212, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* SubAddButton-Bg */
+.sub-add-butt-1c1840a63c2b {
+  position: absolute;
+  left: 248px;
+  top: 1065px;
+  width: 120px;
+  height: 38px;
+  background: #ecfeffFF;
+  border: 1.5px dashed #06b6d4FF;
+  border-start-start-radius: 6px;
+  border-start-end-radius: 6px;
+  border-end-start-radius: 6px;
+  border-end-end-radius: 6px;
+}
+
+/* SubConnectionDot */
+.sub-connect-1c1840a01909 {
+  position: absolute;
+  left: 221px;
+  top: 837px;
+  width: 6px;
+  height: 6px;
+  background: #ecfeffFF;
+  border: 2px  #06b6d4FF;
+}
+
+/* SubDesc-v1.2 */
+.sub-descv1-1c175f95efcb {
+  position: absolute;
+  left: 257px;
+  top: 974px;
+  height: 42px;
+}
+.sub-descv1-1c175f95efcb .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.sub-descv1-1c175f95efcb .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.sub-descv1-1c175f95efcb .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.6;
+  margin: 0;
+  text-align: left;
+}
+.sub-descv1-1c175f95efcb .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(14, 116, 144, 0.8);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 13px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(14, 116, 144, 0.8);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 500;
+}
+.sub-descv1-1c175f95efcb .root-0-paragraph-set-0-paragraph-1 {
+  font-size: 0;
+  line-height: 1.6;
+  margin: 0;
+  text-align: left;
+}
+.sub-descv1-1c175f95efcb .root-0-paragraph-set-0-paragraph-1-text-0 {
+  color: rgba(14, 116, 144, 0.8);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 13px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(14, 116, 144, 0.8);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 500;
+}
+
+/* SubTitle-v1.2 */
+.sub-titlev-1c175f90886f {
+  position: absolute;
+  left: 257px;
+  top: 953px;
+  height: 24px;
+}
+.sub-titlev-1c175f90886f .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.sub-titlev-1c175f90886f .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.sub-titlev-1c175f90886f .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+.sub-titlev-1c175f90886f .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(22, 78, 99, 1);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 20px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(22, 78, 99, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* SubNode-v1.2 */
+.sub-nodev1-1c175f8c9da0 {
+  position: absolute;
+  left: 236px;
+  top: 961px;
+  width: 8px;
+  height: 8px;
+  background: #ecfeffFF;
+  border: 2px  #06b6d4FF;
+}
+
+/* SubBranch-2 */
+.sub-branch-1c1a4a1fd53d {
+  position: absolute;
+  left: 229.32px;
+  top: 1081.24px;
+  width: 15px;
+  height: 2px;
+  background: #67e8f9FF;
+}
+
+/* SubBranch-2 */
+.sub-branch-1c175f896f28 {
+  position: absolute;
+  left: 227px;
+  top: 963px;
+  width: 15px;
+  height: 2px;
+  background: #67e8f9FF;
+}
+
+/* SubDesc-v1.1 */
+.sub-descv1-1c175f84bea6 {
+  position: absolute;
+  left: 256px;
+  top: 877px;
+  height: 42px;
+}
+.sub-descv1-1c175f84bea6 .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.sub-descv1-1c175f84bea6 .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.sub-descv1-1c175f84bea6 .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.6;
+  margin: 0;
+  text-align: left;
+}
+.sub-descv1-1c175f84bea6 .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(14, 116, 144, 0.8);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 13px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(14, 116, 144, 0.8);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 500;
+}
+.sub-descv1-1c175f84bea6 .root-0-paragraph-set-0-paragraph-1 {
+  font-size: 0;
+  line-height: 1.6;
+  margin: 0;
+  text-align: left;
+}
+.sub-descv1-1c175f84bea6 .root-0-paragraph-set-0-paragraph-1-text-0 {
+  color: rgba(14, 116, 144, 0.8);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 13px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(14, 116, 144, 0.8);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 500;
+}
+
+/* SubTitle-v1.1 */
+.sub-titlev-1c175f809e33 {
+  position: absolute;
+  left: 256px;
+  top: 856px;
+  height: 24px;
+}
+.sub-titlev-1c175f809e33 .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.sub-titlev-1c175f809e33 .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.sub-titlev-1c175f809e33 .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+.sub-titlev-1c175f809e33 .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(22, 78, 99, 1);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 20px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(22, 78, 99, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* SubNode-v1.1 */
+.sub-nodev1-1c175f7c7426 {
+  position: absolute;
+  left: 240px;
+  top: 859px;
+  width: 8px;
+  height: 8px;
+  background: #ecfeffFF;
+  border: 2px  #06b6d4FF;
+}
+
+/* SubBranch-1 */
+.sub-branch-1c175f77e901 {
+  position: absolute;
+  left: 225px;
+  top: 862px;
+  width: 15px;
+  height: 2px;
+  background: #67e8f9FF;
+}
+
+/* SubMainLine */
+.sub-main-lin-1c175f7361d3 {
+  position: absolute;
+  left: 223px;
+  top: 839px;
+  width: 2px;
+  height: 252px;
+  background: #67e8f9FF;
+}
+
+/* Ripple-3 */
+.ripple3-1c1348917f02 > svg {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  transform: translate(0px,0px);
+}
+.ripple3-1c1348917f02 {
+  position: absolute;
+  left: 460px;
+  top: 740px;
+  width: 62px;
+  height: 62px;
+}
+
+/* Ripple-2 */
+.ripple2-1c13488ba7ae > svg {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  transform: translate(0px,0px);
+}
+.ripple2-1c13488ba7ae {
+  position: absolute;
+  left: 466px;
+  top: 746px;
+  width: 50px;
+  height: 50px;
+}
+
+/* Ripple-1 */
+.ripple1-1c13488594d0 > svg {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  transform: translate(0px,0px);
+}
+.ripple1-1c13488594d0 {
+  position: absolute;
+  left: 472px;
+  top: 752px;
+  width: 38px;
+  height: 38px;
+}
+
+/* DragHandle-5-2-1 */
+.drag-handle-1c13487efeb1 {
+  position: absolute;
+  left: 403px;
+  top: 181px;
+  width: 4px;
+  height: 4px;
+  background: #9ca3af80;
+}
+
+/* DragHandle-5-2-0 */
+.drag-handle-1c13487a252e {
+  position: absolute;
+  left: 395px;
+  top: 181px;
+  width: 4px;
+  height: 4px;
+  background: #9ca3af80;
+}
+
+/* DragHandle-5-1-1 */
+.drag-handle-1c134875846f {
+  position: absolute;
+  left: 403px;
+  top: 173px;
+  width: 4px;
+  height: 4px;
+  background: #9ca3af80;
+}
+
+/* DragHandle-5-1-0 */
+.drag-handle-1c13487034e6 {
+  position: absolute;
+  left: 395px;
+  top: 173px;
+  width: 4px;
+  height: 4px;
+  background: #9ca3af80;
+}
+
+/* DragHandle-5-0-1 */
+.drag-handle-1c13486b8cd1 {
+  position: absolute;
+  left: 403px;
+  top: 165px;
+  width: 4px;
+  height: 4px;
+  background: #9ca3af80;
+}
+
+/* DragHandle-5-0-0 */
+.drag-handle-1c134867ce22 {
+  position: absolute;
+  left: 395px;
+  top: 165px;
+  width: 4px;
+  height: 4px;
+  background: #9ca3af80;
+}
+
+/* DragHandle-4-2-1 */
+.drag-handle-1c1348633ef0 {
+  position: absolute;
+  left: 873px;
+  top: 331px;
+  width: 4px;
+  height: 4px;
+  background: #9ca3af80;
+}
+
+/* DragHandle-4-2-0 */
+.drag-handle-1c13485faf34 {
+  position: absolute;
+  left: 865px;
+  top: 331px;
+  width: 4px;
+  height: 4px;
+  background: #9ca3af80;
+}
+
+/* DragHandle-4-1-1 */
+.drag-handle-1c13485bf0cc {
+  position: absolute;
+  left: 873px;
+  top: 323px;
+  width: 4px;
+  height: 4px;
+  background: #9ca3af80;
+}
+
+/* DragHandle-4-1-0 */
+.drag-handle-1c13485853c4 {
+  position: absolute;
+  left: 865px;
+  top: 323px;
+  width: 4px;
+  height: 4px;
+  background: #9ca3af80;
+}
+
+/* DragHandle-4-0-1 */
+.drag-handle-1c134854593d {
+  position: absolute;
+  left: 873px;
+  top: 315px;
+  width: 4px;
+  height: 4px;
+  background: #9ca3af80;
+}
+
+/* DragHandle-4-0-0 */
+.drag-handle-1c134850a7c2 {
+  position: absolute;
+  left: 865px;
+  top: 315px;
+  width: 4px;
+  height: 4px;
+  background: #9ca3af80;
+}
+
+/* DragHandle-3-2-1 */
+.drag-handle-1c13484bb6ab {
+  position: absolute;
+  left: 403px;
+  top: 481px;
+  width: 4px;
+  height: 4px;
+  background: #9ca3af80;
+}
+
+/* DragHandle-3-2-0 */
+.drag-handle-1c1348477165 {
+  position: absolute;
+  left: 395px;
+  top: 481px;
+  width: 4px;
+  height: 4px;
+  background: #9ca3af80;
+}
+
+/* DragHandle-3-1-1 */
+.drag-handle-1c1348434e6e {
+  position: absolute;
+  left: 403px;
+  top: 473px;
+  width: 4px;
+  height: 4px;
+  background: #9ca3af80;
+}
+
+/* DragHandle-3-1-0 */
+.drag-handle-1c13483f212b {
+  position: absolute;
+  left: 395px;
+  top: 473px;
+  width: 4px;
+  height: 4px;
+  background: #9ca3af80;
+}
+
+/* DragHandle-3-0-1 */
+.drag-handle-1c13483a7730 {
+  position: absolute;
+  left: 403px;
+  top: 465px;
+  width: 4px;
+  height: 4px;
+  background: #9ca3af80;
+}
+
+/* DragHandle-3-0-0 */
+.drag-handle-1c134835d104 {
+  position: absolute;
+  left: 395px;
+  top: 465px;
+  width: 4px;
+  height: 4px;
+  background: #9ca3af80;
+}
+
+/* DragHandle-2-2-1 */
+.drag-handle-1c1348303d9c {
+  position: absolute;
+  left: 873px;
+  top: 631px;
+  width: 4px;
+  height: 4px;
+  background: #9ca3af80;
+}
+
+/* DragHandle-2-2-0 */
+.drag-handle-1c13482b56f7 {
+  position: absolute;
+  left: 865px;
+  top: 631px;
+  width: 4px;
+  height: 4px;
+  background: #9ca3af80;
+}
+
+/* DragHandle-2-1-1 */
+.drag-handle-1c1348275b7a {
+  position: absolute;
+  left: 873px;
+  top: 623px;
+  width: 4px;
+  height: 4px;
+  background: #9ca3af80;
+}
+
+/* DragHandle-2-1-0 */
+.drag-handle-1c1348233881 {
+  position: absolute;
+  left: 865px;
+  top: 623px;
+  width: 4px;
+  height: 4px;
+  background: #9ca3af80;
+}
+
+/* DragHandle-2-0-1 */
+.drag-handle-1c13481f27f7 {
+  position: absolute;
+  left: 873px;
+  top: 615px;
+  width: 4px;
+  height: 4px;
+  background: #9ca3af80;
+}
+
+/* DragHandle-2-0-0 */
+.drag-handle-1c13481a3d21 {
+  position: absolute;
+  left: 865px;
+  top: 615px;
+  width: 4px;
+  height: 4px;
+  background: #9ca3af80;
+}
+
+/* DragHandle-1-2-1 */
+.drag-handle-1c1348142519 {
+  position: absolute;
+  left: 403px;
+  top: 781px;
+  width: 4px;
+  height: 4px;
+  background: #9ca3af80;
+}
+
+/* DragHandle-1-2-0 */
+.drag-handle-1c13480f9a86 {
+  position: absolute;
+  left: 395px;
+  top: 781px;
+  width: 4px;
+  height: 4px;
+  background: #9ca3af80;
+}
+
+/* DragHandle-1-1-1 */
+.drag-handle-1c1348059871 {
+  position: absolute;
+  left: 403px;
+  top: 773px;
+  width: 4px;
+  height: 4px;
+  background: #9ca3af80;
+}
+
+/* DragHandle-1-1-0 */
+.drag-handle-1c1347ff1df4 {
+  position: absolute;
+  left: 395px;
+  top: 773px;
+  width: 4px;
+  height: 4px;
+  background: #9ca3af80;
+}
+
+/* DragHandle-1-0-1 */
+.drag-handle-1c1347f9ce32 {
+  position: absolute;
+  left: 403px;
+  top: 765px;
+  width: 4px;
+  height: 4px;
+  background: #9ca3af80;
+}
+
+/* DragHandle-1-0-0 */
+.drag-handle-1c1347f54a4b {
+  position: absolute;
+  left: 395px;
+  top: 765px;
+  width: 4px;
+  height: 4px;
+  background: #9ca3af80;
+}
+
+/* Instructions */
+.instructio-1c1347ed10d9 {
+  position: absolute;
+  left: 257px;
+  top: -9px;
+  height: 17px;
+}
+.instructio-1c1347ed10d9 .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.instructio-1c1347ed10d9 .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.instructio-1c1347ed10d9 .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+.instructio-1c1347ed10d9 .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(107, 82, 128, 1);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 14px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(107, 82, 128, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* Page Title */
+.page-title-1c1347e5c92f {
+  position: absolute;
+  left: 299px;
+  top: -50px;
+  height: 34px;
+}
+.page-title-1c1347e5c92f .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.page-title-1c1347e5c92f .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.page-title-1c1347e5c92f .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+.page-title-1c1347e5c92f .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(31, 18, 53, 1);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 28px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(31, 18, 53, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* PromptDesc-3 */
+.prompt-desc-1c1331b67b2a {
+  position: absolute;
+  left: 990px;
+  top: 580px;
+  height: 16px;
+}
+.prompt-desc-1c1331b67b2a .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.prompt-desc-1c1331b67b2a .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.prompt-desc-1c1331b67b2a .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+.prompt-desc-1c1331b67b2a .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(107, 82, 128, 1);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 13px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(107, 82, 128, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* PromptTitle-3 */
+.prompt-titl-1c1331aff3e7 {
+  position: absolute;
+  left: 990px;
+  top: 556px;
+  height: 18px;
+}
+.prompt-titl-1c1331aff3e7 .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.prompt-titl-1c1331aff3e7 .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.prompt-titl-1c1331aff3e7 .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+.prompt-titl-1c1331aff3e7 .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(31, 18, 53, 1);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 15px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(31, 18, 53, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* PromptCard-3 */
+.prompt-card-1c1331a9bd56 > svg {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  transform: translate(0px,0px);
+}
+.prompt-card-1c1331a9bd56 {
+  position: absolute;
+  left: 974px;
+  top: 540px;
+  width: 332px;
+  height: 70px;
+  border-start-start-radius: 12px;
+  border-start-end-radius: 12px;
+  border-end-start-radius: 12px;
+  border-end-end-radius: 12px;
+}
+
+/* PromptDesc-2 */
+.prompt-desc-1c1331a41581 {
+  position: absolute;
+  left: 990px;
+  top: 490px;
+  height: 16px;
+}
+.prompt-desc-1c1331a41581 .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.prompt-desc-1c1331a41581 .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.prompt-desc-1c1331a41581 .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+.prompt-desc-1c1331a41581 .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(107, 82, 128, 1);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 13px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(107, 82, 128, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* PromptTitle-2 */
+.prompt-titl-1c13319cafa5 {
+  position: absolute;
+  left: 990px;
+  top: 466px;
+  height: 18px;
+}
+.prompt-titl-1c13319cafa5 .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.prompt-titl-1c13319cafa5 .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.prompt-titl-1c13319cafa5 .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+.prompt-titl-1c13319cafa5 .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(31, 18, 53, 1);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 15px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(31, 18, 53, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* PromptCard-2 */
+.prompt-card-1c133196dd82 > svg {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  transform: translate(0px,0px);
+}
+.prompt-card-1c133196dd82 {
+  position: absolute;
+  left: 974px;
+  top: 450px;
+  width: 332px;
+  height: 70px;
+  border-start-start-radius: 12px;
+  border-start-end-radius: 12px;
+  border-end-start-radius: 12px;
+  border-end-end-radius: 12px;
+}
+
+/* PromptDesc-1 */
+.prompt-desc-1c133190f543 {
+  position: absolute;
+  left: 990px;
+  top: 400px;
+  height: 16px;
+}
+.prompt-desc-1c133190f543 .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.prompt-desc-1c133190f543 .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.prompt-desc-1c133190f543 .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+.prompt-desc-1c133190f543 .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(107, 82, 128, 1);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 13px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(107, 82, 128, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* PromptTitle-1 */
+.prompt-titl-1c13318b044b {
+  position: absolute;
+  left: 990px;
+  top: 376px;
+  height: 18px;
+}
+.prompt-titl-1c13318b044b .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.prompt-titl-1c13318b044b .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.prompt-titl-1c13318b044b .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+.prompt-titl-1c13318b044b .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(31, 18, 53, 1);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 15px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(31, 18, 53, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* PromptCard-1 */
+.prompt-card-1c1331850c3d > svg {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  transform: translate(0px,0px);
+}
+.prompt-card-1c1331850c3d {
+  position: absolute;
+  left: 974px;
+  top: 360px;
+  width: 332px;
+  height: 70px;
+  border-start-start-radius: 12px;
+  border-start-end-radius: 12px;
+  border-end-start-radius: 12px;
+  border-end-end-radius: 12px;
+}
+
+/* Prompts Label */
+.prompts-la-1c13317f594d {
+  position: absolute;
+  left: 974px;
+  top: 328px;
+  height: 17px;
+}
+.prompts-la-1c13317f594d .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.prompts-la-1c13317f594d .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.prompts-la-1c13317f594d .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+.prompts-la-1c13317f594d .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(107, 82, 128, 1);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 14px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(107, 82, 128, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* TagText-Layout */
+.tag-text-la-1c133179f8af {
+  position: absolute;
+  left: 1192px;
+  top: 284px;
+  height: 15px;
+}
+.tag-text-la-1c133179f8af .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.tag-text-la-1c133179f8af .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.tag-text-la-1c133179f8af .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+.tag-text-la-1c133179f8af .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(139, 92, 246, 1);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 12px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(139, 92, 246, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 500;
+}
+
+/* Tag-Layout */
+.tag-layout-1c133174843b > svg {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  transform: translate(0px,0px);
+}
+.tag-layout-1c133174843b {
+  position: absolute;
+  left: 1184px;
+  top: 276px;
+  width: 85px;
+  height: 32px;
+  border-start-start-radius: 16px;
+  border-start-end-radius: 16px;
+  border-end-start-radius: 16px;
+  border-end-end-radius: 16px;
+}
+
+/* TagText-Animation */
+.tag-text-an-1c13316fcbf7 {
+  position: absolute;
+  left: 1082px;
+  top: 284px;
+  height: 15px;
+}
+.tag-text-an-1c13316fcbf7 .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.tag-text-an-1c13316fcbf7 .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.tag-text-an-1c13316fcbf7 .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+.tag-text-an-1c13316fcbf7 .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(139, 92, 246, 1);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 12px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(139, 92, 246, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 500;
+}
+
+/* Tag-Animation */
+.tag-animat-1c13316b2b2e > svg {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  transform: translate(0px,0px);
+}
+.tag-animat-1c13316b2b2e {
+  position: absolute;
+  left: 1074px;
+  top: 276px;
+  width: 85px;
+  height: 32px;
+  border-start-start-radius: 16px;
+  border-start-end-radius: 16px;
+  border-end-start-radius: 16px;
+  border-end-end-radius: 16px;
+}
+
+/* TagText-UI Design */
+.tag-text-u-i-1c133165c1c9 {
+  position: absolute;
+  left: 982px;
+  top: 284px;
+  height: 15px;
+}
+.tag-text-u-i-1c133165c1c9 .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.tag-text-u-i-1c133165c1c9 .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.tag-text-u-i-1c133165c1c9 .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+.tag-text-u-i-1c133165c1c9 .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(139, 92, 246, 1);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 12px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(139, 92, 246, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 500;
+}
+
+/* Tag-UI Design */
+.tag-u-i-des-1c133161826e > svg {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  transform: translate(0px,0px);
+}
+.tag-u-i-des-1c133161826e {
+  position: absolute;
+  left: 974px;
+  top: 276px;
+  width: 85px;
+  height: 32px;
+  border-start-start-radius: 16px;
+  border-start-end-radius: 16px;
+  border-end-start-radius: 16px;
+  border-end-end-radius: 16px;
+}
+
+/* Tags Label */
+.tags-label-1c13315d0f7c {
+  position: absolute;
+  left: 974px;
+  top: 248px;
+  height: 17px;
+}
+.tags-label-1c13315d0f7c .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.tags-label-1c13315d0f7c .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.tags-label-1c13315d0f7c .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+.tags-label-1c13315d0f7c .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(107, 82, 128, 1);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 14px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(107, 82, 128, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* Search Placeholder */
+.search-pla-1c1331593960 {
+  position: absolute;
+  left: 1014px;
+  top: 195px;
+  height: 17px;
+}
+.search-pla-1c1331593960 .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.search-pla-1c1331593960 .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.search-pla-1c1331593960 .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+.search-pla-1c1331593960 .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(156, 163, 175, 1);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 14px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(156, 163, 175, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* Search Icon */
+.search-ico-1c1331530e74 {
+  position: absolute;
+  left: 986px;
+  top: 192px;
+  height: 22px;
+}
+.search-ico-1c1331530e74 .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.search-ico-1c1331530e74 .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.search-ico-1c1331530e74 .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+.search-ico-1c1331530e74 .root-0-paragraph-set-0-paragraph-0-text-0 {
+  
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 18px;
+  text-rendering: geometricPrecision;
+  caret-color: black;
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "sourcesanspro";
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* Search Box */
+.search-box-1c13314cae6a > svg {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  transform: translate(0px,0px);
+}
+.search-box-1c13314cae6a {
+  position: absolute;
+  left: 974px;
+  top: 184px;
+  width: 332px;
+  height: 44px;
+  border-start-start-radius: 12px;
+  border-start-end-radius: 12px;
+  border-end-start-radius: 12px;
+  border-end-end-radius: 12px;
+}
+
+/* Panel Title */
+.panel-titl-1c13314497f1 {
+  position: absolute;
+  left: 974px;
+  top: 144px;
+  height: 24px;
+}
+.panel-titl-1c13314497f1 .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.panel-titl-1c13314497f1 .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.panel-titl-1c13314497f1 .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+.panel-titl-1c13314497f1 .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(31, 18, 53, 1);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 20px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(31, 18, 53, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* Candidate Panel */
+.candidate-1c13313f016a > svg {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  transform: translate(-116px,-112px);
+}
+.candidate-1c13313f016a {
+  position: absolute;
+  left: 950px;
+  top: 120px;
+  width: 380px;
+  height: 750px;
+  border-start-start-radius: 16px;
+  border-start-end-radius: 16px;
+  border-end-start-radius: 16px;
+  border-end-end-radius: 16px;
+}
+
+/* Plus Symbol */
+.plus-symbo-1c0fc7ebee6f {
+  position: absolute;
+  left: 394px;
+  top: 48px;
+  width: 30px;
+}
+.plus-symbo-1c0fc7ebee6f .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.plus-symbo-1c0fc7ebee6f .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  min-width: 100%;
+  margin-right: 1px;
+  vertical-align: top;
+}
+.plus-symbo-1c0fc7ebee6f .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+.plus-symbo-1c0fc7ebee6f .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(255, 255, 255, 1);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: break-spaces;
+  font-size: 30px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(255, 255, 255, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "sourcesanspro";
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* VersionToken-1 */
+.version-tok-1c11cbc3b669 {
+  position: absolute;
+  left: 75px;
+  top: 720px;
+  width: 429px;
+  height: 110px;
+}
+
+/* Branch-1 */
+.branch1-1c0f87914221 {
+  position: absolute;
+  left: 368px;
+  top: 50px;
+  width: 35px;
+  height: 3px;
+  background: #3b82f6FF;
+}
+
+/* Node-1 */
+.node1-1c0f878dad74 {
+  position: absolute;
+  left: 403px;
+  top: 38px;
+  width: 26px;
+  height: 26px;
+  background: #8b5cf6FF;
+  border: 3px  #2563ebFF;
+  box-shadow: [{:id #uuid "e265a935-c8c8-80c6-8007-1c0fd10f647a", :style :drop-shadow, :color {:color "#000000", :opacity 0.2}, :offset-x 0, :offset-y 0, :blur 20, :spread 5, :hidden false}];
+}
+
+/* Time-1 */
+.time1-1c0f878847ed {
+  position: absolute;
+  left: 20px;
+  top: 82px;
+  height: 16px;
+}
+.time1-1c0f878847ed .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.time1-1c0f878847ed .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.time1-1c0f878847ed .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+.time1-1c0f878847ed .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(156, 163, 175, 0.8);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 13px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(156, 163, 175, 0.8);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* Desc-1 */
+.desc1-1c0f87831d7d {
+  position: absolute;
+  left: 20px;
+  top: 54px;
+  height: 18px;
+}
+.desc1-1c0f87831d7d .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.desc1-1c0f87831d7d .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.desc1-1c0f87831d7d .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+.desc1-1c0f87831d7d .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(107, 82, 128, 1);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 15px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(107, 82, 128, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* Title-1 */
+.title1-1c0f877e497d {
+  position: absolute;
+  left: 20px;
+  top: 22px;
+  height: 27px;
+}
+.title1-1c0f877e497d .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.title1-1c0f877e497d .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.title1-1c0f877e497d .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+.title1-1c0f877e497d .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(31, 18, 53, 1);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 22px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(31, 18, 53, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* Card-1 */
+.card1-1c0f8779dd6f > svg {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  transform: translate(-100px,-96px);
+}
+.card1-1c0f8779dd6f {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 360px;
+  height: 110px;
+  border-start-start-radius: 16px;
+  border-start-end-radius: 16px;
+  border-end-start-radius: 16px;
+  border-end-end-radius: 16px;
+}
+
+/* VersionToken-2 */
+.version-tok-1c11cbbd576e {
+  position: absolute;
+  left: 478px;
+  top: 570px;
+  width: 427px;
+  height: 110px;
+}
+
+/* Branch-2 */
+.branch2-1c0f87757042 {
+  position: absolute;
+  left: 26px;
+  top: 50px;
+  width: 35px;
+  height: 3px;
+  background: #3b82f6FF;
+}
+
+/* Node-2 */
+.node2-1c0f8770ddb7 {
+  position: absolute;
+  left: 0px;
+  top: 38px;
+  width: 26px;
+  height: 26px;
+  background: #8b5cf6FF;
+  border: 2px  #2563ebFF;
+}
+
+/* Time-2 */
+.time2-1c0f876c0464 {
+  position: absolute;
+  left: 87px;
+  top: 82px;
+  height: 16px;
+}
+.time2-1c0f876c0464 .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.time2-1c0f876c0464 .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.time2-1c0f876c0464 .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+.time2-1c0f876c0464 .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(156, 163, 175, 0.8);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 13px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(156, 163, 175, 0.8);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* Desc-2 */
+.desc2-1c0f87686b11 {
+  position: absolute;
+  left: 87px;
+  top: 54px;
+  height: 18px;
+}
+.desc2-1c0f87686b11 .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.desc2-1c0f87686b11 .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.desc2-1c0f87686b11 .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+.desc2-1c0f87686b11 .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(107, 82, 128, 1);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 15px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(107, 82, 128, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* Title-2 */
+.title2-1c0f8763535d {
+  position: absolute;
+  left: 87px;
+  top: 22px;
+  height: 27px;
+}
+.title2-1c0f8763535d .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.title2-1c0f8763535d .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.title2-1c0f8763535d .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+.title2-1c0f8763535d .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(31, 18, 53, 1);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 22px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(31, 18, 53, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* Card-2 */
+.card2-1c0f875f7f4d > svg {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  transform: translate(-100px,-96px);
+}
+.card2-1c0f875f7f4d {
+  position: absolute;
+  left: 67px;
+  top: 0px;
+  width: 360px;
+  height: 110px;
+  border-start-start-radius: 16px;
+  border-start-end-radius: 16px;
+  border-end-start-radius: 16px;
+  border-end-end-radius: 16px;
+}
+
+/* VersionToken-3 */
+.version-tok-1c11cbb7fef4 {
+  position: absolute;
+  left: 75px;
+  top: 420px;
+  width: 429px;
+  height: 110px;
+}
+
+/* Branch-3 */
+.branch3-1c0f875be0ab {
+  position: absolute;
+  left: 368px;
+  top: 50px;
+  width: 35px;
+  height: 3px;
+  background: #3b82f6FF;
+}
+
+/* Node-3 */
+.node3-1c0f87576754 {
+  position: absolute;
+  left: 403px;
+  top: 38px;
+  width: 26px;
+  height: 26px;
+  background: #8b5cf6FF;
+  border: 2px  #2563ebFF;
+}
+
+/* Time-3 */
+.time3-1c0f8750e4d3 {
+  position: absolute;
+  left: 20px;
+  top: 82px;
+  height: 16px;
+}
+.time3-1c0f8750e4d3 .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.time3-1c0f8750e4d3 .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.time3-1c0f8750e4d3 .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+.time3-1c0f8750e4d3 .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(156, 163, 175, 0.8);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 13px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(156, 163, 175, 0.8);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* Desc-3 */
+.desc3-1c0f874b6078 {
+  position: absolute;
+  left: 20px;
+  top: 54px;
+  height: 18px;
+}
+.desc3-1c0f874b6078 .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.desc3-1c0f874b6078 .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.desc3-1c0f874b6078 .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+.desc3-1c0f874b6078 .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(107, 82, 128, 1);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 15px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(107, 82, 128, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* Title-3 */
+.title3-1c0f874304be {
+  position: absolute;
+  left: 20px;
+  top: 22px;
+  height: 27px;
+}
+.title3-1c0f874304be .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.title3-1c0f874304be .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.title3-1c0f874304be .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+.title3-1c0f874304be .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(31, 18, 53, 1);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 22px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(31, 18, 53, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* Card-3 */
+.card3-1c0f873e0d85 > svg {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  transform: translate(-100px,-96px);
+}
+.card3-1c0f873e0d85 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 360px;
+  height: 110px;
+  border-start-start-radius: 16px;
+  border-start-end-radius: 16px;
+  border-end-start-radius: 16px;
+  border-end-end-radius: 16px;
+}
+
+/* VersionToken-4 */
+.version-tok-1c11cbb22ea0 {
+  position: absolute;
+  left: 478px;
+  top: 270px;
+  width: 427px;
+  height: 110px;
+}
+
+/* Branch-4 */
+.branch4-1c0f8739f19e {
+  position: absolute;
+  left: 26px;
+  top: 50px;
+  width: 35px;
+  height: 3px;
+  background: #3b82f6FF;
+}
+
+/* Node-4 */
+.node4-1c0f8733d44f {
+  position: absolute;
+  left: 0px;
+  top: 38px;
+  width: 26px;
+  height: 26px;
+  background: #8b5cf6FF;
+  border: 2px  #2563ebFF;
+}
+
+/* Time-4 */
+.time4-1c0f872c53a8 {
+  position: absolute;
+  left: 87px;
+  top: 82px;
+  height: 16px;
+}
+.time4-1c0f872c53a8 .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.time4-1c0f872c53a8 .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.time4-1c0f872c53a8 .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+.time4-1c0f872c53a8 .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(156, 163, 175, 0.8);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 13px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(156, 163, 175, 0.8);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* Desc-4 */
+.desc4-1c0f8727e8a2 {
+  position: absolute;
+  left: 87px;
+  top: 54px;
+  height: 18px;
+}
+.desc4-1c0f8727e8a2 .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.desc4-1c0f8727e8a2 .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.desc4-1c0f8727e8a2 .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+.desc4-1c0f8727e8a2 .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(107, 82, 128, 1);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 15px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(107, 82, 128, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* Title-4 */
+.title4-1c0f8721d12b {
+  position: absolute;
+  left: 87px;
+  top: 22px;
+  height: 27px;
+}
+.title4-1c0f8721d12b .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.title4-1c0f8721d12b .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.title4-1c0f8721d12b .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+.title4-1c0f8721d12b .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(31, 18, 53, 1);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 22px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(31, 18, 53, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* Card-4 */
+.card4-1c0f871c7247 > svg {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  transform: translate(-100px,-96px);
+}
+.card4-1c0f871c7247 {
+  position: absolute;
+  left: 67px;
+  top: 0px;
+  width: 360px;
+  height: 110px;
+  border-start-start-radius: 16px;
+  border-start-end-radius: 16px;
+  border-end-start-radius: 16px;
+  border-end-end-radius: 16px;
+}
+
+/* VersionToken-5 */
+.version-tok-1c11cbaa9d91 {
+  position: absolute;
+  left: 75px;
+  top: 120px;
+  width: 429px;
+  height: 110px;
+}
+
+/* Branch-5 */
+.branch5-1c0f87186420 {
+  position: absolute;
+  left: 368px;
+  top: 50px;
+  width: 35px;
+  height: 3px;
+  background: #3b82f6FF;
+}
+
+/* Node-5 */
+.node5-1c0f8712988f {
+  position: absolute;
+  left: 403px;
+  top: 38px;
+  width: 26px;
+  height: 26px;
+  background: #8b5cf6FF;
+  border: 2px  #2563ebFF;
+}
+
+/* Time-5 */
+.time5-1c0f870ce44b {
+  position: absolute;
+  left: 20px;
+  top: 82px;
+  height: 16px;
+}
+.time5-1c0f870ce44b .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.time5-1c0f870ce44b .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.time5-1c0f870ce44b .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+.time5-1c0f870ce44b .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(156, 163, 175, 0.8);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 13px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(156, 163, 175, 0.8);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* Desc-5 */
+.desc5-1c0f87082d35 {
+  position: absolute;
+  left: 20px;
+  top: 54px;
+  height: 18px;
+}
+.desc5-1c0f87082d35 .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.desc5-1c0f87082d35 .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.desc5-1c0f87082d35 .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+.desc5-1c0f87082d35 .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(107, 82, 128, 1);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 15px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(107, 82, 128, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* Title-5 */
+.title5-1c0f870267fe {
+  position: absolute;
+  left: 20px;
+  top: 22px;
+  height: 27px;
+}
+.title5-1c0f870267fe .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.title5-1c0f870267fe .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.title5-1c0f870267fe .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+.title5-1c0f870267fe .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(31, 18, 53, 1);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 22px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(31, 18, 53, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* Card-5 */
+.card5-1c0f86fdfa7b > svg {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  transform: translate(-100px,-95.99999999999999px);
+}
+.card5-1c0f86fdfa7b {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 360px;
+  height: 110px;
+  border-start-start-radius: 16px;
+  border-start-end-radius: 16px;
+  border-end-start-radius: 16px;
+  border-end-end-radius: 16px;
+}
+
+/* Timeline Trunk */
+.timeline-t-1c0f86f9d3cc {
+  position: absolute;
+  left: 490px;
+  top: 98px;
+  width: 3px;
+  height: 670px;
+  background: #3b82f6FF;
+}
+
+/* Add Button Text */
+.add-button-1c0f86f3f4d1 {
+  position: absolute;
+  left: 426px;
+  top: 54px;
+  height: 22px;
+}
+.add-button-1c0f86f3f4d1 .root-0 {
+  
+  
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+.add-button-1c0f86f3f4d1 .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  
+  margin-right: 1px;
+  vertical-align: top;
+}
+.add-button-1c0f86f3f4d1 .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+.add-button-1c0f86f3f4d1 .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(255, 255, 255, 1);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 18px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(255, 255, 255, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* Add Button Background */
+.add-button-1c0f86e8a076 {
+  position: absolute;
+  left: 371px;
+  top: 38px;
+  width: 250px;
+  height: 56px;
+  background: #8b5cf6FF;
+  border-start-start-radius: 28px;
+  border-start-end-radius: 28px;
+  border-end-start-radius: 28px;
+  border-end-end-radius: 28px;
+}
+    </style>
+  </head>
+  <body>
+  <!-- rect: Add Button Background -->
+<div class="shape rect add-button-1c0f86e8a076">
+</div>
+<!-- text: Add Button Text -->
+<div class="shape text add-button-1c0f86f3f4d1">
+  <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c0f86f3f4d1" data-x="426" data-y="54">
+    <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+      <div class="paragraph-set root-0-paragraph-set-0">
+        <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">Add New Version</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- rect: Timeline Trunk -->
+<div class="shape rect timeline-t-1c0f86f9d3cc">
+</div>
+<!-- group: VersionToken-5 -->
+<div class="group version-tok-1c11cbaa9d91">
+  <!-- rect: Card-5 -->
+  <div class="shape rect card5-1c0f86fdfa7b">
+    <svg width="562" xmlns="http://www.w3.org/2000/svg" height="328" id="screenshot-e265a935-c8c8-80c6-8007-1c0f86fdfa7b" viewBox="-26 23 562 328" style="-webkit-print-color-adjust::exact" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1">
+      <g id="shape-e265a935-c8c8-80c6-8007-1c0f86fdfa7b">
+        <defs>
+          <filter id="filter-render-585" x="-0.2111111111111111" y="-0.6909090909090908" width="1.4222222222222223" height="2.4909090909090907" filterUnits="objectBoundingBox" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"></feColorMatrix>
+            <feOffset dx="0" dy="4"></feOffset>
+            <feGaussianBlur stdDeviation="10"></feGaussianBlur>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"></feColorMatrix>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="filter_e265a935-c8c8-80c6-8007-1c0fd1190955"></feBlend>
+            <feBlend mode="normal" in="SourceGraphic" in2="filter_e265a935-c8c8-80c6-8007-1c0fd1190955" result="shape"></feBlend>
+          </filter>
+          <filter id="filter-shadow-render-585" x="-0.2111111111111111" y="-0.6909090909090908" width="1.4222222222222223" height="2.4909090909090907" filterUnits="objectBoundingBox" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"></feColorMatrix>
+            <feOffset dx="0" dy="4"></feOffset>
+            <feGaussianBlur stdDeviation="10"></feGaussianBlur>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"></feColorMatrix>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="filter_e265a935-c8c8-80c6-8007-1c0fd1190955"></feBlend>
+            <feBlend mode="normal" in="SourceGraphic" in2="filter_e265a935-c8c8-80c6-8007-1c0fd1190955" result="shape"></feBlend>
+          </filter>
+        </defs>
+        <g class="fills" id="fills-e265a935-c8c8-80c6-8007-1c0f86fdfa7b">
+          <rect rx="16" ry="16" x="75" y="119.99999999999999" transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)" width="360" height="110.00000000000001" filter="url(#filter-render-585)" style="fill:#f5f3ff;fill-opacity:1"></rect>
+        </g>
+        <g id="strokes-7420e91c-f60b-80e3-8007-1d409e880224-e265a935-c8c8-80c6-8007-1c0f86fdfa7b" class="strokes">
+          <g class="stroke-shape">
+            <defs></defs>
+            <rect rx="16" ry="16" x="75" y="119.99999999999999" transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)" width="360" height="110.00000000000001" style="fill:none;fill-opacity:none;stroke-width:1;stroke:#e9d5ff"></rect>
+          </g>
+        </g>
+      </g>
+    </svg>
+  </div>
+  <!-- text: Title-5 -->
+  <div class="shape text title5-1c0f870267fe">
+    <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c0f870267fe" data-x="95" data-y="142">
+      <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+        <div class="paragraph-set root-0-paragraph-set-0">
+          <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">Version 5</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- text: Desc-5 -->
+  <div class="shape text desc5-1c0f87082d35">
+    <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c0f87082d35" data-x="95" data-y="174">
+      <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+        <div class="paragraph-set root-0-paragraph-set-0">
+          <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">Deployed to production</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- text: Time-5 -->
+  <div class="shape text time5-1c0f870ce44b">
+    <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c0f870ce44b" data-x="95" data-y="202">
+      <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+        <div class="paragraph-set root-0-paragraph-set-0">
+          <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">Updated 2 hours ago</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- circle: Node-5 -->
+  <div class="shape circle node5-1c0f8712988f">
+  </div>
+  <!-- rect: Branch-5 -->
+  <div class="shape rect branch5-1c0f87186420">
+  </div>
+</div>
+<!-- group: VersionToken-4 -->
+<div class="group version-tok-1c11cbb22ea0">
+  <!-- rect: Card-4 -->
+  <div class="shape rect card4-1c0f871c7247">
+    <svg width="562" xmlns="http://www.w3.org/2000/svg" height="328" id="screenshot-e265a935-c8c8-80c6-8007-1c0f871c7247" viewBox="444 173 562 328" style="-webkit-print-color-adjust::exact" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1">
+      <g id="shape-e265a935-c8c8-80c6-8007-1c0f871c7247">
+        <defs>
+          <filter id="filter-render-586" x="-0.2111111111111111" y="-0.6909090909090906" width="1.4222222222222223" height="2.4909090909090903" filterUnits="objectBoundingBox" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"></feColorMatrix>
+            <feOffset dx="0" dy="4"></feOffset>
+            <feGaussianBlur stdDeviation="10"></feGaussianBlur>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"></feColorMatrix>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="filter_e265a935-c8c8-80c6-8007-1c0fd117b7de"></feBlend>
+            <feBlend mode="normal" in="SourceGraphic" in2="filter_e265a935-c8c8-80c6-8007-1c0fd117b7de" result="shape"></feBlend>
+          </filter>
+          <filter id="filter-shadow-render-586" x="-0.2111111111111111" y="-0.6909090909090906" width="1.4222222222222223" height="2.4909090909090903" filterUnits="objectBoundingBox" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"></feColorMatrix>
+            <feOffset dx="0" dy="4"></feOffset>
+            <feGaussianBlur stdDeviation="10"></feGaussianBlur>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"></feColorMatrix>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="filter_e265a935-c8c8-80c6-8007-1c0fd117b7de"></feBlend>
+            <feBlend mode="normal" in="SourceGraphic" in2="filter_e265a935-c8c8-80c6-8007-1c0fd117b7de" result="shape"></feBlend>
+          </filter>
+        </defs>
+        <g class="fills" id="fills-e265a935-c8c8-80c6-8007-1c0f871c7247">
+          <rect rx="16" ry="16" x="545" y="270" transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)" width="360" height="110.00000000000006" filter="url(#filter-render-586)" style="fill:#f5f3ff;fill-opacity:1"></rect>
+        </g>
+        <g id="strokes-7420e91c-f60b-80e3-8007-1d409e8898b4-e265a935-c8c8-80c6-8007-1c0f871c7247" class="strokes">
+          <g class="stroke-shape">
+            <defs></defs>
+            <rect rx="16" ry="16" x="545" y="270" transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)" width="360" height="110.00000000000006" style="fill:none;fill-opacity:none;stroke-width:1;stroke:#e9d5ff"></rect>
+          </g>
+        </g>
+      </g>
+    </svg>
+  </div>
+  <!-- text: Title-4 -->
+  <div class="shape text title4-1c0f8721d12b">
+    <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c0f8721d12b" data-x="565" data-y="292">
+      <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+        <div class="paragraph-set root-0-paragraph-set-0">
+          <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">Version 4</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- text: Desc-4 -->
+  <div class="shape text desc4-1c0f8727e8a2">
+    <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c0f8727e8a2" data-x="565" data-y="324">
+      <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+        <div class="paragraph-set root-0-paragraph-set-0">
+          <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">Fixed critical bug in API</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- text: Time-4 -->
+  <div class="shape text time4-1c0f872c53a8">
+    <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c0f872c53a8" data-x="565" data-y="352">
+      <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+        <div class="paragraph-set root-0-paragraph-set-0">
+          <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">Updated 1 day ago</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- circle: Node-4 -->
+  <div class="shape circle node4-1c0f8733d44f">
+  </div>
+  <!-- rect: Branch-4 -->
+  <div class="shape rect branch4-1c0f8739f19e">
+  </div>
+</div>
+<!-- group: VersionToken-3 -->
+<div class="group version-tok-1c11cbb7fef4">
+  <!-- rect: Card-3 -->
+  <div class="shape rect card3-1c0f873e0d85">
+    <svg width="562" xmlns="http://www.w3.org/2000/svg" height="328" id="screenshot-e265a935-c8c8-80c6-8007-1c0f873e0d85" viewBox="-26 323 562 328" style="-webkit-print-color-adjust::exact" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1">
+      <g id="shape-e265a935-c8c8-80c6-8007-1c0f873e0d85">
+        <defs>
+          <filter id="filter-render-587" x="-0.2111111111111111" y="-0.6909090909090909" width="1.4222222222222223" height="2.4909090909090907" filterUnits="objectBoundingBox" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"></feColorMatrix>
+            <feOffset dx="0" dy="4"></feOffset>
+            <feGaussianBlur stdDeviation="10"></feGaussianBlur>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"></feColorMatrix>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="filter_e265a935-c8c8-80c6-8007-1c0fd115b382"></feBlend>
+            <feBlend mode="normal" in="SourceGraphic" in2="filter_e265a935-c8c8-80c6-8007-1c0fd115b382" result="shape"></feBlend>
+          </filter>
+          <filter id="filter-shadow-render-587" x="-0.2111111111111111" y="-0.6909090909090909" width="1.4222222222222223" height="2.4909090909090907" filterUnits="objectBoundingBox" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"></feColorMatrix>
+            <feOffset dx="0" dy="4"></feOffset>
+            <feGaussianBlur stdDeviation="10"></feGaussianBlur>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"></feColorMatrix>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="filter_e265a935-c8c8-80c6-8007-1c0fd115b382"></feBlend>
+            <feBlend mode="normal" in="SourceGraphic" in2="filter_e265a935-c8c8-80c6-8007-1c0fd115b382" result="shape"></feBlend>
+          </filter>
+        </defs>
+        <g class="fills" id="fills-e265a935-c8c8-80c6-8007-1c0f873e0d85">
+          <rect rx="16" ry="16" x="75" y="420" transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)" width="360" height="110" filter="url(#filter-render-587)" style="fill:#f5f3ff;fill-opacity:1"></rect>
+        </g>
+        <g id="strokes-7420e91c-f60b-80e3-8007-1d409e88dd5f-e265a935-c8c8-80c6-8007-1c0f873e0d85" class="strokes">
+          <g class="stroke-shape">
+            <defs></defs>
+            <rect rx="16" ry="16" x="75" y="420" transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)" width="360" height="110" style="fill:none;fill-opacity:none;stroke-width:1;stroke:#e9d5ff"></rect>
+          </g>
+        </g>
+      </g>
+    </svg>
+  </div>
+  <!-- text: Title-3 -->
+  <div class="shape text title3-1c0f874304be">
+    <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c0f874304be" data-x="95" data-y="442">
+      <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+        <div class="paragraph-set root-0-paragraph-set-0">
+          <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">Version 3</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- text: Desc-3 -->
+  <div class="shape text desc3-1c0f874b6078">
+    <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c0f874b6078" data-x="95" data-y="474">
+      <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+        <div class="paragraph-set root-0-paragraph-set-0">
+          <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">Implemented dashboard layout</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- text: Time-3 -->
+  <div class="shape text time3-1c0f8750e4d3">
+    <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c0f8750e4d3" data-x="95" data-y="502">
+      <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+        <div class="paragraph-set root-0-paragraph-set-0">
+          <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">Updated 3 days ago</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- circle: Node-3 -->
+  <div class="shape circle node3-1c0f87576754">
+  </div>
+  <!-- rect: Branch-3 -->
+  <div class="shape rect branch3-1c0f875be0ab">
+  </div>
+</div>
+<!-- group: VersionToken-2 -->
+<div class="group version-tok-1c11cbbd576e">
+  <!-- rect: Card-2 -->
+  <div class="shape rect card2-1c0f875f7f4d">
+    <svg width="562" xmlns="http://www.w3.org/2000/svg" height="328" id="screenshot-e265a935-c8c8-80c6-8007-1c0f875f7f4d" viewBox="444 473 562 328" style="-webkit-print-color-adjust::exact" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1">
+      <g id="shape-e265a935-c8c8-80c6-8007-1c0f875f7f4d">
+        <defs>
+          <filter id="filter-render-588" x="-0.2111111111111111" y="-0.6909090909090901" width="1.4222222222222223" height="2.4909090909090894" filterUnits="objectBoundingBox" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"></feColorMatrix>
+            <feOffset dx="0" dy="4"></feOffset>
+            <feGaussianBlur stdDeviation="10"></feGaussianBlur>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"></feColorMatrix>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="filter_e265a935-c8c8-80c6-8007-1c0fd113f78c"></feBlend>
+            <feBlend mode="normal" in="SourceGraphic" in2="filter_e265a935-c8c8-80c6-8007-1c0fd113f78c" result="shape"></feBlend>
+          </filter>
+          <filter id="filter-shadow-render-588" x="-0.2111111111111111" y="-0.6909090909090901" width="1.4222222222222223" height="2.4909090909090894" filterUnits="objectBoundingBox" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"></feColorMatrix>
+            <feOffset dx="0" dy="4"></feOffset>
+            <feGaussianBlur stdDeviation="10"></feGaussianBlur>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"></feColorMatrix>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="filter_e265a935-c8c8-80c6-8007-1c0fd113f78c"></feBlend>
+            <feBlend mode="normal" in="SourceGraphic" in2="filter_e265a935-c8c8-80c6-8007-1c0fd113f78c" result="shape"></feBlend>
+          </filter>
+        </defs>
+        <g class="fills" id="fills-e265a935-c8c8-80c6-8007-1c0f875f7f4d">
+          <rect rx="16" ry="16" x="545" y="570" transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)" width="360" height="110.00000000000011" filter="url(#filter-render-588)" style="fill:#f5f3ff;fill-opacity:1"></rect>
+        </g>
+        <g id="strokes-7420e91c-f60b-80e3-8007-1d409e894a04-e265a935-c8c8-80c6-8007-1c0f875f7f4d" class="strokes">
+          <g class="stroke-shape">
+            <defs></defs>
+            <rect rx="16" ry="16" x="545" y="570" transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)" width="360" height="110.00000000000011" style="fill:none;fill-opacity:none;stroke-width:1;stroke:#e9d5ff"></rect>
+          </g>
+        </g>
+      </g>
+    </svg>
+  </div>
+  <!-- text: Title-2 -->
+  <div class="shape text title2-1c0f8763535d">
+    <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c0f8763535d" data-x="565" data-y="592">
+      <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+        <div class="paragraph-set root-0-paragraph-set-0">
+          <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">Version 2</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- text: Desc-2 -->
+  <div class="shape text desc2-1c0f87686b11">
+    <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c0f87686b11" data-x="565" data-y="624">
+      <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+        <div class="paragraph-set root-0-paragraph-set-0">
+          <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">Added user authentication</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- text: Time-2 -->
+  <div class="shape text time2-1c0f876c0464">
+    <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c0f876c0464" data-x="565" data-y="652">
+      <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+        <div class="paragraph-set root-0-paragraph-set-0">
+          <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">Updated 4 days ago</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- circle: Node-2 -->
+  <div class="shape circle node2-1c0f8770ddb7">
+  </div>
+  <!-- rect: Branch-2 -->
+  <div class="shape rect branch2-1c0f87757042">
+  </div>
+</div>
+<!-- group: VersionToken-1 -->
+<div class="group version-tok-1c11cbc3b669">
+  <!-- rect: Card-1 -->
+  <div class="shape rect card1-1c0f8779dd6f">
+    <svg width="562" xmlns="http://www.w3.org/2000/svg" height="328" id="screenshot-e265a935-c8c8-80c6-8007-1c0f8779dd6f" viewBox="-26 623 562 328" style="-webkit-print-color-adjust::exact" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1">
+      <g id="shape-e265a935-c8c8-80c6-8007-1c0f8779dd6f">
+        <defs>
+          <filter id="filter-render-589" x="-0.2111111111111111" y="-0.6909090909090909" width="1.4222222222222223" height="2.4909090909090907" filterUnits="objectBoundingBox" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"></feColorMatrix>
+            <feOffset dx="0" dy="4"></feOffset>
+            <feGaussianBlur stdDeviation="10"></feGaussianBlur>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"></feColorMatrix>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="filter_e265a935-c8c8-80c6-8007-1c0fd11224e2"></feBlend>
+            <feBlend mode="normal" in="SourceGraphic" in2="filter_e265a935-c8c8-80c6-8007-1c0fd11224e2" result="shape"></feBlend>
+          </filter>
+          <filter id="filter-shadow-render-589" x="-0.2111111111111111" y="-0.6909090909090909" width="1.4222222222222223" height="2.4909090909090907" filterUnits="objectBoundingBox" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"></feColorMatrix>
+            <feOffset dx="0" dy="4"></feOffset>
+            <feGaussianBlur stdDeviation="10"></feGaussianBlur>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"></feColorMatrix>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="filter_e265a935-c8c8-80c6-8007-1c0fd11224e2"></feBlend>
+            <feBlend mode="normal" in="SourceGraphic" in2="filter_e265a935-c8c8-80c6-8007-1c0fd11224e2" result="shape"></feBlend>
+          </filter>
+        </defs>
+        <g class="fills" id="fills-e265a935-c8c8-80c6-8007-1c0f8779dd6f">
+          <rect rx="16" ry="16" x="75" y="720" transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)" width="360" height="110" filter="url(#filter-render-589)" style="fill:#f5f3ff;fill-opacity:1"></rect>
+        </g>
+        <g id="strokes-7420e91c-f60b-80e3-8007-1d409e898f58-e265a935-c8c8-80c6-8007-1c0f8779dd6f" class="strokes">
+          <g class="stroke-shape">
+            <defs></defs>
+            <rect rx="16" ry="16" x="75" y="720" transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)" width="360" height="110" style="fill:none;fill-opacity:none;stroke-width:1;stroke:#e9d5ff"></rect>
+          </g>
+        </g>
+      </g>
+    </svg>
+  </div>
+  <!-- text: Title-1 -->
+  <div class="shape text title1-1c0f877e497d">
+    <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c0f877e497d" data-x="95" data-y="742">
+      <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+        <div class="paragraph-set root-0-paragraph-set-0">
+          <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">Version 1</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- text: Desc-1 -->
+  <div class="shape text desc1-1c0f87831d7d">
+    <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c0f87831d7d" data-x="95" data-y="774">
+      <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+        <div class="paragraph-set root-0-paragraph-set-0">
+          <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">Initial commit - Project setup</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- text: Time-1 -->
+  <div class="shape text time1-1c0f878847ed">
+    <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c0f878847ed" data-x="95" data-y="802">
+      <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+        <div class="paragraph-set root-0-paragraph-set-0">
+          <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">Updated 5 days ago</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- circle: Node-1 -->
+  <div class="shape circle node1-1c0f878dad74">
+  </div>
+  <!-- rect: Branch-1 -->
+  <div class="shape rect branch1-1c0f87914221">
+  </div>
+</div>
+<!-- text: Plus Symbol -->
+<div class="shape text plus-symbo-1c0fc7ebee6f">
+  <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c0fc7ebee6f" data-x="394" data-y="48">
+    <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+      <div class="paragraph-set root-0-paragraph-set-0">
+        <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">⊕</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- rect: Candidate Panel -->
+<div class="shape rect candidate-1c13313f016a">
+  <svg width="614" xmlns="http://www.w3.org/2000/svg" height="1000" id="screenshot-e265a935-c8c8-80c6-8007-1c13313f016a" viewBox="833 7 614 1000" style="-webkit-print-color-adjust::exact" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1">
+    <g id="shape-e265a935-c8c8-80c6-8007-1c13313f016a">
+      <defs>
+        <filter id="filter-render-590" x="-0.23157894736842105" y="-0.11733333333333333" width="1.4631578947368422" height="1.2506666666666666" filterUnits="objectBoundingBox" color-interpolation-filters="sRGB">
+          <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"></feColorMatrix>
+          <feOffset dx="0" dy="4"></feOffset>
+          <feGaussianBlur stdDeviation="12"></feGaussianBlur>
+          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"></feColorMatrix>
+          <feBlend mode="normal" in2="BackgroundImageFix" result="filter_e265a935-c8c8-80c6-8007-1c133143125f"></feBlend>
+          <feBlend mode="normal" in="SourceGraphic" in2="filter_e265a935-c8c8-80c6-8007-1c133143125f" result="shape"></feBlend>
+        </filter>
+        <filter id="filter-shadow-render-590" x="-0.23157894736842105" y="-0.11733333333333333" width="1.4631578947368422" height="1.2506666666666666" filterUnits="objectBoundingBox" color-interpolation-filters="sRGB">
+          <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"></feColorMatrix>
+          <feOffset dx="0" dy="4"></feOffset>
+          <feGaussianBlur stdDeviation="12"></feGaussianBlur>
+          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"></feColorMatrix>
+          <feBlend mode="normal" in2="BackgroundImageFix" result="filter_e265a935-c8c8-80c6-8007-1c133143125f"></feBlend>
+          <feBlend mode="normal" in="SourceGraphic" in2="filter_e265a935-c8c8-80c6-8007-1c133143125f" result="shape"></feBlend>
+        </filter>
+      </defs>
+      <g class="fills" id="fills-e265a935-c8c8-80c6-8007-1c13313f016a">
+        <rect rx="16" ry="16" x="950" y="120" transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)" width="380" height="750" filter="url(#filter-render-590)" style="fill:#ffffff;fill-opacity:1"></rect>
+      </g>
+      <g id="strokes-7420e91c-f60b-80e3-8007-1d409e8a0103-e265a935-c8c8-80c6-8007-1c13313f016a" class="strokes">
+        <g class="stroke-shape">
+          <defs></defs>
+          <rect rx="16" ry="16" x="950" y="120" transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)" width="380" height="750" style="fill:none;fill-opacity:none;stroke-width:1;stroke:#e9d5ff"></rect>
+        </g>
+      </g>
+    </g>
+  </svg>
+</div>
+<!-- text: Panel Title -->
+<div class="shape text panel-titl-1c13314497f1">
+  <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c13314497f1" data-x="974" data-y="144">
+    <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+      <div class="paragraph-set root-0-paragraph-set-0">
+        <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">Related Prompts</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- rect: Search Box -->
+<div class="shape rect search-box-1c13314cae6a">
+  <svg width="334" xmlns="http://www.w3.org/2000/svg" height="46" id="screenshot-e265a935-c8c8-80c6-8007-1c13314cae6a" viewBox="973 183 334 46" style="-webkit-print-color-adjust::exact" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1">
+    <g id="shape-e265a935-c8c8-80c6-8007-1c13314cae6a">
+      <defs></defs>
+      <g class="fills" id="fills-e265a935-c8c8-80c6-8007-1c13314cae6a">
+        <rect rx="12" ry="12" x="974" y="184" transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)" width="332" height="44" style="fill:#f5f3ff;fill-opacity:1"></rect>
+      </g>
+      <g id="strokes-7420e91c-f60b-80e3-8007-1d409e8ae12c-e265a935-c8c8-80c6-8007-1c13314cae6a" class="strokes">
+        <g class="stroke-shape">
+          <defs></defs>
+          <rect rx="12" ry="12" x="974" y="184" transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)" width="332" height="44" style="fill:none;fill-opacity:none;stroke-width:1;stroke:#e9d5ff"></rect>
+        </g>
+      </g>
+    </g>
+  </svg>
+</div>
+<!-- text: Search Icon -->
+<div class="shape text search-ico-1c1331530e74">
+  <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c1331530e74" data-x="986" data-y="192">
+    <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+      <div class="paragraph-set root-0-paragraph-set-0">
+        <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">🔍</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- text: Search Placeholder -->
+<div class="shape text search-pla-1c1331593960">
+  <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c1331593960" data-x="1014" data-y="195">
+    <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+      <div class="paragraph-set root-0-paragraph-set-0">
+        <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">Search prompts...</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- text: Tags Label -->
+<div class="shape text tags-label-1c13315d0f7c">
+  <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c13315d0f7c" data-x="974" data-y="248">
+    <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+      <div class="paragraph-set root-0-paragraph-set-0">
+        <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">Filter by Tags</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- rect: Tag-UI Design -->
+<div class="shape rect tag-u-i-des-1c133161826e">
+  <svg width="87" xmlns="http://www.w3.org/2000/svg" height="34" id="screenshot-e265a935-c8c8-80c6-8007-1c133161826e" viewBox="973 275 87 34" style="-webkit-print-color-adjust::exact" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1">
+    <g id="shape-e265a935-c8c8-80c6-8007-1c133161826e">
+      <defs></defs>
+      <g class="fills" id="fills-e265a935-c8c8-80c6-8007-1c133161826e">
+        <rect rx="16" ry="16" x="974" y="276" transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)" width="85" height="32" style="fill:#f5f3ff;fill-opacity:1"></rect>
+      </g>
+      <g id="strokes-7420e91c-f60b-80e3-8007-1d409e8b2fb4-e265a935-c8c8-80c6-8007-1c133161826e" class="strokes">
+        <g class="stroke-shape">
+          <defs></defs>
+          <rect rx="16" ry="16" x="974" y="276" transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)" width="85" height="32" style="fill:none;fill-opacity:none;stroke-width:1;stroke:#c084fc"></rect>
+        </g>
+      </g>
+    </g>
+  </svg>
+</div>
+<!-- text: TagText-UI Design -->
+<div class="shape text tag-text-u-i-1c133165c1c9">
+  <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c133165c1c9" data-x="982" data-y="284">
+    <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+      <div class="paragraph-set root-0-paragraph-set-0">
+        <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">UI Design</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- rect: Tag-Animation -->
+<div class="shape rect tag-animat-1c13316b2b2e">
+  <svg width="87" xmlns="http://www.w3.org/2000/svg" height="34" id="screenshot-e265a935-c8c8-80c6-8007-1c13316b2b2e" viewBox="1073 275 87 34" style="-webkit-print-color-adjust::exact" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1">
+    <g id="shape-e265a935-c8c8-80c6-8007-1c13316b2b2e">
+      <defs></defs>
+      <g class="fills" id="fills-e265a935-c8c8-80c6-8007-1c13316b2b2e">
+        <rect rx="16" ry="16" x="1074" y="276" transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)" width="85" height="32" style="fill:#f5f3ff;fill-opacity:1"></rect>
+      </g>
+      <g id="strokes-7420e91c-f60b-80e3-8007-1d409e8b7541-e265a935-c8c8-80c6-8007-1c13316b2b2e" class="strokes">
+        <g class="stroke-shape">
+          <defs></defs>
+          <rect rx="16" ry="16" x="1074" y="276" transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)" width="85" height="32" style="fill:none;fill-opacity:none;stroke-width:1;stroke:#c084fc"></rect>
+        </g>
+      </g>
+    </g>
+  </svg>
+</div>
+<!-- text: TagText-Animation -->
+<div class="shape text tag-text-an-1c13316fcbf7">
+  <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c13316fcbf7" data-x="1082" data-y="284">
+    <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+      <div class="paragraph-set root-0-paragraph-set-0">
+        <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">Animation</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- rect: Tag-Layout -->
+<div class="shape rect tag-layout-1c133174843b">
+  <svg width="87" xmlns="http://www.w3.org/2000/svg" height="34" id="screenshot-e265a935-c8c8-80c6-8007-1c133174843b" viewBox="1183 275 87 34" style="-webkit-print-color-adjust::exact" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1">
+    <g id="shape-e265a935-c8c8-80c6-8007-1c133174843b">
+      <defs></defs>
+      <g class="fills" id="fills-e265a935-c8c8-80c6-8007-1c133174843b">
+        <rect rx="16" ry="16" x="1184" y="276" transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)" width="85" height="32" style="fill:#f5f3ff;fill-opacity:1"></rect>
+      </g>
+      <g id="strokes-7420e91c-f60b-80e3-8007-1d409e8b7542-e265a935-c8c8-80c6-8007-1c133174843b" class="strokes">
+        <g class="stroke-shape">
+          <defs></defs>
+          <rect rx="16" ry="16" x="1184" y="276" transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)" width="85" height="32" style="fill:none;fill-opacity:none;stroke-width:1;stroke:#c084fc"></rect>
+        </g>
+      </g>
+    </g>
+  </svg>
+</div>
+<!-- text: TagText-Layout -->
+<div class="shape text tag-text-la-1c133179f8af">
+  <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c133179f8af" data-x="1192" data-y="284">
+    <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+      <div class="paragraph-set root-0-paragraph-set-0">
+        <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">Layout</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- text: Prompts Label -->
+<div class="shape text prompts-la-1c13317f594d">
+  <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c13317f594d" data-x="974" data-y="328">
+    <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+      <div class="paragraph-set root-0-paragraph-set-0">
+        <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">Suggested Prompts</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- rect: PromptCard-1 -->
+<div class="shape rect prompt-card-1c1331850c3d">
+  <svg width="334" xmlns="http://www.w3.org/2000/svg" height="72" id="screenshot-e265a935-c8c8-80c6-8007-1c1331850c3d" viewBox="973 359 334 72" style="-webkit-print-color-adjust::exact" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1">
+    <g id="shape-e265a935-c8c8-80c6-8007-1c1331850c3d">
+      <defs></defs>
+      <g class="fills" id="fills-e265a935-c8c8-80c6-8007-1c1331850c3d">
+        <rect rx="12" ry="12" x="974" y="360" transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)" width="332" height="70" style="fill:#f5f3ff;fill-opacity:1"></rect>
+      </g>
+      <g id="strokes-7420e91c-f60b-80e3-8007-1d409e8bb565-e265a935-c8c8-80c6-8007-1c1331850c3d" class="strokes">
+        <g class="stroke-shape">
+          <defs></defs>
+          <rect rx="12" ry="12" x="974" y="360" transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)" width="332" height="70" style="fill:none;fill-opacity:none;stroke-width:1;stroke:#e9d5ff"></rect>
+        </g>
+      </g>
+    </g>
+  </svg>
+</div>
+<!-- text: PromptTitle-1 -->
+<div class="shape text prompt-titl-1c13318b044b">
+  <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c13318b044b" data-x="990" data-y="376">
+    <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+      <div class="paragraph-set root-0-paragraph-set-0">
+        <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">Dashboard Layout</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- text: PromptDesc-1 -->
+<div class="shape text prompt-desc-1c133190f543">
+  <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c133190f543" data-x="990" data-y="400">
+    <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+      <div class="paragraph-set root-0-paragraph-set-0">
+        <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">Modern dashboard design pattern</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- rect: PromptCard-2 -->
+<div class="shape rect prompt-card-1c133196dd82">
+  <svg width="334" xmlns="http://www.w3.org/2000/svg" height="72" id="screenshot-e265a935-c8c8-80c6-8007-1c133196dd82" viewBox="973 449 334 72" style="-webkit-print-color-adjust::exact" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1">
+    <g id="shape-e265a935-c8c8-80c6-8007-1c133196dd82">
+      <defs></defs>
+      <g class="fills" id="fills-e265a935-c8c8-80c6-8007-1c133196dd82">
+        <rect rx="12" ry="12" x="974" y="450" transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)" width="332" height="70" style="fill:#f5f3ff;fill-opacity:1"></rect>
+      </g>
+      <g id="strokes-7420e91c-f60b-80e3-8007-1d409e8bc537-e265a935-c8c8-80c6-8007-1c133196dd82" class="strokes">
+        <g class="stroke-shape">
+          <defs></defs>
+          <rect rx="12" ry="12" x="974" y="450" transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)" width="332" height="70" style="fill:none;fill-opacity:none;stroke-width:1;stroke:#e9d5ff"></rect>
+        </g>
+      </g>
+    </g>
+  </svg>
+</div>
+<!-- text: PromptTitle-2 -->
+<div class="shape text prompt-titl-1c13319cafa5">
+  <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c13319cafa5" data-x="990" data-y="466">
+    <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+      <div class="paragraph-set root-0-paragraph-set-0">
+        <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">Hero Section</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- text: PromptDesc-2 -->
+<div class="shape text prompt-desc-1c1331a41581">
+  <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c1331a41581" data-x="990" data-y="490">
+    <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+      <div class="paragraph-set root-0-paragraph-set-0">
+        <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">Landing page hero component</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- rect: PromptCard-3 -->
+<div class="shape rect prompt-card-1c1331a9bd56">
+  <svg width="334" xmlns="http://www.w3.org/2000/svg" height="72" id="screenshot-e265a935-c8c8-80c6-8007-1c1331a9bd56" viewBox="973 539 334 72" style="-webkit-print-color-adjust::exact" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1">
+    <g id="shape-e265a935-c8c8-80c6-8007-1c1331a9bd56">
+      <defs></defs>
+      <g class="fills" id="fills-e265a935-c8c8-80c6-8007-1c1331a9bd56">
+        <rect rx="12" ry="12" x="974" y="540" transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)" width="332" height="70" style="fill:#f5f3ff;fill-opacity:1"></rect>
+      </g>
+      <g id="strokes-7420e91c-f60b-80e3-8007-1d409e8c34f7-e265a935-c8c8-80c6-8007-1c1331a9bd56" class="strokes">
+        <g class="stroke-shape">
+          <defs></defs>
+          <rect rx="12" ry="12" x="974" y="540" transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)" width="332" height="70" style="fill:none;fill-opacity:none;stroke-width:1;stroke:#e9d5ff"></rect>
+        </g>
+      </g>
+    </g>
+  </svg>
+</div>
+<!-- text: PromptTitle-3 -->
+<div class="shape text prompt-titl-1c1331aff3e7">
+  <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c1331aff3e7" data-x="990" data-y="556">
+    <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+      <div class="paragraph-set root-0-paragraph-set-0">
+        <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">Navigation Menu</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- text: PromptDesc-3 -->
+<div class="shape text prompt-desc-1c1331b67b2a">
+  <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c1331b67b2a" data-x="990" data-y="580">
+    <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+      <div class="paragraph-set root-0-paragraph-set-0">
+        <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">Responsive navigation design</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- text: Page Title -->
+<div class="shape text page-title-1c1347e5c92f">
+  <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c1347e5c92f" data-x="299" data-y="-50">
+    <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+      <div class="paragraph-set root-0-paragraph-set-0">
+        <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">Version Management Timeline</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- text: Instructions -->
+<div class="shape text instructio-1c1347ed10d9">
+  <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c1347ed10d9" data-x="257" data-y="-9">
+    <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+      <div class="paragraph-set root-0-paragraph-set-0">
+        <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">Drag cards to reorder • Click + to add versions • Sub-versions on left side</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- circle: DragHandle-1-0-0 -->
+<div class="shape circle drag-handle-1c1347f54a4b">
+</div>
+<!-- circle: DragHandle-1-0-1 -->
+<div class="shape circle drag-handle-1c1347f9ce32">
+</div>
+<!-- circle: DragHandle-1-1-0 -->
+<div class="shape circle drag-handle-1c1347ff1df4">
+</div>
+<!-- circle: DragHandle-1-1-1 -->
+<div class="shape circle drag-handle-1c1348059871">
+</div>
+<!-- circle: DragHandle-1-2-0 -->
+<div class="shape circle drag-handle-1c13480f9a86">
+</div>
+<!-- circle: DragHandle-1-2-1 -->
+<div class="shape circle drag-handle-1c1348142519">
+</div>
+<!-- circle: DragHandle-2-0-0 -->
+<div class="shape circle drag-handle-1c13481a3d21">
+</div>
+<!-- circle: DragHandle-2-0-1 -->
+<div class="shape circle drag-handle-1c13481f27f7">
+</div>
+<!-- circle: DragHandle-2-1-0 -->
+<div class="shape circle drag-handle-1c1348233881">
+</div>
+<!-- circle: DragHandle-2-1-1 -->
+<div class="shape circle drag-handle-1c1348275b7a">
+</div>
+<!-- circle: DragHandle-2-2-0 -->
+<div class="shape circle drag-handle-1c13482b56f7">
+</div>
+<!-- circle: DragHandle-2-2-1 -->
+<div class="shape circle drag-handle-1c1348303d9c">
+</div>
+<!-- circle: DragHandle-3-0-0 -->
+<div class="shape circle drag-handle-1c134835d104">
+</div>
+<!-- circle: DragHandle-3-0-1 -->
+<div class="shape circle drag-handle-1c13483a7730">
+</div>
+<!-- circle: DragHandle-3-1-0 -->
+<div class="shape circle drag-handle-1c13483f212b">
+</div>
+<!-- circle: DragHandle-3-1-1 -->
+<div class="shape circle drag-handle-1c1348434e6e">
+</div>
+<!-- circle: DragHandle-3-2-0 -->
+<div class="shape circle drag-handle-1c1348477165">
+</div>
+<!-- circle: DragHandle-3-2-1 -->
+<div class="shape circle drag-handle-1c13484bb6ab">
+</div>
+<!-- circle: DragHandle-4-0-0 -->
+<div class="shape circle drag-handle-1c134850a7c2">
+</div>
+<!-- circle: DragHandle-4-0-1 -->
+<div class="shape circle drag-handle-1c134854593d">
+</div>
+<!-- circle: DragHandle-4-1-0 -->
+<div class="shape circle drag-handle-1c13485853c4">
+</div>
+<!-- circle: DragHandle-4-1-1 -->
+<div class="shape circle drag-handle-1c13485bf0cc">
+</div>
+<!-- circle: DragHandle-4-2-0 -->
+<div class="shape circle drag-handle-1c13485faf34">
+</div>
+<!-- circle: DragHandle-4-2-1 -->
+<div class="shape circle drag-handle-1c1348633ef0">
+</div>
+<!-- circle: DragHandle-5-0-0 -->
+<div class="shape circle drag-handle-1c134867ce22">
+</div>
+<!-- circle: DragHandle-5-0-1 -->
+<div class="shape circle drag-handle-1c13486b8cd1">
+</div>
+<!-- circle: DragHandle-5-1-0 -->
+<div class="shape circle drag-handle-1c13487034e6">
+</div>
+<!-- circle: DragHandle-5-1-1 -->
+<div class="shape circle drag-handle-1c134875846f">
+</div>
+<!-- circle: DragHandle-5-2-0 -->
+<div class="shape circle drag-handle-1c13487a252e">
+</div>
+<!-- circle: DragHandle-5-2-1 -->
+<div class="shape circle drag-handle-1c13487efeb1">
+</div>
+<!-- circle: Ripple-1 -->
+<div class="shape circle ripple1-1c13488594d0">
+  <svg width="42" xmlns="http://www.w3.org/2000/svg" height="42" id="screenshot-e265a935-c8c8-80c6-8007-1c13488594d0" viewBox="470 750 42 42" style="-webkit-print-color-adjust::exact" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1">
+    <g id="shape-e265a935-c8c8-80c6-8007-1c13488594d0">
+      <defs></defs>
+      <g class="fills" id="fills-e265a935-c8c8-80c6-8007-1c13488594d0">
+        <ellipse cx="491" cy="771" rx="19" ry="19" transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)"></ellipse>
+      </g>
+      <g id="strokes-7420e91c-f60b-80e3-8007-1d409e8c92ad-e265a935-c8c8-80c6-8007-1c13488594d0" class="strokes">
+        <g class="stroke-shape">
+          <defs></defs>
+          <ellipse cx="491" cy="771" rx="19" ry="19" transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)" style="fill:none;fill-opacity:none;stroke-width:2;stroke:#c084fc;stroke-opacity:0.3"></ellipse>
+        </g>
+      </g>
+    </g>
+  </svg>
+</div>
+<!-- circle: Ripple-2 -->
+<div class="shape circle ripple2-1c13488ba7ae">
+  <svg width="54" xmlns="http://www.w3.org/2000/svg" height="54" id="screenshot-e265a935-c8c8-80c6-8007-1c13488ba7ae" viewBox="464 744 54 54" style="-webkit-print-color-adjust::exact" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1">
+    <g id="shape-e265a935-c8c8-80c6-8007-1c13488ba7ae">
+      <defs></defs>
+      <g class="fills" id="fills-e265a935-c8c8-80c6-8007-1c13488ba7ae">
+        <ellipse cx="491" cy="771" rx="25" ry="25" transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)"></ellipse>
+      </g>
+      <g id="strokes-7420e91c-f60b-80e3-8007-1d409e8c92ae-e265a935-c8c8-80c6-8007-1c13488ba7ae" class="strokes">
+        <g class="stroke-shape">
+          <defs></defs>
+          <ellipse cx="491" cy="771" rx="25" ry="25" transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)" style="fill:none;fill-opacity:none;stroke-width:2;stroke:#c084fc;stroke-opacity:0.15"></ellipse>
+        </g>
+      </g>
+    </g>
+  </svg>
+</div>
+<!-- circle: Ripple-3 -->
+<div class="shape circle ripple3-1c1348917f02">
+  <svg width="66" xmlns="http://www.w3.org/2000/svg" height="66" id="screenshot-e265a935-c8c8-80c6-8007-1c1348917f02" viewBox="458 738 66 66" style="-webkit-print-color-adjust::exact" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1">
+    <g id="shape-e265a935-c8c8-80c6-8007-1c1348917f02">
+      <defs></defs>
+      <g class="fills" id="fills-e265a935-c8c8-80c6-8007-1c1348917f02">
+        <ellipse cx="491" cy="771" rx="31" ry="31" transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)"></ellipse>
+      </g>
+      <g id="strokes-7420e91c-f60b-80e3-8007-1d409e8ce66c-e265a935-c8c8-80c6-8007-1c1348917f02" class="strokes">
+        <g class="stroke-shape">
+          <defs></defs>
+          <ellipse cx="491" cy="771" rx="31" ry="31" transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)" style="fill:none;fill-opacity:none;stroke-width:2;stroke:#c084fc;stroke-opacity:0.09999999999999999"></ellipse>
+        </g>
+      </g>
+    </g>
+  </svg>
+</div>
+<!-- rect: SubMainLine -->
+<div class="shape rect sub-main-lin-1c175f7361d3">
+</div>
+<!-- rect: SubBranch-1 -->
+<div class="shape rect sub-branch-1c175f77e901">
+</div>
+<!-- circle: SubNode-v1.1 -->
+<div class="shape circle sub-nodev1-1c175f7c7426">
+</div>
+<!-- text: SubTitle-v1.1 -->
+<div class="shape text sub-titlev-1c175f809e33">
+  <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c175f809e33" data-x="256" data-y="856">
+    <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+      <div class="paragraph-set root-0-paragraph-set-0">
+        <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">v1.1 API Compatibility</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- text: SubDesc-v1.1 -->
+<div class="shape text sub-descv1-1c175f84bea6">
+  <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c175f84bea6" data-x="256" data-y="877">
+    <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+      <div class="paragraph-set root-0-paragraph-set-0">
+        <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">• OpenAI compatibility</span></p>
+        <p class="paragraph root-0-paragraph-set-0-paragraph-1" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-1-text-0">• Anthropic compatibility</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- rect: SubBranch-2 -->
+<div class="shape rect sub-branch-1c175f896f28">
+</div>
+<!-- rect: SubBranch-2 -->
+<div class="shape rect sub-branch-1c1a4a1fd53d">
+</div>
+<!-- circle: SubNode-v1.2 -->
+<div class="shape circle sub-nodev1-1c175f8c9da0">
+</div>
+<!-- text: SubTitle-v1.2 -->
+<div class="shape text sub-titlev-1c175f90886f">
+  <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c175f90886f" data-x="257" data-y="953">
+    <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+      <div class="paragraph-set root-0-paragraph-set-0">
+        <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">v1.2 Control and Monitoring</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- text: SubDesc-v1.2 -->
+<div class="shape text sub-descv1-1c175f95efcb">
+  <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c175f95efcb" data-x="257" data-y="974">
+    <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+      <div class="paragraph-set root-0-paragraph-set-0">
+        <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">• Web-based dashboard</span></p>
+        <p class="paragraph root-0-paragraph-set-0-paragraph-1" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-1-text-0">• Rate limiting and waiting</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- circle: SubConnectionDot -->
+<div class="shape circle sub-connect-1c1840a01909">
+</div>
+<!-- rect: SubAddButton-Bg -->
+<div class="shape rect sub-add-butt-1c1840a63c2b">
+</div>
+<!-- text: SubAddButton-Icon -->
+<div class="shape text sub-add-butt-1c1840a9b706">
+  <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c1840a9b706" data-x="256" data-y="1067">
+    <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+      <div class="paragraph-set root-0-paragraph-set-0">
+        <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">+</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- text: SubAddButton-Text -->
+<div class="shape text sub-add-butt-1c1840aed24c">
+  <div class="text-node-html" id="html-text-node-e265a935-c8c8-80c6-8007-1c1840aed24c" data-x="276" data-y="1070">
+    <div class="root rich-text root-0" xmlns="http://www.w3.org/1999/xhtml">
+      <div class="paragraph-set root-0-paragraph-set-0">
+        <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr"><span class="text-node root-0-paragraph-set-0-paragraph-0-text-0">Add Sub</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+  </body>
+</html>
