@@ -25,13 +25,13 @@ export const SidePanel: React.FC<SidePanelProps> = ({
   return (
     <div
       className={cn(
-        'w-full max-w-sm rounded-2xl bg-card border border-border p-6',
-        'shadow-xl',
+        'w-full max-w-sm rounded-3xl bg-white border border-slate-200 p-6',
+        'shadow-2xl',
         className
       )}
     >
       {/* 面板标题 */}
-      <h2 className="text-xl font-bold text-card-foreground mb-6">
+      <h2 className="text-lg font-bold text-slate-900 mb-6">
         Related Prompts
       </h2>
 
@@ -44,7 +44,7 @@ export const SidePanel: React.FC<SidePanelProps> = ({
 
       {/* 标签过滤 */}
       <div className="mb-6">
-        <h3 className="text-sm font-semibold text-card-foreground mb-3">
+        <h3 className="text-xs font-semibold text-slate-600 mb-3">
           Filter by Tags
         </h3>
         <div className="flex flex-wrap gap-2">
@@ -61,7 +61,7 @@ export const SidePanel: React.FC<SidePanelProps> = ({
 
       {/* 提示列表 */}
       <div>
-        <h3 className="text-sm font-semibold text-card-foreground mb-3">
+        <h3 className="text-xs font-semibold text-slate-600 mb-3">
           Suggested Prompts
         </h3>
         <div className="space-y-2">

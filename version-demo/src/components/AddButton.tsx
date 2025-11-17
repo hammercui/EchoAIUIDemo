@@ -17,16 +17,17 @@ export const AddButton: React.FC<AddButtonProps> = ({
     <button
       onClick={onClick}
       className={cn(
-        'inline-flex items-center gap-2 px-6 py-2.5 rounded-full',
-        'bg-foreground text-background',
-        'hover:bg-foreground/90 hover:shadow-lg',
+        'inline-flex items-center gap-2 px-6 py-3 rounded-full',
+        'bg-primary text-white',
+        'hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/30',
         'transition-all duration-150',
         'active:scale-95',
+        'font-medium text-sm',
         className
       )}
     >
       <Plus className="w-5 h-5" />
-      <span className="font-medium">{children}</span>
+      <span>{children}</span>
     </button>
   );
 };

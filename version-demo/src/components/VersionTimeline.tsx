@@ -22,12 +22,11 @@ export const VersionTimeline: React.FC<VersionTimelineProps> = ({
     <div className="relative w-full max-w-4xl mx-auto py-8">
       {/* 页面标题 */}
       <div className="text-center mb-12">
-        <h1 className="text-3xl font-bold text-foreground mb-2">
+        <h1 className="text-3xl font-bold text-slate-900 mb-2">
           Version Management Timeline
         </h1>
-        <p className="text-sm text-muted-foreground">
-          Drag cards to reorder • Click + to add versions • Sub-versions on left
-          side
+        <p className="text-sm text-slate-500">
+          Drag cards to reorder • Click + to add versions • Sub-versions on left side
         </p>
       </div>
 
@@ -38,12 +37,12 @@ export const VersionTimeline: React.FC<VersionTimelineProps> = ({
 
       {/* 时间线主轴 */}
       <div className="relative">
-        {/* 中心垂直线 */}
-        <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-border -translate-x-1/2" />
+        {/* 中心垂直线 - 蓝色 */}
+        <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-timeline-main -translate-x-1/2 rounded-full" />
 
         {/* 版本列表 */}
         <div className="space-y-16">
-          {versions.map((version, index) => (
+          {versions.map((version) => (
             <div
               key={version.id}
               className="relative"
@@ -97,20 +96,30 @@ export const VersionTimeline: React.FC<VersionTimelineProps> = ({
               {/* 子版本 */}
               {version.subVersions && version.subVersions.length > 0 && (
                 <div className="mt-6 ml-8">
-                  <div className="relative pl-8 border-l-2 border-border space-y-4">
+                  <div className="relative pl-8 border-l-2 space-y-4" style={{ borderColor: '#67e8f9' }}>
                     {version.subVersions.map((subVersion) => (
                       <div
                         key={subVersion.id}
-                        className="relative pl-4 before:absolute before:left-0 before:top-3 before:w-2 before:h-2 before:rounded-full before:bg-border"
+                        className="relative pl-4 before:absolute before:left-0 before:top-2 before:w-1.5 before:h-1.5 before:rounded-full"
+                        style={{ '--before-bg': '#67e8f9' } as React.CSSProperties}
                       >
-                        <h4 className="text-sm font-semibold text-foreground">
+                        <div className="absolute left-0 top-2 w-1.5 h-1.5 rounded-full" style={{ backgroundColor: '#67e8f9' }} />
+                        <h4 className="text-sm font-bold" style={{ color: '#67e8f9' }}>
                           {subVersion.title}
                         </h4>
-                        <p className="text-xs text-muted-foreground">
-                          {subVersion.description}
+                        <p className="text-xs text-slate-600 mt-0.5">
+                          • {subVersion.description}
                         </p>
                       </div>
                     ))}
+                    {/* Add Sub 按钮 */}
+                    <button 
+                      className="ml-4 px-3 py-1.5 text-xs rounded-md hover:bg-cyan-50 transition-colors flex items-center gap-1"
+                      style={{ color: '#67e8f9', borderColor: '#67e8f9', borderWidth: '1px' }}
+                    >
+                      <span className="text-sm">+</span>
+                      <span>Add Sub</span>
+                    </button>
                   </div>
                 </div>
               )}

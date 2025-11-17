@@ -41,6 +41,10 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        timeline: {
+          main: "#3b82f6",      // 蓝色 - 主版本线段
+          sub: "#67e8f9",       // 青色 - 子版本线段
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

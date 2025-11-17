@@ -19,22 +19,22 @@ export const VersionCard: React.FC<VersionCardProps> = ({
   return (
     <div
       className={cn(
-        'group relative rounded-2xl bg-accent/50 backdrop-blur-sm p-6',
-        'border border-border/50',
-        'hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10',
+        'group relative rounded-2xl bg-violet-50 p-6',
+        'border border-violet-200',
+        'hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10',
         'transition-all duration-200',
         className
       )}
     >
       {/* 拖拽手柄 */}
       <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-0.5">
           {[0, 1, 2].map((i) => (
-            <div key={i} className="flex gap-1">
+            <div key={i} className="flex gap-0.5">
               {[0, 1].map((j) => (
                 <div
                   key={j}
-                  className="w-1 h-1 rounded-full bg-muted-foreground/30"
+                  className="w-1 h-1 rounded-full bg-violet-300"
                 />
               ))}
             </div>
@@ -44,9 +44,9 @@ export const VersionCard: React.FC<VersionCardProps> = ({
 
       {/* 内容 */}
       <div className="space-y-2">
-        <h3 className="text-lg font-semibold text-foreground">{title}</h3>
-        <p className="text-sm text-muted-foreground">{description}</p>
-        <p className="text-xs text-muted-foreground/70">{timestamp}</p>
+        <h3 className="text-base font-bold text-slate-900">{title}</h3>
+        <p className="text-sm text-slate-600">{description}</p>
+        <p className="text-xs text-violet-400">{timestamp}</p>
       </div>
     </div>
   );

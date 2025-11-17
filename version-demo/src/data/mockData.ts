@@ -51,8 +51,8 @@ export const mockVersions: Version[] = [
 ];
 
 export const mockTags: Tag[] = [
-  { id: 'ui-design', label: 'UI Design', isActive: true },
-  { id: 'animation', label: 'Animation', isActive: false },
+  { id: 'ui-design', label: 'UI Design', isActive: false },
+  { id: 'animation', label: 'Animation', isActive: true },
   { id: 'layout', label: 'Layout', isActive: false },
 ];
 

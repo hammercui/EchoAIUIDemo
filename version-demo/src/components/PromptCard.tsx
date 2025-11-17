@@ -16,17 +16,17 @@ export const PromptCard: React.FC<PromptCardProps> = ({
     <button
       onClick={onClick}
       className={cn(
-        'w-full text-left p-4 rounded-lg',
-        'bg-card border border-border',
+        'w-full text-left p-4 rounded-xl',
+        'bg-violet-50 border border-violet-100',
         'hover:border-primary/50 hover:shadow-md hover:shadow-primary/5',
         'transition-all duration-200',
         'active:scale-[0.98]'
       )}
     >
-      <h4 className="text-sm font-semibold text-card-foreground mb-1">
+      <h4 className="text-sm font-bold text-slate-900 mb-1">
         {title}
       </h4>
-      <p className="text-xs text-muted-foreground">{description}</p>
+      <p className="text-xs text-violet-400">{description}</p>
     </button>
   );
 };
