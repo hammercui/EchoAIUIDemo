@@ -18,9 +18,9 @@ export const VersionCard: React.FC<VersionCardProps> = ({
   return (
     <article
       className={cn(
-        'group relative rounded-2xl bg-gradient-to-br from-violet-50 to-violet-100/50 p-6',
-        'border border-violet-200/80',
-        'shadow-md shadow-violet-100/50',
+        'group relative rounded-2xl bg-violet-50 p-6', // version-1 uses #f5f3ff which is bg-violet-50
+        'border border-violet-200', // version-1 uses #e9d5ff which is border-violet-200
+        'shadow-md shadow-violet-100/50', // Similar to version-1's filter effect
         'hover:border-violet-300 hover:shadow-xl hover:shadow-violet-200/60',
         'hover:-translate-y-0.5',
         'transition-all duration-300 ease-out',
@@ -56,27 +56,26 @@ export const VersionCard: React.FC<VersionCardProps> = ({
 
       {/* 内容 */}
       <div className="space-y-3 relative">
-        <h3 
-          className="text-lg font-bold text-slate-900 
-                     group-hover:text-violet-900 transition-colors duration-200"
+        <h3
+          className="text-lg font-bold text-slate-900"
         >
           {title}
         </h3>
-        <p className="text-sm text-slate-600 leading-relaxed line-clamp-3">
+        <p className="text-sm text-slate-600 leading-relaxed">
           {description}
         </p>
         <div className="flex items-center gap-2 pt-2 border-t border-violet-200/50">
-          <svg 
-            className="w-3.5 h-3.5 text-violet-400" 
-            fill="none" 
-            viewBox="0 0 24 24" 
+          <svg
+            className="w-3.5 h-3.5 text-violet-400"
+            fill="none"
+            viewBox="0 0 24 24"
             stroke="currentColor"
           >
-            <path 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              strokeWidth={2} 
-              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" 
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
             />
           </svg>
           <time className="text-xs font-medium text-violet-500">

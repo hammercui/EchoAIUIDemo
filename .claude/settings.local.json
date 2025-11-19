@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run dev -- --port 3001)",
+      "Bash(python -m http.server 3000)",
+      "Bash(npm run build)",
+      "Bash(netstat -ano)",
+      "Bash(findstr :3001)",
+      "Bash(findstr LISTENING)",
+      "Bash(taskkill /F /PID)",
+      "Bash(powershell -Command \"try { Get-Process -Name node | Where-Object { (New-Object System.Net.Sockets.TcpClient -ArgumentList ''127.0.0.1'', 3000).Connected } | Stop-Process -Force } catch {}; try { Get-Process -Name node | Where-Object { (New-Object System.Net.Sockets.TcpClient -ArgumentList ''127.0.0.1'', 3001).Connected } | Stop-Process -Force } catch {}\")",
+      "Bash(cat /d/moneyProject/EchoAIUIDemo/version-demo/src/components/VersionTimeline.tsx)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
