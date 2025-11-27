@@ -307,9 +307,3 @@ export const VersionManager: React.FC = () => {
 - **Framer Motion**: 如果希望右侧面板进入时更加平滑（不仅仅是 CSS slide-in），可以在 `CandidatePanel` 中使用 `<motion.aside>` 并配置 `AnimatePresence` 。
 - **拖拽排序 (Drag & Drop)**: 使用 `dnd-kit` 或 `react-beautiful-dnd` 包裹 `TimelineNode` ，实现设计文档中提到的“版本拖拽交换”功能。
 - **虚拟滚动**: 如果版本历史非常长，考虑使用 `react-window` 来渲染 `.timeline-track` 内部的节点列表。
-
-Google 账号
-
-hensir hentai
-
-laocuifacai@gmail.com
