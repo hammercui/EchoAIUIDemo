@@ -2,7 +2,7 @@
 
 > AI 编程助手 UI 设计核心规范 - **强制执行**
 
-使用 **shadcn/ui + HeroUI 皮肤 + Tailwind CSS** 作为设计系统，实现统一的 UI 规范。
+使用 **shadcn/ui + Tailwind CSS** 作为设计系统，实现统一的 UI 规范。
 
 ## 🎯 设计系统组合
 

@@ -3,8 +3,6 @@
 为提升可维护性，原有说明已拆分为多个文件：
 
 - `UIAgentRules.md` ⭐ **UI 设计强制规范**（完整版）
-- `UIAgentAnimaRules.md` ⭐ **微交互动效设计规范**（完整版）
-- `augment-ui-rules.md` 🚀 **Augment 插件专用规则**（精简版，推荐）
 
 
 如需完整项目规范，请按主题查看对应文件。
