@@ -1,0 +1,527 @@
+/* =========================================
+   1. DESIGN TOKENS (基于 StyleGuide.md & DesignGuide.md)
+   ========================================= */
+:root {
+    /* 颜色系统 - 黑色/灰色主调 (StyleGuide Override) */
+    --color-primary-500: rgba(0, 0, 0, 0.96);
+    --color-primary-400: rgba(0, 0, 0, 0.8);
+    --color-primary-300: rgba(10, 13, 51, 0.6);
+    --color-primary-200: rgba(10, 13, 51, 0.45);
+    
+    /* 品牌色与辅助色 */
+    --color-secondary-500: rgb(97, 40, 255); /* Sider 品牌紫 */
+    --color-secondary-bg: rgb(214, 218, 255);
+    --color-accent-500: #10B981;
+    
+    /* 背景色 */
+    --color-background-50: #FFFFFF;
+    --color-background-100: rgb(229, 231, 235);
+    --color-background-sub: #FAFAFA; /* 子版本背景 */
+    
+    /* 状态色 */
+    --color-success-500: #22C55E;
+    --color-warning-500: #F59E0B;
+
+    /* 间距系统 (DesignGuide 4px 基准) */
+    --space-1: 4px;
+    --space-2: 6px;
+    --space-3: 8px;
+    --space-4: 12px;
+    --space-5: 16px;
+    --space-6: 20px;
+    --space-7: 24px;
+    --space-8: 32px;
+    --space-9: 48px;
+
+    /* 字体系统 */
+    --font-family: "D-DIN Exp", "DM Sans", Arial, "Microsoft YaHei", sans-serif;
+    
+    /* 阴影与圆角 */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-selected: 0 10px 25px -5px rgba(97, 40, 255, 0.15);
+
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-full: 9999px;
+}
+
+/* =========================================
+   2. 全局重置
+   ========================================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--color-background-50);
+    color: var(--color-primary-500);
+    line-height: 1.5;
+    height: 100vh;
+    overflow: hidden; /* 防止页面整体滚动，只允许区域滚动 */
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+/* =========================================
+   3. 核心布局 (Split View)
+   ========================================= */
+.app-container {
+    display: flex; /* Flexbox 实现左右分栏 */
+    height: 100vh;
+    width: 100vw;
+}
+
+/* 左侧：时间线区域 (自适应) */
+.timeline-area {
+    flex: 1; /* 自动占据剩余空间 */
+    background-color: var(--color-background-50);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto; /* 内部滚动 */
+    position: relative;
+    padding: var(--space-8) var(--space-4);
+    /* 当右侧面板出现时，flex:1 会自动调整宽度，实现"左移"效果 */
+    transition: all 0.3s ease; 
+}
+
+/* 右侧：候选面板 (固定) */
+.candidate-panel {
+    width: 380px; /* 固定宽度 */
+    background-color: #fff;
+    border-left: 1px solid var(--color-background-100);
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-6);
+    z-index: 10;
+    /* 面板进入动画 */
+    animation: slideInRight 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* =========================================
+   4. 时间线组件样式
+   ========================================= */
+
+/* 顶部添加按钮 (Sticky) */
+.btn-add-version {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background-color: var(--color-primary-500);
+    color: #fff;
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    box-shadow: var(--shadow-md);
+    margin-bottom: var(--space-9);
+    transition: transform 0.2s ease, background-color 0.2s;
+}
+.btn-add-version:hover {
+    transform: translateY(-2px);
+    background-color: var(--color-primary-400);
+}
+
+/* 垂直中轴线容器 */
+.timeline-track {
+    position: relative;
+    width: 100%;
+    max-width: 900px; /* 限制最大宽度，保持美观 */
+    padding: var(--space-4) 0;
+    margin: 0 auto;
+}
+
+/* 绘制灰色中轴线 */
+.timeline-track::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--color-background-100);
+    transform: translateX(-50%);
+    z-index: 0;
+}
+
+/* 单个节点行容器 */
+.timeline-node {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-bottom: var(--space-9); /* 节点垂直间距 */
+    width: 100%;
+}
+
+/* 节点圆点 */
+.node-dot {
+    width: 16px;
+    height: 16px;
+    background-color: var(--color-background-50);
+    border: 2px solid var(--color-primary-300);
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    top: 28px; /* 对齐卡片头部中心 */
+    transform: translateX(-50%);
+    z-index: 2;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* 水平分支连接线 */
+.node-connector {
+    position: absolute;
+    height: 2px;
+    background-color: var(--color-background-100);
+    top: 35px; /* 对齐圆点中心 */
+    width: 60px; /* 连接线长度 */
+    z-index: 1;
+}
+
+/* 内容包装器 (决定内容在左还是在右) */
+.content-wrapper {
+    width: 42%; /* 卡片宽度 */
+    position: relative;
+    display: flex;
+    flex-direction: column; /* 允许子版本垂直排列 */
+}
+
+/* 主版本卡片 */
+.version-card {
+    width: 100%;
+    background: var(--color-background-50);
+    border: 1px solid var(--color-background-100);
+    border-radius: var(--radius-lg);
+    padding: var(--space-5);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+    cursor: grab;
+    position: relative;
+    z-index: 2;
+}
+
+.version-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary-200);
+    transform: translateY(-2px);
+}
+
+/* 左右交错逻辑 (Zigzag Layout) */
+.timeline-node.right .content-wrapper { margin-left: auto; } /* 靠右 */
+.timeline-node.right .node-connector { left: 50%; } /* 从中轴向右 */
+
+.timeline-node.left .content-wrapper { margin-right: auto; } /* 靠左 */
+.timeline-node.left .node-connector { right: 50%; } /* 从中轴向左 */
+
+/* =========================================
+   5. 子版本设计 (Vertical Cards)
+   ========================================= */
+.sub-version-group {
+    margin-top: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3); /* 子卡片间距 */
+    position: relative;
+    padding-left: 32px; /* 为连接线留出缩进空间 */
+}
+
+/* 连接主卡片到底部的垂直虚线 */
+.sub-version-group::before {
+    content: '';
+    position: absolute;
+    top: -12px; /* 连接到主卡片底部 */
+    left: 12px; /* 线条位置 */
+    bottom: 24px; /* 线条长度控制 */
+    width: 0;
+    border-left: 2px dashed var(--color-background-100);
+}
+
+/* 子版本小卡片 */
+.sub-card {
+    position: relative;
+    background-color: var(--color-background-sub);
+    border: 1px solid var(--color-background-100);
+    border-radius: var(--radius-md);
+    padding: var(--space-3) var(--space-4);
+    font-size: 13px;
+    color: var(--color-primary-300);
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.sub-card:hover {
+    border-color: var(--color-primary-300);
+    background-color: #fff;
+    box-shadow: var(--shadow-sm);
+}
+
+/* 子卡片的水平连接虚线 */
+.sub-card::before {
+    content: '';
+    position: absolute;
+    left: -20px; /* 延伸到垂直虚线 */
+    top: 50%;
+    width: 20px;
+    height: 0;
+    border-top: 2px dashed var(--color-background-100);
+}
+
+/* =========================================
+   6. 选中态 & 水波纹动画
+   ========================================= */
+.timeline-node.selected .node-dot {
+    background-color: var(--color-secondary-500);
+    border-color: var(--color-secondary-500);
+    box-shadow: 0 0 0 4px rgba(97, 40, 255, 0.2);
+    animation: water-wave 2s infinite;
+}
+
+.timeline-node.selected .version-card {
+    border-color: var(--color-secondary-500);
+    box-shadow: var(--shadow-selected);
+}
+    
+/* 只有主卡片连接线变色，子版本保持灰色虚线以区分层级 */
+.timeline-node.selected > .node-connector {
+    background-color: var(--color-secondary-500);
+}
+
+@keyframes water-wave {
+    0% { box-shadow: 0 0 0 0 rgba(97, 40, 255, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(97, 40, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(97, 40, 255, 0); }
+}
+
+/* =========================================
+   7. 候选面板组件 (Sidebar)
+   ========================================= */
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-6);
+}
+
+.panel-title {
+    font-family: "D-DIN Exp", sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--color-primary-500);
+}
+
+.btn-close {
+    color: var(--color-primary-200);
+    font-size: 24px;
+    line-height: 1;
+    padding: 4px;
+    border-radius: 4px;
+}
+.btn-close:hover {
+    background-color: var(--color-background-100);
+    color: var(--color-primary-400);
+}
+
+.search-box {
+    position: relative;
+    margin-bottom: var(--space-5);
+}
+.search-input {
+    width: 100%;
+    padding: var(--space-3) var(--space-4);
+    padding-left: 36px;
+    border: 1px solid var(--color-background-100);
+    border-radius: var(--radius-md);
+    background-color: var(--color-background-sub);
+    font-size: 14px;
+    outline: none;
+    transition: all 0.2s;
+}
+.search-input:focus {
+    border-color: var(--color-secondary-500);
+    background-color: #fff;
+}
+.search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-primary-200);
+    font-size: 14px;
+}
+
+.filter-section {
+    margin-bottom: var(--space-6);
+}
+.filter-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color-primary-200);
+    margin-bottom: var(--space-3);
+    display: block;
+    letter-spacing: 0.5px;
+}
+.filter-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+}
+.filter-chip {
+    font-size: 12px;
+    padding: 4px 10px;
+    border: 1px solid var(--color-background-100);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--color-primary-300);
+}
+.filter-chip:hover {
+    border-color: var(--color-primary-300);
+}
+.filter-chip.active {
+    background-color: var(--color-primary-500);
+    color: #fff;
+    border-color: var(--color-primary-500);
+}
+
+.candidate-list {
+    flex-grow: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding-right: 4px; /* 防止滚动条遮挡内容 */
+}
+/* 美化滚动条 */
+.candidate-list::-webkit-scrollbar { width: 4px; }
+.candidate-list::-webkit-scrollbar-thumb { background-color: #ddd; border-radius: 4px; }
+
+.candidate-item {
+    padding: var(--space-4);
+    border: 1px solid var(--color-background-100);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.candidate-item:hover {
+    border-color: var(--color-secondary-500);
+    background-color: #F9F9FF;
+}
+.candidate-text {
+    font-size: 14px;
+    color: var(--color-primary-400);
+    margin-bottom: var(--space-2);
+    line-height: 1.4;
+}
+.candidate-meta {
+    font-size: 11px;
+    color: var(--color-primary-200);
+    display: flex;
+    justify-content: space-between;
+}
+
+/* =========================================
+   8. 通用内容样式
+   ========================================= */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-2);
+}
+.version-title {
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+.status-badge {
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.status-badge.dev { background-color: var(--color-background-100); color: var(--color-primary-300); }
+.status-badge.live { background-color: #DCFCE7; color: var(--color-success-500); }
+    
+.card-body {
+    font-size: 14px;
+    color: var(--color-primary-300);
+    margin-bottom: var(--space-3);
+}
+.card-tags {
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+}
+.tag {
+    font-size: 11px;
+    color: var(--color-primary-300);
+    background-color: var(--color-background-100);
+    padding: 2px 8px;
+    border-radius: var(--radius-md);
+}
+
+/* =========================================
+   9. 移动端适配
+   ========================================= */
+@media (max-width: 768px) {
+    .app-container {
+        flex-direction: column; /* 手机上垂直排列 */
+    }
+    .timeline-area {
+        width: 100%;
+    }
+    .candidate-panel {
+        width: 100%;
+        height: 50vh; /* 手机上占半屏 */
+        border-left: none;
+        border-top: 1px solid var(--color-background-100);
+        box-shadow: 0 -4px 16px rgba(0,0,0,0.1);
+    }
+    
+    /* 时间线调整：使其在移动端靠左显示，留出更多空间 */
+    .timeline-track::before {
+        left: 24px;
+    }
+    .node-dot {
+        left: 24px;
+    }
+    
+    /* 强制所有卡片在右侧 */
+    .content-wrapper {
+        width: calc(100% - 70px); 
+    }
+    .timeline-node.left .content-wrapper,
+    .timeline-node.right .content-wrapper {
+        margin-left: 60px;
+        margin-right: 10px;
+    }
+    
+    .node-connector {
+        left: 24px !important;
+        right: auto !important;
+        width: 36px;
+    }
+}
