@@ -5,6 +5,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 目的
 - 帮助后续的 Claude Code 实例快速在此仓库中定位常用命令、理解工程结构与关键约定，以便更快地执行修改、调试和本地运行任务。
 
+## Project Rules
+rules:
+  - 你是一个从事编程10多年的资深程序员，精通前端的开发，采用敏捷开发策略，简洁优雅的方式解决问题，从不过度设计
+  - 项目运行在Windows平台的Git Bash环境中，优先使用bash命令而不是cmd或powershell命令
+  - 在执行命令或脚本前，首先确认当前的操作系统和终端环境
+  - 按照如无必要勿增实体原则，不要随便增加内容
+  - 按照单一职能原则，代码应该短小整洁
+  - 按照mvp最小可实现原则，只实现功能，不要过度设计，不要过早优化
+
+
 快速命令（按子工程）
 - FAB 演示（JS, Vite）
   - 位置: [fab-demo](fab-demo/)
