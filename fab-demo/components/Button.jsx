@@ -43,17 +43,17 @@ const Button = forwardRef(({
 
   // Ripple 波纹状态
   const [ripples, setRipples] = useState([]);
-  
+
   // 基础样式
   const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-150 cursor-pointer border-0 outline-none select-none';
-  
+
   // 尺寸样式
   const sizeStyles = {
     sm: isIconOnly ? 'w-7 h-7 min-w-7' : 'h-7 px-3 text-xs gap-1.5',
     md: isIconOnly ? 'w-10 h-10 min-w-10' : 'h-10 px-4 text-sm gap-2',
     lg: isIconOnly ? 'w-12 h-12 min-w-12' : 'h-12 px-6 text-base gap-2.5'
   };
-  
+
   // 圆角样式
   const radiusStyles = {
     none: 'rounded-none',
@@ -62,7 +62,7 @@ const Button = forwardRef(({
     lg: 'rounded-xl',
     full: 'rounded-full'
   };
-  
+
   // 颜色和变体组合样式
   const getVariantStyles = () => {
     const styles = {
@@ -78,7 +78,7 @@ const Button = forwardRef(({
       // Bordered 变体
       bordered: {
         default: 'bg-transparent border border-border text-foreground hover:bg-muted active:scale-[0.97]',
-        primary: 'bg-transparent border border-[hsl(262,83%,58%)] text-[hsl(262,83%,58%)] hover:bg-[hsl(262,83%,58%)]/10 active:scale-[0.97]',
+        primary: 'bg-transparent border border-accent text-accent hover:bg-accent/10 active:scale-[0.97]',
         secondary: 'bg-transparent border border-secondary text-secondary hover:bg-secondary/10 active:scale-[0.97]',
         success: 'bg-transparent border border-green-500 text-green-600 hover:bg-green-50 active:scale-[0.97]',
         warning: 'bg-transparent border border-yellow-500 text-yellow-600 hover:bg-yellow-50 active:scale-[0.97]',
@@ -112,10 +112,10 @@ const Button = forwardRef(({
         danger: 'bg-transparent border border-red-500 text-red-600 hover:bg-red-500 hover:text-white active:scale-[0.97]'
       }
     };
-    
+
     return styles[variant]?.[color] || styles.solid.default;
   };
-  
+
   // Primary 颜色的渐变背景（仅 solid 变体）
   const getPrimaryGradient = () => {
     if (variant === 'solid' && color === 'primary') {
@@ -126,15 +126,15 @@ const Button = forwardRef(({
     }
     return {};
   };
-  
+
   // 禁用样式
-  const disabledStyles = isDisabled 
-    ? 'opacity-50 cursor-not-allowed pointer-events-none' 
+  const disabledStyles = isDisabled
+    ? 'opacity-50 cursor-not-allowed pointer-events-none'
     : '';
-  
+
   // 全宽样式
   const widthStyles = fullWidth ? 'w-full' : '';
-  
+
   // 加载状态的 Spinner
   const Spinner = () => (
     <svg
@@ -160,7 +160,7 @@ const Button = forwardRef(({
       />
     </svg>
   );
-  
+
   // 组合所有样式
   const combinedClassName = [
     baseStyles,
@@ -171,7 +171,7 @@ const Button = forwardRef(({
     widthStyles,
     className
   ].filter(Boolean).join(' ');
-  
+
   // 创建 Ripple 波纹
   const createRipple = (e) => {
     if (disableRipple || isDisabled || isLoading) return;
@@ -206,7 +206,7 @@ const Button = forwardRef(({
     createRipple(e);
     onClick?.(e);
   };
-  
+
   return (
     <button
       ref={ref}

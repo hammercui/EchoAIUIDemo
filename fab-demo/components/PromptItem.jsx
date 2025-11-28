@@ -20,12 +20,12 @@ import { SOURCE_ICONS, getSourceName } from './SourceLogos';
  * - 点赞按钮
  * - 标签编辑（新增+删除）
  */
-const PromptItem = ({ 
-  prompt, 
-  isSelected, 
-  onSelect, 
-  onCopy, 
-  onView, 
+const PromptItem = ({
+  prompt,
+  isSelected,
+  onSelect,
+  onCopy,
+  onView,
   onManage,
   onLike,
   onUpdateTags,
@@ -92,11 +92,10 @@ const PromptItem = ({
   return (
     <>
       <div
-        className={`relative bg-muted border border-border rounded-xl cursor-pointer transition-all duration-150 shadow-sm group ${
-          isSelected
-            ? 'border-ring shadow-[0_0_0_2px_hsl(262,83%,58%,0.1)] bg-[hsl(262,90%,97%)]'
+        className={`relative bg-muted border border-border rounded-xl cursor-pointer transition-all duration-150 shadow-sm group ${isSelected
+            ? 'border-ring shadow-[0_0_0_2px_rgba(97,40,255,0.1)] bg-accent/5'
             : 'hover:scale-[1.02] hover:shadow-md'
-        }`}
+          }`}
         onClick={handleCardClick}
       >
         {/* 3 行文本结构 - 统一 px-3 py-3 左右边距 */}
@@ -105,11 +104,11 @@ const PromptItem = ({
           <h3 className="text-xs font-semibold text-foreground mb-1.5 leading-tight">
             {prompt.title}
           </h3>
-          
+
           {/* 第 2 行: 描述 (3行省略) - 左右边距与标题一致 */}
-          <Tooltip 
-            content={prompt.description} 
-            placement="top" 
+          <Tooltip
+            content={prompt.description}
+            placement="top"
             classNames={{
               base: "max-w-xs",
               content: "bg-gray-900 text-white px-3 py-2 text-xs rounded-lg shadow-lg"
@@ -119,7 +118,7 @@ const PromptItem = ({
               {prompt.description}
             </p>
           </Tooltip>
-          
+
           {/* 第 3 行: 标签 + 点赞 + 时间 - 左右边距与标题一致 */}
           <div className="flex justify-between items-center text-[10px] pointer-events-auto mt-auto">
             {/* 左侧：标签区 */}
@@ -127,9 +126,8 @@ const PromptItem = ({
               {prompt.tags.map((tag, idx) => (
                 <span
                   key={idx}
-                  className={`relative px-1.5 py-0.5 rounded-md border border-[hsl(var(--accent-violet))] text-[hsl(var(--accent-violet))] bg-transparent transition-all duration-150 ${
-                    isDeleteMode ? 'pr-4' : ''
-                  }`}
+                  className={`relative px-1.5 py-0.5 rounded-md border border-accent/50 text-accent bg-transparent transition-all duration-150 ${isDeleteMode ? 'pr-4' : ''
+                    }`}
                   onContextMenu={(e) => handleTagRightClick(e, tag)}
                   onClick={(e) => isDeleteMode && handleDeleteTag(e, tag)}
                 >
@@ -138,7 +136,7 @@ const PromptItem = ({
                   {isDeleteMode && (
                     <button
                       onClick={(e) => handleDeleteTag(e, tag)}
-                      className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-red-500 text-white rounded-full flex items-center justify-center text-[8px] hover:bg-red-600 transition-colors"
+                      className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-destructive text-destructive-foreground rounded-full flex items-center justify-center text-[8px] hover:bg-destructive/90 transition-colors"
                     >
                       ×
                     </button>
@@ -148,7 +146,7 @@ const PromptItem = ({
               {/* + 按钮 */}
               <button
                 onClick={handleAddTag}
-                className="w-5 h-5 border border-dashed border-[hsl(262,90%,70%)] text-[hsl(262,90%,70%)] rounded-md flex items-center justify-center hover:bg-[hsl(262,90%,70%)]/10 transition-colors duration-150"
+                className="w-5 h-5 border border-dashed border-accent/50 text-accent rounded-md flex items-center justify-center hover:bg-accent/10 transition-colors duration-150"
                 title="添加标签"
               >
                 +
@@ -166,7 +164,7 @@ const PromptItem = ({
                       const IconComponent = SOURCE_ICONS[source];
                       if (!IconComponent) return null;
                       return (
-                        <Tooltip 
+                        <Tooltip
                           key={idx}
                           content={getSourceName(source)}
                           placement="top"
@@ -174,7 +172,7 @@ const PromptItem = ({
                             content: "bg-gray-900 text-white px-2 py-1 text-[10px] rounded"
                           }}
                         >
-                          <div 
+                          <div
                             className="w-5 h-5 rounded-full bg-white border border-border flex items-center justify-center hover:z-10 transition-transform hover:scale-110"
                             style={{ zIndex: 3 - idx }}
                           >
@@ -185,7 +183,7 @@ const PromptItem = ({
                     })}
                     {/* 如果超过3个，显示+N */}
                     {prompt.sources.length > 3 && (
-                      <Tooltip 
+                      <Tooltip
                         content={
                           <div className="flex flex-col gap-1">
                             {prompt.sources.slice(3).map((source, idx) => (
@@ -215,11 +213,11 @@ const PromptItem = ({
                 {/* 点赞按钮 (+1) */}
                 <button
                   onClick={handleLike}
-                  className="group/like flex items-center gap-0.5 px-1.5 py-0.5 rounded transition-all duration-200 hover:bg-violet-100 active:scale-95"
+                  className="group/like flex items-center gap-0.5 px-1.5 py-0.5 rounded transition-all duration-200 hover:bg-accent/10 active:scale-95"
                   title="点赞 +1"
                 >
-                  <ThumbsUp 
-                    className="w-3 h-3 text-muted-foreground transition-all duration-200 group-hover/like:text-violet-600 group-hover/like:scale-110 group-active/like:fill-violet-600"
+                  <ThumbsUp
+                    className="w-3 h-3 text-muted-foreground transition-all duration-200 group-hover/like:text-accent group-hover/like:scale-110 group-active/like:fill-accent"
                   />
                 </button>
 
@@ -234,7 +232,7 @@ const PromptItem = ({
                   className="group/dislike flex items-center gap-0.5 px-1.5 py-0.5 rounded transition-all duration-200 hover:bg-red-100 active:scale-95"
                   title="取消赞 -1"
                 >
-                  <ThumbsDown 
+                  <ThumbsDown
                     className="w-3 h-3 text-muted-foreground transition-all duration-200 group-hover/dislike:text-red-600 group-hover/dislike:scale-110 group-active/dislike:fill-red-600"
                   />
                 </button>

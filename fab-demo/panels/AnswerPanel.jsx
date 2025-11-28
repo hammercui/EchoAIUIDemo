@@ -94,9 +94,8 @@ const AnswerPanel = ({ prompt, onCopy }) => {
                     className="flex items-center gap-1.5 h-10 px-0 pb-1 relative cursor-pointer border-0 bg-transparent"
                   >
                     <motion.div
-                      className={`flex items-center gap-1.5 transition-colors duration-200 ${
-                        isSelected ? 'text-violet-600' : 'text-slate-500 hover:text-slate-900'
-                      }`}
+                      className={`flex items-center gap-1.5 transition-colors duration-200 ${isSelected ? 'text-accent' : 'text-slate-500 hover:text-slate-900'
+                        }`}
                       initial={false}
                       animate={{
                         scale: isSelected ? 1.05 : 1,
@@ -115,7 +114,7 @@ const AnswerPanel = ({ prompt, onCopy }) => {
                         <motion.span
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
-                          className="ml-1 text-violet-600"
+                          className="ml-1 text-accent"
                         >
                           ✓
                         </motion.span>
@@ -126,7 +125,7 @@ const AnswerPanel = ({ prompt, onCopy }) => {
                     {!isCompareMode && isSelected && (
                       <motion.span
                         layoutId="tab-indicator"
-                        className="absolute bottom-0.5 left-0 right-0 h-0.5 rounded-t-full bg-violet-600"
+                        className="absolute bottom-0.5 left-0 right-0 h-0.5 rounded-t-full bg-accent"
                         initial={false}
                         transition={{
                           type: "spring",
@@ -148,25 +147,25 @@ const AnswerPanel = ({ prompt, onCopy }) => {
                 flex items-center gap-1.5 h-7 px-3 rounded-full text-xs font-medium
                 border cursor-pointer
                 ${isCompareMode
-                  ? 'bg-violet-600 text-white border-violet-600'
+                  ? 'bg-accent text-white border-accent'
                   : 'bg-background text-foreground border-border'
                 }
               `}
               animate={{
                 backgroundColor: isCompareMode
-                  ? 'hsl(262, 83%, 58%)'
-                  : 'hsl(var(--background))',
+                  ? 'rgba(97, 40, 255, 1)'
+                  : 'rgba(var(--background), 1)',
                 borderColor: isCompareMode
-                  ? 'hsl(262, 83%, 58%)'
-                  : 'hsl(var(--border))',
+                  ? 'rgba(97, 40, 255, 1)'
+                  : 'rgba(var(--border), 1)',
                 color: isCompareMode
                   ? '#ffffff'
-                  : 'hsl(var(--foreground))',
+                  : 'rgba(var(--foreground), 1)',
               }}
               whileHover={{
                 backgroundColor: isCompareMode
-                  ? 'hsl(262, 83%, 48%)'
-                  : 'hsl(var(--muted))',
+                  ? 'rgba(80, 30, 220, 1)'
+                  : 'rgba(var(--muted), 1)',
               }}
               transition={{
                 duration: 0.3,

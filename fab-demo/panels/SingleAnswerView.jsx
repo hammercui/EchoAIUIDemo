@@ -32,7 +32,7 @@ const SingleAnswerView = ({ answer = '暂无答案' }) => {
                   {String(children).replace(/\n$/, '')}
                 </SyntaxHighlighter>
               ) : (
-                <code className="bg-violet-100 text-violet-800 px-1.5 py-0.5 rounded text-xs font-mono" {...props}>
+                <code className="bg-accent/10 text-accent px-1.5 py-0.5 rounded text-xs font-mono" {...props}>
                   {children}
                 </code>
               );

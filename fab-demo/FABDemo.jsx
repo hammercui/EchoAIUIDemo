@@ -86,7 +86,7 @@ const FABDemo = () => {
 
   // 处理点赞/取消赞
   const handleLike = (promptId, delta) => {
-    setPrompts(prevPrompts => 
+    setPrompts(prevPrompts =>
       prevPrompts.map(p => {
         if (p.id === promptId) {
           return {
@@ -101,7 +101,7 @@ const FABDemo = () => {
 
   // 处理标签更新（新增、删除、使用统计）
   const handleUpdateTags = (promptId, newTags, incrementUsage = false) => {
-    setPrompts(prevPrompts => 
+    setPrompts(prevPrompts =>
       prevPrompts.map(p => {
         if (p.id === promptId) {
           return {
@@ -116,18 +116,18 @@ const FABDemo = () => {
   };
 
   return (
-    <div className="w-full h-full relative bg-gradient-to-br from-violet-50 to-indigo-50 rounded-xl overflow-hidden">
+    <div className="w-full h-full relative bg-gradient-to-br from-accent/5 to-accent/10 rounded-xl overflow-hidden">
       {/* Toast 通知 */}
       {toast && (
-        <Toast 
-          message={toast.message} 
-          type={toast.type} 
-          onClose={() => setToast(null)} 
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          onClose={() => setToast(null)}
         />
       )}
 
       {/* 位置切换按钮 */}
-      <button 
+      <button
         className="absolute top-5 left-1/2 -translate-x-1/2 h-10 px-6 bg-background border border-border rounded-full cursor-pointer text-base font-semibold text-foreground transition-all duration-150 z-[200] hover:bg-muted hover:scale-105 active:scale-95 shadow-sm"
         onClick={togglePosition}
       >
@@ -135,10 +135,9 @@ const FABDemo = () => {
       </button>
 
       {/* 背景遮罩层 */}
-      <div 
-        className={`fixed inset-0 transition-opacity duration-[180ms] z-[50] ${
-          isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
-        }`}
+      <div
+        className={`fixed inset-0 transition-opacity duration-[180ms] z-[50] ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+          }`}
         style={{
           background: 'linear-gradient(0deg, #00000080, #00000080), #fff3'
         }}
@@ -153,20 +152,17 @@ const FABDemo = () => {
       />
 
       {/* 面板容器 */}
-      <div 
-        className={`fixed bottom-6 flex transition-all duration-[180ms] z-[100] ${
-          fabPosition === 'left' 
+      <div
+        className={`fixed bottom-6 flex transition-all duration-[180ms] z-[100] ${fabPosition === 'left'
             ? 'left-[68px]' // FAB(40px) + 间距(24px) + 间距(4px) = 68px
             : 'right-[68px]'
-        } ${
-          fabPosition === 'left' 
-            ? 'origin-left-bottom' 
+          } ${fabPosition === 'left'
+            ? 'origin-left-bottom'
             : 'origin-right-bottom flex-row-reverse'
-        } ${
-          isOpen 
-            ? 'opacity-100 visible scale-100' 
+          } ${isOpen
+            ? 'opacity-100 visible scale-100'
             : 'opacity-0 invisible scale-95'
-        }`}
+          }`}
         style={{
           transformOrigin: fabPosition === 'left' ? 'left bottom' : 'right bottom'
         }}
@@ -186,14 +182,12 @@ const FABDemo = () => {
         </div>
 
         {/* 第二段: 编辑管理面板 (从右侧滑入) */}
-        <div 
-          className={`bg-background border border-border rounded-xl shadow-lg overflow-hidden transition-all duration-150 ${
-            fabPosition === 'left' ? 'ml-4' : 'mr-4'
-          } ${
-            showEditPanel && selectedPrompt
+        <div
+          className={`bg-background border border-border rounded-xl shadow-lg overflow-hidden transition-all duration-150 ${fabPosition === 'left' ? 'ml-4' : 'mr-4'
+            } ${showEditPanel && selectedPrompt
               ? 'w-[50vw] opacity-100 visible'
               : 'w-0 opacity-0 invisible'
-          }`}
+            }`}
         >
           {selectedPrompt && (
             <EditPanel

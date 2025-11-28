@@ -16,7 +16,7 @@ import { X, Check } from 'lucide-react';
 export const AddTagDialog = ({ isOpen, onClose, onConfirm, currentTags = [], allAvailableTags = [] }) => {
   const [inputValue, setInputValue] = useState('');
   const [selectedTags, setSelectedTags] = useState([]);
-  
+
   // 获取候选标签（系统已有但不属于当前提示词的标签）
   const candidateTags = allAvailableTags.filter(tag => !currentTags.includes(tag));
 
@@ -31,13 +31,13 @@ export const AddTagDialog = ({ isOpen, onClose, onConfirm, currentTags = [], all
   const canAddInput = () => {
     const trimmed = inputValue.trim();
     if (!trimmed) return false;
-    
+
     // 不能与已选标签重复
     if (selectedTags.includes(trimmed)) return false;
-    
+
     // 不能与当前提示词的标签重复
     if (currentTags.includes(trimmed)) return false;
-    
+
     return true;
   };
 
@@ -48,14 +48,14 @@ export const AddTagDialog = ({ isOpen, onClose, onConfirm, currentTags = [], all
       e.preventDefault();
       e.stopPropagation();
     }
-    
+
     const trimmed = inputValue.trim();
     if (!trimmed) return;
-    
+
     // 检查是否可以添加
     const isAlreadySelected = selectedTags.includes(trimmed);
     const isCurrentTag = currentTags.includes(trimmed);
-    
+
     if (!isAlreadySelected && !isCurrentTag) {
       const newSelectedTags = [...selectedTags, trimmed];
       setSelectedTags(newSelectedTags);
@@ -124,7 +124,7 @@ export const AddTagDialog = ({ isOpen, onClose, onConfirm, currentTags = [], all
               size="sm"
               onClick={handleAddNewTag}
               isDisabled={!canAddInput()}
-              className="bg-violet-600 text-white hover:bg-violet-700"
+              className="bg-accent text-white hover:bg-accent/90"
             >
               添加
             </Button>
@@ -144,11 +144,10 @@ export const AddTagDialog = ({ isOpen, onClose, onConfirm, currentTags = [], all
                   <button
                     key={tag}
                     onClick={() => toggleCandidateTag(tag)}
-                    className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-150 flex items-center gap-1 ${
-                      isSelected
-                        ? 'bg-violet-600 text-white border-violet-600 shadow-sm'
-                        : 'bg-transparent border border-border text-foreground hover:border-violet-400 hover:text-violet-600'
-                    }`}
+                    className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-150 flex items-center gap-1 ${isSelected
+                        ? 'bg-accent text-white border-accent shadow-sm'
+                        : 'bg-transparent border border-border text-foreground hover:border-accent/60 hover:text-accent'
+                      }`}
                   >
                     {isSelected && <Check className="w-3 h-3" />}
                     {tag}
@@ -169,12 +168,12 @@ export const AddTagDialog = ({ isOpen, onClose, onConfirm, currentTags = [], all
               {selectedTags.map((tag) => (
                 <span
                   key={tag}
-                  className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-medium bg-violet-100 text-violet-700 border border-violet-200"
+                  className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-medium bg-accent/10 text-accent border border-accent/20"
                 >
                   {tag}
                   <button
                     onClick={() => removeSelectedTag(tag)}
-                    className="ml-1 hover:bg-violet-200 rounded-full p-0.5 transition-colors"
+                    className="ml-1 hover:bg-accent/20 rounded-full p-0.5 transition-colors"
                   >
                     <X className="w-3 h-3" />
                   </button>
@@ -197,7 +196,7 @@ export const AddTagDialog = ({ isOpen, onClose, onConfirm, currentTags = [], all
         <div className="text-xs text-muted-foreground">
           {selectedTags.length > 0 ? (
             <>
-              已选择 <span className="font-semibold text-violet-600">{selectedTags.length}</span> 个标签
+              已选择 <span className="font-semibold text-accent">{selectedTags.length}</span> 个标签
             </>
           ) : (
             '请选择或新建标签'
