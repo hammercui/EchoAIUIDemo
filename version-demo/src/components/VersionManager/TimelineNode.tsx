@@ -1,5 +1,5 @@
 import React from 'react';
-import { VersionData } from './types';
+import type { VersionData } from './types';
 import './styles.css';
 
 interface TimelineNodeProps {
