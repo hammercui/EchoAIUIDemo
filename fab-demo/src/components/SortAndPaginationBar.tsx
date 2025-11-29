@@ -18,7 +18,7 @@ const SortAndPaginationBar = ({
   onPageChange 
 }) => {
   return (
-    <div className="px-4 py-3 border-b border-border bg-background flex items-center justify-between gap-4">
+    <div className="px-6 py-3 border-b border-border bg-background flex items-center justify-between gap-4">
       <div className="flex-shrink-0">
         <SortDropdown value={sortBy} onChange={onSortChange} />
       </div>

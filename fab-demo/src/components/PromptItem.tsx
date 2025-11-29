@@ -120,7 +120,7 @@ const PromptItem = ({
           </Tooltip>
 
           {/* 第 3 行: 标签 + 点赞 + 时间 - 左右边距与标题一致 */}
-          <div className="flex justify-between items-center text-[10px] pointer-events-auto mt-auto">
+          <div className="flex justify-between items-center text-xs pointer-events-auto mt-auto">
             {/* 左侧：标签区 */}
             <div className="flex gap-1.5 items-center flex-wrap">
               {prompt.tags.map((tag, idx) => (
@@ -136,7 +136,7 @@ const PromptItem = ({
                   {isDeleteMode && (
                     <button
                       onClick={(e) => handleDeleteTag(e, tag)}
-                      className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-destructive text-destructive-foreground rounded-full flex items-center justify-center text-[8px] hover:bg-destructive/90 transition-colors"
+                      className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-destructive text-destructive-foreground rounded-full flex items-center justify-center text-[10px] hover:bg-destructive/90 transition-colors"
                     >
                       ×
                     </button>
@@ -169,7 +169,7 @@ const PromptItem = ({
                           content={getSourceName(source)}
                           placement="top"
                           classNames={{
-                            content: "bg-gray-900 text-white px-2 py-1 text-[10px] rounded"
+                            content: "bg-gray-900 text-white px-2 py-1 text-xs rounded"
                           }}
                         >
                           <div
@@ -189,7 +189,7 @@ const PromptItem = ({
                             {prompt.sources.slice(3).map((source, idx) => (
                               <div key={idx} className="flex items-center gap-1.5">
                                 {SOURCE_ICONS[source] && React.createElement(SOURCE_ICONS[source], { className: "w-3 h-3" })}
-                                <span className="text-[10px]">{getSourceName(source)}</span>
+                                <span className="text-xs">{getSourceName(source)}</span>
                               </div>
                             ))}
                           </div>
@@ -199,7 +199,7 @@ const PromptItem = ({
                           content: "bg-gray-900 text-white px-2 py-1.5 rounded"
                         }}
                       >
-                        <div className="w-5 h-5 rounded-full bg-muted-foreground/20 border border-border flex items-center justify-center text-[8px] font-medium text-muted-foreground hover:bg-muted-foreground/30 hover:z-10 transition-all cursor-pointer">
+                        <div className="w-5 h-5 rounded-full bg-muted-foreground/20 border border-border flex items-center justify-center text-[10px] font-medium text-muted-foreground hover:bg-muted-foreground/30 hover:z-10 transition-all cursor-pointer">
                           +{prompt.sources.length - 3}
                         </div>
                       </Tooltip>
@@ -222,7 +222,7 @@ const PromptItem = ({
                 </button>
 
                 {/* 点赞数量 */}
-                <span className="text-[10px] font-medium leading-none text-foreground min-w-[16px] text-center">
+                <span className="text-xs font-medium leading-none text-foreground min-w-[16px] text-center">
                   {prompt.likes}
                 </span>
 

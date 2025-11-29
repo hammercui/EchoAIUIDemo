@@ -168,7 +168,7 @@ const FABDemo = () => {
         }}
       >
         {/* 第一段: 提示词列表 */}
-        <div className="bg-background border border-border rounded-xl shadow-lg overflow-hidden w-[30vw] h-[80vh] flex flex-col">
+        <div className="bg-background border border-border rounded-xl shadow-lg overflow-hidden w-[400px] h-[80vh] flex flex-col">
           <PromptPanel
             prompts={prompts}
             selectedId={selectedPrompt?.id}
@@ -185,7 +185,7 @@ const FABDemo = () => {
         <div
           className={`bg-background border border-border rounded-xl shadow-lg overflow-hidden transition-all duration-150 ${fabPosition === 'left' ? 'ml-4' : 'mr-4'
             } ${showEditPanel && selectedPrompt
-              ? 'w-[50vw] opacity-100 visible'
+              ? 'w-[400px] opacity-100 visible'
               : 'w-0 opacity-0 invisible'
             }`}
         >

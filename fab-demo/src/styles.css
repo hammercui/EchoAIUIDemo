@@ -6,19 +6,26 @@
 
 @layer base {
   :root {
+    /* StyleGuide: Background rgb(255, 255, 255) */
     --background: 255, 255, 255;
+    /* StyleGuide: Text Primary 1 rgba(0, 0, 0, 0.96) */
     --foreground: 0, 0, 0;
 
+    /* StyleGuide: Main Button rgba(0, 0, 0, 0.96) */
     --primary: 0, 0, 0;
     --primary-foreground: 255, 255, 255;
 
-    --secondary: 229, 231, 235;
+    /* StyleGuide: Secondary Button rgb(255, 255, 255) */
+    --secondary: 255, 255, 255;
     --secondary-foreground: 0, 0, 0;
 
+    /* StyleGuide: Brand rgb(97, 40, 255) */
     --accent: 97, 40, 255;
     --accent-foreground: 255, 255, 255;
 
+    /* StyleGuide: Surface rgb(229, 231, 235) */
     --muted: 229, 231, 235;
+    /* StyleGuide: Text Primary 3 rgba(10, 13, 51, 0.6) -> Base: 10, 13, 51 */
     --muted-foreground: 10, 13, 51;
 
     --destructive: 239, 68, 68;
@@ -34,7 +41,7 @@
     --card: 255, 255, 255;
     --card-foreground: 0, 0, 0;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem; /* 12px for cards */
   }
 }
 
@@ -45,7 +52,10 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: "D-DIN Exp", "DM Sans", Arial, sans-serif;
+    font-family: "D-DIN Exp", "DM Sans", Arial, "Microsoft YaHei", sans-serif;
+    /* StyleGuide: Base font size 16px */
+    font-size: 16px;
+    line-height: 1.5;
   }
 }
 
@@ -57,9 +67,19 @@
     overflow: hidden;
   }
 
+  /* StyleGuide: Brand Primary Normal */
   .bg-primary-gradient {
-    background: linear-gradient(135deg, rgb(97, 40, 255), rgb(80, 30, 220));
+    background: rgb(97, 40, 255);
   }
+  
+  /* Custom Font Weights */
+  .font-thin { font-weight: 100; }
+  .font-light { font-weight: 300; }
+  .font-normal { font-weight: 400; }
+  .font-medium { font-weight: 500; }
+  .font-semibold { font-weight: 600; }
+  .font-bold { font-weight: 700; }
+  .font-extrabold { font-weight: 800; }
 }
 
 /* Scrollbar Styles */

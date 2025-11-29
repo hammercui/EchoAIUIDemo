@@ -195,12 +195,12 @@ const PromptPanel = ({
   const hasQuery = (searchMode === 'prompt' && promptQuery) || (searchMode === 'tag' && selectedTags.length > 0);
 
   return (
-    <div className="flex flex-col h-full max-h-[80vh] min-h-[300px]">
+    <div className="flex flex-col h-full max-h-[80vh] min-h-[300px] bg-background rounded-xl shadow-lg border border-border overflow-hidden font-sans text-foreground">
       {/* Header */}
       <PromptListHeader />
 
       {/* 搜索栏 */}
-      <div className="px-4 py-3 border-b border-border bg-background">
+      <div className="px-6 py-4 border-b border-border bg-background">
         <SearchBar
           ref={searchInputRef}
           mode={searchMode}
@@ -214,13 +214,15 @@ const PromptPanel = ({
 
       {/* 标签选择器（仅标签模式显示） */}
       {searchMode === 'tag' && (
-        <TagSelector
-          candidateTags={candidateTags}
-          selectedTags={selectedTags}
-          onTagSelect={handleTagSelect}
-          onTagRemove={handleTagRemove}
-          onClearAll={handleClearAllTags}
-        />
+        <div className="px-6">
+          <TagSelector
+            candidateTags={candidateTags}
+            selectedTags={selectedTags}
+            onTagSelect={handleTagSelect}
+            onTagRemove={handleTagRemove}
+            onClearAll={handleClearAllTags}
+          />
+        </div>
       )}
 
       {/* 排序和分页工具栏 */}
@@ -234,25 +236,31 @@ const PromptPanel = ({
       />
 
       {/* 搜索结果计数 */}
-      <SearchResultBar
-        resultCount={sortedPrompts.length}
-        searchMode={searchMode}
-        hasQuery={hasQuery}
-      />
+      {hasQuery && (
+        <div className="px-6">
+          <SearchResultBar
+            resultCount={sortedPrompts.length}
+            searchMode={searchMode}
+            hasQuery={hasQuery}
+          />
+        </div>
+      )}
 
       {/* 提示词列表 */}
-      <PromptList
-        prompts={paginatedPrompts}
-        selectedId={selectedId}
-        onItemSelect={onItemSelect}
-        onCopy={onCopy}
-        onView={onView}
-        onManage={onManage}
-        onLike={onLike}
-        onUpdateTags={onUpdateTags}
-        searchMode={searchMode}
-        allAvailableTags={allTags}
-      />
+      <div className="flex-1 overflow-hidden">
+        <PromptList
+          prompts={paginatedPrompts}
+          selectedId={selectedId}
+          onItemSelect={onItemSelect}
+          onCopy={onCopy}
+          onView={onView}
+          onManage={onManage}
+          onLike={onLike}
+          onUpdateTags={onUpdateTags}
+          searchMode={searchMode}
+          allAvailableTags={allTags}
+        />
+      </div>
     </div>
   );
 };

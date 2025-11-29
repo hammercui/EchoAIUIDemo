@@ -49,7 +49,7 @@ const Button = forwardRef<any, any>(({
 
   // 尺寸样式
   const sizeStyles = {
-    sm: isIconOnly ? 'w-7 h-7 min-w-7' : 'h-7 px-3 text-xs gap-1.5',
+    sm: isIconOnly ? 'w-8 h-8 min-w-8' : 'h-8 px-3 text-xs gap-1.5',
     md: isIconOnly ? 'w-10 h-10 min-w-10' : 'h-10 px-4 text-sm gap-2',
     lg: isIconOnly ? 'w-12 h-12 min-w-12' : 'h-12 px-6 text-base gap-2.5'
   };

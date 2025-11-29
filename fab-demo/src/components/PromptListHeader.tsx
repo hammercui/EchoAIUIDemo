@@ -5,7 +5,7 @@ import React from 'react';
  */
 const PromptListHeader = () => {
   return (
-    <div className="h-[42px] px-4 border-b border-border bg-muted/30 flex items-center">
+    <div className="h-[42px] px-6 border-b border-border bg-muted/30 flex items-center">
       <h2 className="text-base font-semibold text-foreground">
         提示词列表
       </h2>

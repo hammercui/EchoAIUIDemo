@@ -147,7 +147,7 @@ const Pagination = ({ currentPage, totalPages, totalItems, onPageChange }) => {
   const paginationItems = getPaginationItems();
 
   return (
-    <div className="flex items-center justify-between px-4 py-3 border-t border-border bg-muted/30">
+    <div className="flex items-center justify-between px-0 py-0 border-0 bg-transparent">
       {/* 左侧：总数统计 */}
       <div className="text-xs text-muted-foreground">
         共 <span className="font-semibold text-foreground">{totalItems}</span> 条

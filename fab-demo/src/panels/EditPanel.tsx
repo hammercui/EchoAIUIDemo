@@ -24,12 +24,12 @@ const EditPanel = ({ prompt, activeTab, onTabChange, onClose, onCopy }) => {
   ];
 
   return (
-    <div className="flex flex-col h-[80vh] bg-content1 rounded-xl overflow-hidden shadow-lg">
+    <div className="flex flex-col h-[80vh] bg-background rounded-xl overflow-hidden shadow-lg">
       {/* 头部 - Tab导航与关闭按钮同行 */}
-      <div className="h-[42px] px-4 border-b border-border flex justify-between items-center bg-muted/30 gap-3">
+      <div className="h-[42px] px-6 border-b border-border flex justify-between items-center bg-muted/30 gap-3">
         {/* Tab 导航 - 源码实现 HeroUI 风格 + Framer Motion 动效 */}
         <div
-          className="relative flex gap-1 p-1 bg-default-100 rounded-full"
+          className="relative flex gap-1 p-1 bg-muted rounded-full"
           role="tablist"
         >
           {tabs.map((tab) => {

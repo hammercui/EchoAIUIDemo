@@ -6,14 +6,6 @@ import ScrollButton from './ScrollButton';
 /**
  * PromptList - 纯列表渲染组件
  * 由 Panel 层（PromptPanel）负责处理搜索、过滤、排序、分页等逻辑，
-import React, { useEffect, useRef, useState } from 'react';
-import PromptItem from './PromptItem';
-import EmptyState from './EmptyState';
-import ScrollButton from './ScrollButton';
-
-/**
- * PromptList - 纯列表渲染组件
- * 由 Panel 层（PromptPanel）负责处理搜索、过滤、排序、分页等逻辑，
  * 该组件只负责渲染传入的提示词数组并提供滚动相关交互。
  */
 const PromptList = ({
@@ -58,7 +50,7 @@ const PromptList = ({
   };
 
   return (
-    <div ref={listContainerRef} className="flex-1 overflow-y-auto p-3 flex flex-col gap-3 relative">
+    <div ref={listContainerRef} className="flex-1 overflow-y-auto px-6 py-4 flex flex-col gap-3 relative">
       {Array.isArray(prompts) && prompts.length > 0 ? (
         prompts.map(prompt => (
           <PromptItem

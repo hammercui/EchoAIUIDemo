@@ -9,7 +9,7 @@ const SearchResultBar = ({ resultCount, searchMode, hasQuery }) => {
   if (!hasQuery) return null;
 
   return (
-    <div className="px-3 py-2 text-xs text-muted-foreground border-b border-border">
+    <div className="px-6 py-2 text-xs text-muted-foreground border-b border-border">
       找到 {resultCount} 个提示词
     </div>
   );
