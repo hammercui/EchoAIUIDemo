@@ -13,9 +13,9 @@ import { X, Check } from 'lucide-react';
  * @param {Array} currentTags - 当前提示词已有的标签
  * @param {Array} allAvailableTags - 系统中所有可用的标签
  */
-export const AddTagDialog = ({ isOpen, onClose, onConfirm, currentTags = [], allAvailableTags = [] }) => {
+export const AddTagDialog = ({ isOpen, onClose, onConfirm, currentTags = [] as any[], allAvailableTags = [] as any[] }) => {
   const [inputValue, setInputValue] = useState('');
-  const [selectedTags, setSelectedTags] = useState([]);
+  const [selectedTags, setSelectedTags] = useState<any[]>([]);
 
   // 获取候选标签（系统已有但不属于当前提示词的标签）
   const candidateTags = allAvailableTags.filter(tag => !currentTags.includes(tag));
@@ -42,7 +42,7 @@ export const AddTagDialog = ({ isOpen, onClose, onConfirm, currentTags = [], all
   };
 
   // 添加新标签到选中列表
-  const handleAddNewTag = (e) => {
+  const handleAddNewTag = (e?: any) => {
     // 阻止事件冒泡，防止触发其他行为
     if (e) {
       e.preventDefault();
@@ -145,8 +145,8 @@ export const AddTagDialog = ({ isOpen, onClose, onConfirm, currentTags = [], all
                     key={tag}
                     onClick={() => toggleCandidateTag(tag)}
                     className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-150 flex items-center gap-1 ${isSelected
-                        ? 'bg-accent text-white border-accent shadow-sm'
-                        : 'bg-transparent border border-border text-foreground hover:border-accent/60 hover:text-accent'
+                      ? 'bg-accent text-white border-accent shadow-sm'
+                      : 'bg-transparent border border-border text-foreground hover:border-accent/60 hover:text-accent'
                       }`}
                   >
                     {isSelected && <Check className="w-3 h-3" />}

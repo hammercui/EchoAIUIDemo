@@ -17,7 +17,7 @@ import ScrollButton from './ScrollButton';
  * 该组件只负责渲染传入的提示词数组并提供滚动相关交互。
  */
 const PromptList = ({
-  prompts = [],
+  prompts = [] as any[],
   selectedId,
   onItemSelect,
   onCopy,
@@ -26,9 +26,9 @@ const PromptList = ({
   onLike,
   onUpdateTags,
   searchMode = 'prompt',
-  allAvailableTags = []
+  allAvailableTags = [] as any[]
 }) => {
-  const listContainerRef = useRef(null);
+  const listContainerRef = useRef<any>(null);
   const [isAtBottom, setIsAtBottom] = useState(false);
 
   useEffect(() => {

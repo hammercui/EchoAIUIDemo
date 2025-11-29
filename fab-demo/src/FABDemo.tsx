@@ -22,10 +22,10 @@ import { mockPrompts } from './data/mockData';
 const FABDemo = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showEditPanel, setShowEditPanel] = useState(false);
-  const [selectedPrompt, setSelectedPrompt] = useState(null);
+  const [selectedPrompt, setSelectedPrompt] = useState<any>(null);
   const [activeTab, setActiveTab] = useState('tags');
   const [fabPosition, setFabPosition] = useState('left'); // 'left' or 'right'
-  const [toast, setToast] = useState(null); // Toast 通知状态
+  const [toast, setToast] = useState<any>(null); // Toast 通知状态
   const [prompts, setPrompts] = useState(mockPrompts); // 管理提示词数据
 
   // FAB 按钮点击处理
@@ -154,8 +154,8 @@ const FABDemo = () => {
       {/* 面板容器 */}
       <div
         className={`fixed bottom-6 flex transition-all duration-[180ms] z-[100] ${fabPosition === 'left'
-            ? 'left-[68px]' // FAB(40px) + 间距(24px) + 间距(4px) = 68px
-            : 'right-[68px]'
+          ? 'left-[68px]' // FAB(40px) + 间距(24px) + 间距(4px) = 68px
+          : 'right-[68px]'
           } ${fabPosition === 'left'
             ? 'origin-left-bottom'
             : 'origin-right-bottom flex-row-reverse'

@@ -29,7 +29,7 @@ const PromptItem = ({
   onManage,
   onLike,
   onUpdateTags,
-  allAvailableTags = [] // 系统中所有可用的标签
+  allAvailableTags = [] as any[] // 系统中所有可用的标签
 }) => {
   const [isDeleteMode, setIsDeleteMode] = useState(false);
   const [showAddDialog, setShowAddDialog] = useState(false);
@@ -93,8 +93,8 @@ const PromptItem = ({
     <>
       <div
         className={`relative bg-muted border border-border rounded-xl cursor-pointer transition-all duration-150 shadow-sm group ${isSelected
-            ? 'border-ring shadow-[0_0_0_2px_rgba(97,40,255,0.1)] bg-accent/5'
-            : 'hover:scale-[1.02] hover:shadow-md'
+          ? 'border-ring shadow-[0_0_0_2px_rgba(97,40,255,0.1)] bg-accent/5'
+          : 'hover:scale-[1.02] hover:shadow-md'
           }`}
         onClick={handleCardClick}
       >

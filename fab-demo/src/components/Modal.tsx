@@ -13,7 +13,7 @@ import { motion, AnimatePresence } from 'framer-motion';
  * @param {'sm' | 'md' | 'lg' | 'xl'} size - 尺寸
  */
 const Modal = ({ isOpen, onClose, children, size = 'md' }) => {
-  const backdropRef = useRef(null);
+  const backdropRef = useRef<any>(null);
 
   // 禁用背景滚动
   useEffect(() => {
@@ -21,16 +21,16 @@ const Modal = ({ isOpen, onClose, children, size = 'md' }) => {
       // 保存当前的 overflow 状态
       const originalOverflow = document.body.style.overflow;
       const originalPaddingRight = document.body.style.paddingRight;
-      
+
       // 获取滚动条宽度
       const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-      
+
       // 禁用滚动并补偿滚动条宽度，防止页面抖动
       document.body.style.overflow = 'hidden';
       if (scrollbarWidth > 0) {
         document.body.style.paddingRight = `${scrollbarWidth}px`;
       }
-      
+
       // 清理函数：恢复原始状态
       return () => {
         document.body.style.overflow = originalOverflow;
@@ -67,13 +67,13 @@ const Modal = ({ isOpen, onClose, children, size = 'md' }) => {
 
   // 模态框动画变体
   const modalVariants = {
-    hidden: { 
-      opacity: 0, 
+    hidden: {
+      opacity: 0,
       scale: 0.95,
       y: -20
     },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       scale: 1,
       y: 0,
       transition: {
@@ -83,8 +83,8 @@ const Modal = ({ isOpen, onClose, children, size = 'md' }) => {
         duration: 0.2
       }
     },
-    exit: { 
-      opacity: 0, 
+    exit: {
+      opacity: 0,
       scale: 0.95,
       y: -20,
       transition: {
@@ -112,7 +112,7 @@ const Modal = ({ isOpen, onClose, children, size = 'md' }) => {
               maxWidth: '30vw',
               boxShadow: '0 40px 80px -20px rgba(0, 0, 0, 0.4), 0 20px 40px -10px rgba(0, 0, 0, 0.3), 0 10px 20px -5px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.08)'
             }}
-            variants={modalVariants}
+            variants={modalVariants as any}
             initial="hidden"
             animate="visible"
             exit="exit"

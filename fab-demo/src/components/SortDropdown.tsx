@@ -13,8 +13,8 @@ import { ChevronDown, Check, Clock, Calendar, ThumbsUp, Flame } from 'lucide-rea
 
 const SortDropdown = ({ value, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [ripples, setRipples] = useState([]);
-  const dropdownRef = useRef(null);
+  const [ripples, setRipples] = useState<any[]>([]);
+  const dropdownRef = useRef<any>(null);
 
   const sortOptions = [
     { value: 'newest', label: '最新优先', Icon: Clock },
@@ -108,11 +108,10 @@ const SortDropdown = ({ value, onChange }) => {
                   createRipple(e, Date.now(), option.value);
                   setTimeout(() => handleSelect(option.value), 150);
                 }}
-                className={`relative w-full flex items-center gap-2 px-3 py-2 text-xs text-left transition-all duration-150 active:scale-[0.98] ${
-                  isSelected
-                    ? 'bg-primary-gradient text-white font-medium'
-                    : 'hover:bg-muted/50 text-foreground'
-                }`}
+                className={`relative w-full flex items-center gap-2 px-3 py-2 text-xs text-left transition-all duration-150 active:scale-[0.98] ${isSelected
+                  ? 'bg-primary-gradient text-white font-medium'
+                  : 'hover:bg-muted/50 text-foreground'
+                  }`}
               >
                 <OptionIcon className="w-3.5 h-3.5 shrink-0" strokeWidth={2} />
                 <span className="flex-1 truncate">{option.label}</span>

@@ -22,7 +22,7 @@ import React, { forwardRef, useState } from 'react';
  * @param {Function} onClick - 点击事件
  */
 
-const Button = forwardRef(({
+const Button = forwardRef<any, any>(({
   children,
   variant = 'solid',
   color = 'default',
@@ -42,7 +42,7 @@ const Button = forwardRef(({
 }, ref) => {
 
   // Ripple 波纹状态
-  const [ripples, setRipples] = useState([]);
+  const [ripples, setRipples] = useState<any[]>([]);
 
   // 基础样式
   const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-150 cursor-pointer border-0 outline-none select-none';

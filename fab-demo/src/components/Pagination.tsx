@@ -43,7 +43,7 @@ const PaginationItemType = {
 const Pagination = ({ currentPage, totalPages, totalItems, onPageChange }) => {
   // 生成分页项数组
   const getPaginationItems = () => {
-    const items = [];
+    const items: any[] = [];
     const maxVisible = 5; // 最多显示5个页码
 
     // 上一页
@@ -90,7 +90,7 @@ const Pagination = ({ currentPage, totalPages, totalItems, onPageChange }) => {
 
   const renderItem = (item, index) => {
     const baseClass = "min-w-8 w-8 h-8 flex items-center justify-center rounded-full transition-all duration-150";
-    
+
     if (item.type === PaginationItemType.NEXT) {
       return (
         <button
@@ -130,11 +130,10 @@ const Pagination = ({ currentPage, totalPages, totalItems, onPageChange }) => {
     return (
       <button
         key={`page-${item.value}`}
-        className={`${baseClass} text-xs font-medium ${
-          isActive 
-            ? 'text-white font-bold shadow-md' 
+        className={`${baseClass} text-xs font-medium ${isActive
+            ? 'text-white font-bold shadow-md'
             : 'bg-transparent hover:bg-muted/50 text-foreground'
-        }`}
+          }`}
         style={isActive ? {
           background: 'linear-gradient(135deg, hsl(262, 83%, 58%), hsl(262, 83%, 48%))'
         } : {}}

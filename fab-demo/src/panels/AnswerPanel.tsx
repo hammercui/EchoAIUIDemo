@@ -17,7 +17,7 @@ const AnswerPanel = ({ prompt, onCopy }) => {
   // 对比模式：是否启用对比模式
   const [isCompareMode, setIsCompareMode] = useState(false);
   // 对比模式：选中的平台列表
-  const [selectedSources, setSelectedSources] = useState([]);
+  const [selectedSources, setSelectedSources] = useState<any[]>([]);
   // 复制状态
   const [copied, setCopied] = useState(false);
   // 记住进入对比模式前的平台

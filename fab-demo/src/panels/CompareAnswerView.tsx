@@ -8,7 +8,7 @@ import SingleAnswerView from './SingleAnswerView';
  * 对比答案视图组件
  * 并列显示多个平台的答案，支持最多3个平台对比
  */
-const CompareAnswerView = ({ selectedSources = [], prompt }) => {
+const CompareAnswerView = ({ selectedSources = [] as any[], prompt }) => {
   // 复制状态管理 - 为每个平台单独管理
   const [copiedStates, setCopiedStates] = useState({});
 
@@ -87,9 +87,8 @@ const CompareAnswerView = ({ selectedSources = [], prompt }) => {
   // 多个平台对比视图
   return (
     <div className="px-4">
-      <div className={`grid gap-4 ${
-        selectedSources.length === 2 ? 'grid-cols-2' : 'grid-cols-3'
-      }`}>
+      <div className={`grid gap-4 ${selectedSources.length === 2 ? 'grid-cols-2' : 'grid-cols-3'
+        }`}>
         {selectedSources.map((source, index) => {
           const IconComponent = SOURCE_ICONS[source];
           const isLast = index === selectedSources.length - 1;

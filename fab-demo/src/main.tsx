@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import FABDemo from './FABDemo';
 import './styles.css';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <div className="min-h-screen bg-[#f6f6f6] p-8">
       <div className="max-w-4xl mx-auto space-y-8">

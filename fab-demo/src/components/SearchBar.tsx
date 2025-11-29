@@ -63,7 +63,7 @@ const CloseIcon = () => (
   </svg>
 );
 
-const SearchBar = forwardRef(({
+const SearchBar = forwardRef<any, any>(({
   mode,              // 'prompt' | 'tag'
   promptQuery,       // 提示词模式的输入
   tagQuery,          // 标签模式的输入
@@ -74,10 +74,10 @@ const SearchBar = forwardRef(({
 }, ref) => {
   // 当前显示的输入值
   const currentQuery = mode === 'prompt' ? promptQuery : tagQuery;
-  
+
   // 输入框占位符
-  const placeholder = mode === 'prompt' 
-    ? '搜索提示词...' 
+  const placeholder = mode === 'prompt'
+    ? '搜索提示词...'
     : '输入标签关键词...';
 
   // 处理输入变化

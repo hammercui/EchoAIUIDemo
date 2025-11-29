@@ -36,7 +36,7 @@ const PromptPanel = ({
   const [searchMode, setSearchMode] = useState('prompt'); // 'prompt' | 'tag'
   const [promptQuery, setPromptQuery] = useState('');     // 提示词模式的输入缓存
   const [tagQuery, setTagQuery] = useState('');           // 标签模式的输入缓存
-  const [selectedTags, setSelectedTags] = useState([]);   // 已选标签
+  const [selectedTags, setSelectedTags] = useState<any[]>([]);   // 已选标签
 
   // 排序状态
   const [sortBy, setSortBy] = useState('newest'); // 'newest' | 'oldest' | 'mostLiked' | 'mostUsed'
@@ -47,10 +47,10 @@ const PromptPanel = ({
 
   // Debounce 状态
   const [debouncedPromptQuery, setDebouncedPromptQuery] = useState('');
-  const debounceTimerRef = useRef(null);
+  const debounceTimerRef = useRef<any>(null);
 
   // 搜索框引用（用于快捷键聚焦）
-  const searchInputRef = useRef(null);
+  const searchInputRef = useRef<any>(null);
 
   // Debounce 提示词搜索（300ms）
   useEffect(() => {
@@ -138,7 +138,7 @@ const PromptPanel = ({
   // 排序后的列表
   const sortedPrompts = useMemo(() => {
     const sorted = [...filteredPrompts];
-    
+
     switch (sortBy) {
       case 'newest':
         sorted.sort((a, b) => b.dateTimestamp - a.dateTimestamp);
@@ -155,7 +155,7 @@ const PromptPanel = ({
       default:
         break;
     }
-    
+
     return sorted;
   }, [filteredPrompts, sortBy]);
 
