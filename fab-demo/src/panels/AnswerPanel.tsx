@@ -215,7 +215,7 @@ const AnswerPanel = ({ prompt, onCopy }) => {
           >
             <button
               onClick={handleCopy}
-              className="fixed top-20 right-6 z-[100] w-10 h-10 rounded-lg bg-background/95 backdrop-blur-md border border-border shadow-lg cursor-pointer flex items-center justify-center transition-all duration-200 text-muted-foreground hover:bg-accent hover:text-accent-foreground hover:border-accent hover:shadow-xl active:scale-95"
+              className="fixed top-20 right-6 z-[100] w-10 h-10 rounded-lg bg-background/95 backdrop-blur-md border border-border shadow-lg cursor-pointer flex items-center justify-center transition-all duration-200 text-muted-foreground hover:bg-primary-500 hover:text-white hover:border-primary-500 hover:shadow-xl active:scale-95"
             >
               {copied ? <Check className="w-4 h-4 text-green-600" /> : <Copy className="w-4 h-4" />}
             </button>

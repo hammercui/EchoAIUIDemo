@@ -60,7 +60,7 @@ const EditPanel = ({ prompt, activeTab, onTabChange, onClose, onCopy }) => {
                     layoutId="activeTab"
                     className="absolute inset-0 rounded-full shadow-sm"
                     style={{
-                      background: 'linear-gradient(135deg, hsl(262, 83%, 58%), hsl(262, 83%, 48%))'
+                      background: 'var(--color-primary-500)'
                     }}
                     transition={{
                       type: 'spring',
