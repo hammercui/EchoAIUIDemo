@@ -153,8 +153,8 @@ const FABDemo = () => {
 
       {/* 面板容器 */}
       <div
-        className={`fixed bottom-6 flex transition-all duration-[180ms] z-[100] ${fabPosition === 'left'
-          ? 'left-[68px]' // FAB(40px) + 间距(24px) + 间距(4px) = 68px
+        className={`fixed bottom-6 flex transition-all duration-150 z-[100] ${fabPosition === 'left'
+          ? 'left-[68px]'
           : 'right-[68px]'
           } ${fabPosition === 'left'
             ? 'origin-left-bottom'
@@ -162,13 +162,13 @@ const FABDemo = () => {
           } ${isOpen
             ? 'opacity-100 visible scale-100'
             : 'opacity-0 invisible scale-95'
-          }`}
+          } ${showEditPanel && selectedPrompt ? 'w-[80vw] gap-4' : 'w-[30.4vw] gap-0'}`}
         style={{
           transformOrigin: fabPosition === 'left' ? 'left bottom' : 'right bottom'
         }}
       >
-        {/* 第一段: 提示词列表 */}
-        <div className="bg-background border border-border rounded-xl shadow-lg overflow-hidden w-[400px] h-[80vh] flex flex-col">
+        {/* 第一段: 提示词列表 (38%) */}
+        <div className={`bg-background border border-border rounded-xl shadow-lg overflow-hidden h-[80vh] flex flex-col transition-all duration-150 w-[30.4vw] shrink-0`}>
           <PromptPanel
             prompts={prompts}
             selectedId={selectedPrompt?.id}
@@ -181,12 +181,11 @@ const FABDemo = () => {
           />
         </div>
 
-        {/* 第二段: 编辑管理面板 (从右侧滑入) */}
+        {/* 第二段: 编辑管理面板 (62%) */}
         <div
-          className={`bg-background border border-border rounded-xl shadow-lg overflow-hidden transition-all duration-150 ${fabPosition === 'left' ? 'ml-4' : 'mr-4'
-            } ${showEditPanel && selectedPrompt
-              ? 'w-[400px] opacity-100 visible'
-              : 'w-0 opacity-0 invisible'
+          className={`bg-background border border-border rounded-xl shadow-lg overflow-hidden transition-all duration-150 ${showEditPanel && selectedPrompt
+              ? 'w-[49.6vw] opacity-100 visible'
+              : 'w-0 opacity-0 invisible border-none'
             }`}
         >
           {selectedPrompt && (
