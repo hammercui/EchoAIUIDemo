@@ -131,12 +131,9 @@ const Pagination = ({ currentPage, totalPages, totalItems, onPageChange }) => {
       <button
         key={`page-${item.value}`}
         className={`${baseClass} text-xs font-medium ${isActive
-            ? 'text-white font-bold shadow-md'
+            ? 'text-white font-bold shadow-md bg-primary-500'
             : 'bg-transparent hover:bg-muted/50 text-foreground'
           }`}
-        style={isActive ? {
-          background: 'linear-gradient(135deg, hsl(262, 83%, 58%), hsl(262, 83%, 48%))'
-        } : {}}
         onClick={() => onPageChange(item.value)}
       >
         {item.value}

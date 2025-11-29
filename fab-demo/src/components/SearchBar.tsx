@@ -115,7 +115,7 @@ const SearchBar = forwardRef<any, any>(({
           size="sm"
           radius="full"
           variant={mode === 'prompt' ? 'solid' : 'light'}
-          color={mode === 'prompt' ? 'primary' : 'default'}
+          color="default"
           onClick={() => handleModeSwitch('prompt')}
           className="h-9 px-3.5 text-xs whitespace-nowrap"
         >
@@ -125,7 +125,7 @@ const SearchBar = forwardRef<any, any>(({
           size="sm"
           radius="full"
           variant={mode === 'tag' ? 'solid' : 'light'}
-          color={mode === 'tag' ? 'primary' : 'default'}
+          color="default"
           onClick={() => handleModeSwitch('tag')}
           className="h-9 px-3.5 text-xs whitespace-nowrap"
         >

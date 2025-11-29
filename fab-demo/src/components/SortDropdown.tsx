@@ -109,7 +109,7 @@ const SortDropdown = ({ value, onChange }) => {
                   setTimeout(() => handleSelect(option.value), 150);
                 }}
                 className={`relative w-full flex items-center gap-2 px-3 py-2 text-xs text-left transition-all duration-150 active:scale-[0.98] ${isSelected
-                  ? 'bg-primary-gradient text-white font-medium'
+                  ? 'bg-primary-500 text-white font-medium'
                   : 'hover:bg-muted/50 text-foreground'
                   }`}
               >

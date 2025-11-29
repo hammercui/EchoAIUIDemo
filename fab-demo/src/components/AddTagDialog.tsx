@@ -118,13 +118,13 @@ export const AddTagDialog = ({ isOpen, onClose, onConfirm, currentTags = [] as a
               onChange={(e) => setInputValue(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="输入新标签名称后按回车"
-              className="flex-1 px-3 py-2 text-sm border border-input rounded-lg bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring/20 focus:border-ring hover:border-muted-foreground transition-all duration-150"
+              className="w-[63%] px-3 py-2 text-sm border border-input rounded-lg bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring/20 focus:border-ring hover:border-muted-foreground transition-all duration-150"
             />
             <Button
               size="sm"
               onClick={handleAddNewTag}
               isDisabled={!canAddInput()}
-              className="bg-accent text-white hover:bg-accent/90"
+              className="flex-1 bg-primary-500 text-white hover:bg-primary-400"
             >
               添加
             </Button>
@@ -145,8 +145,8 @@ export const AddTagDialog = ({ isOpen, onClose, onConfirm, currentTags = [] as a
                     key={tag}
                     onClick={() => toggleCandidateTag(tag)}
                     className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-150 flex items-center gap-1 ${isSelected
-                      ? 'bg-accent text-white border-accent shadow-sm'
-                      : 'bg-transparent border border-border text-foreground hover:border-accent/60 hover:text-accent'
+                      ? 'bg-primary-500 text-white border-primary-500 shadow-sm'
+                      : 'bg-transparent border border-border text-foreground hover:border-primary-500/60 hover:text-primary-500'
                       }`}
                   >
                     {isSelected && <Check className="w-3 h-3" />}
@@ -196,7 +196,7 @@ export const AddTagDialog = ({ isOpen, onClose, onConfirm, currentTags = [] as a
         <div className="text-xs text-muted-foreground">
           {selectedTags.length > 0 ? (
             <>
-              已选择 <span className="font-semibold text-accent">{selectedTags.length}</span> 个标签
+              已选择 <span className="font-semibold text-primary-500">{selectedTags.length}</span> 个标签
             </>
           ) : (
             '请选择或新建标签'
@@ -212,7 +212,7 @@ export const AddTagDialog = ({ isOpen, onClose, onConfirm, currentTags = [] as a
             取消
           </Button>
           <Button
-            className="bg-primary-gradient text-white"
+            className="bg-primary-500 text-white"
             size="sm"
             onClick={handleConfirm}
             isDisabled={selectedTags.length === 0}

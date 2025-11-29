@@ -195,12 +195,12 @@ const PromptPanel = ({
   const hasQuery = (searchMode === 'prompt' && promptQuery) || (searchMode === 'tag' && selectedTags.length > 0);
 
   return (
-    <div className="flex flex-col h-full max-h-[80vh] min-h-[300px] bg-background rounded-xl shadow-lg border border-border overflow-hidden font-sans text-foreground">
+    <div className="flex flex-col h-full max-h-[80vh] min-h-[300px] bg-background-50 rounded-gemini-lg shadow-gemini-lg border border-background-100 overflow-hidden font-gemini text-primary-500">
       {/* Header */}
       <PromptListHeader />
 
       {/* 搜索栏 */}
-      <div className="px-6 py-4 border-b border-border bg-background">
+      <div className="px-6 py-4 border-b border-background-100 bg-background-50">
         <SearchBar
           ref={searchInputRef}
           mode={searchMode}

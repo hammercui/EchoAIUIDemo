@@ -42,6 +42,57 @@
     --card-foreground: 0, 0, 0;
 
     --radius: 0.75rem; /* 12px for cards */
+
+    /* =========================================
+       GEMINI DESIGN TOKENS (Supplement)
+       基于 StyleGuide.md & gemini_produce.css
+       ========================================= */
+
+    /* 颜色系统 - 黑色/灰色主调 */
+    --color-primary-500: rgba(0, 0, 0, 0.96);
+    --color-primary-400: rgba(0, 0, 0, 0.8);
+    --color-primary-300: rgba(10, 13, 51, 0.6);
+    --color-primary-200: rgba(10, 13, 51, 0.45);
+    
+    /* 品牌色与辅助色 */
+    --color-secondary-500: rgb(97, 40, 255); /* Sider 品牌紫 */
+    --color-secondary-aux-from: hsl(262, 83%, 58%); /* 辅助文字渐变色 */
+    --color-secondary-aux-to: hsl(262, 83%, 68%); /* 辅助文字渐变色 */
+    --color-secondary-bg: rgb(214, 218, 255);
+    --color-accent-500: #10B981;
+    
+    /* 背景色 */
+    --color-background-50: #FFFFFF;
+    --color-background-100: rgb(229, 231, 235);
+    --color-background-sub: #FAFAFA; /* 子版本背景 */
+    
+    /* 状态色 */
+    --color-success-500: #22C55E;
+    --color-warning-500: #F59E0B;
+
+    /* 间距系统 (DesignGuide 4px 基准) */
+    --space-1: 4px;
+    --space-2: 6px;
+    --space-3: 8px;
+    --space-4: 12px;
+    --space-5: 16px;
+    --space-6: 20px;
+    --space-7: 24px;
+    --space-8: 32px;
+    --space-9: 48px;
+
+    /* 字体系统 */
+    --font-family-gemini: "D-DIN Exp", "DM Sans", Arial, "Microsoft YaHei", sans-serif;
+    
+    /* 阴影与圆角 */
+    --shadow-sm-gemini: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md-gemini: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg-gemini: 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-selected-gemini: 0 10px 25px -5px rgba(97, 40, 255, 0.15);
+
+    --radius-md-gemini: 8px;
+    --radius-lg-gemini: 12px;
+    --radius-full-gemini: 9999px;
   }
 }
 

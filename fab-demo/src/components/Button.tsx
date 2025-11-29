@@ -45,7 +45,7 @@ const Button = forwardRef<any, any>(({
   const [ripples, setRipples] = useState<any[]>([]);
 
   // 基础样式
-  const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-150 cursor-pointer border-0 outline-none select-none';
+  const baseStyles = 'inline-flex items-center justify-center font-gemini font-semibold transition-all duration-150 cursor-pointer border-0 outline-none select-none';
 
   // 尺寸样式
   const sizeStyles = {
@@ -58,9 +58,9 @@ const Button = forwardRef<any, any>(({
   const radiusStyles = {
     none: 'rounded-none',
     sm: 'rounded-sm',
-    md: 'rounded-lg',
-    lg: 'rounded-xl',
-    full: 'rounded-full'
+    md: 'rounded-gemini-md',
+    lg: 'rounded-gemini-lg',
+    full: 'rounded-gemini-full'
   };
 
   // 颜色和变体组合样式
@@ -68,62 +68,56 @@ const Button = forwardRef<any, any>(({
     const styles = {
       // Solid 变体
       solid: {
-        default: 'bg-foreground text-background hover:bg-foreground/90 active:scale-[0.97]',
-        primary: 'bg-primary-gradient text-white shadow-sm hover:shadow-md active:scale-[0.97]',
-        secondary: 'bg-secondary text-white hover:bg-secondary/90 active:scale-[0.97]',
-        success: 'bg-green-500 text-white hover:bg-green-600 active:scale-[0.97]',
-        warning: 'bg-yellow-500 text-white hover:bg-yellow-600 active:scale-[0.97]',
+        default: 'bg-primary-500 text-white hover:bg-primary-400 active:scale-[0.97]',
+        primary: 'bg-secondary-500 text-white shadow-gemini-sm hover:shadow-gemini-md active:scale-[0.97]',
+        secondary: 'bg-white text-primary-500 border border-background-100 hover:bg-background-sub active:scale-[0.97]',
+        success: 'bg-success-500 text-white hover:bg-success-500/90 active:scale-[0.97]',
+        warning: 'bg-warning-500 text-white hover:bg-warning-500/90 active:scale-[0.97]',
         danger: 'bg-red-500 text-white hover:bg-red-600 active:scale-[0.97]'
       },
       // Bordered 变体
       bordered: {
-        default: 'bg-transparent border border-border text-foreground hover:bg-muted active:scale-[0.97]',
-        primary: 'bg-transparent border border-accent text-accent hover:bg-accent/10 active:scale-[0.97]',
-        secondary: 'bg-transparent border border-secondary text-secondary hover:bg-secondary/10 active:scale-[0.97]',
-        success: 'bg-transparent border border-green-500 text-green-600 hover:bg-green-50 active:scale-[0.97]',
-        warning: 'bg-transparent border border-yellow-500 text-yellow-600 hover:bg-yellow-50 active:scale-[0.97]',
-        danger: 'bg-transparent border border-red-500 text-red-600 hover:bg-red-50 active:scale-[0.97]'
+        default: 'bg-transparent border border-background-100 text-primary-500 hover:bg-background-sub active:scale-[0.97]',
+        primary: 'bg-transparent border border-secondary-500 text-secondary-500 hover:bg-secondary-500/10 active:scale-[0.97]',
+        secondary: 'bg-transparent border border-primary-200 text-primary-300 hover:bg-primary-200/10 active:scale-[0.97]',
+        success: 'bg-transparent border border-success-500 text-success-500 hover:bg-success-500/10 active:scale-[0.97]',
+        warning: 'bg-transparent border border-warning-500 text-warning-500 hover:bg-warning-500/10 active:scale-[0.97]',
+        danger: 'bg-transparent border border-red-500 text-red-500 hover:bg-red-50 active:scale-[0.97]'
       },
       // Light 变体
       light: {
-        default: 'bg-transparent text-foreground hover:bg-muted active:scale-[0.97]',
-        primary: 'bg-transparent text-ring hover:bg-ring/10 active:scale-[0.97]',
-        secondary: 'bg-transparent text-secondary hover:bg-secondary/10 active:scale-[0.97]',
-        success: 'bg-transparent text-green-600 hover:bg-green-50 active:scale-[0.97]',
-        warning: 'bg-transparent text-yellow-600 hover:bg-yellow-50 active:scale-[0.97]',
-        danger: 'bg-transparent text-red-600 hover:bg-red-50 active:scale-[0.97]'
+        default: 'bg-transparent text-primary-500 hover:bg-background-100 active:scale-[0.97]',
+        primary: 'bg-transparent text-secondary-500 hover:bg-secondary-500/10 active:scale-[0.97]',
+        secondary: 'bg-transparent text-primary-300 hover:bg-primary-200/20 active:scale-[0.97]',
+        success: 'bg-transparent text-success-500 hover:bg-success-500/10 active:scale-[0.97]',
+        warning: 'bg-transparent text-warning-500 hover:bg-warning-500/10 active:scale-[0.97]',
+        danger: 'bg-transparent text-red-500 hover:bg-red-50 active:scale-[0.97]'
       },
       // Flat 变体
       flat: {
-        default: 'bg-muted text-foreground hover:bg-muted/70 active:scale-[0.97]',
-        primary: 'bg-ring/10 text-ring hover:bg-ring/20 active:scale-[0.97]',
-        secondary: 'bg-secondary/10 text-secondary hover:bg-secondary/20 active:scale-[0.97]',
-        success: 'bg-green-50 text-green-600 hover:bg-green-100 active:scale-[0.97]',
-        warning: 'bg-yellow-50 text-yellow-600 hover:bg-yellow-100 active:scale-[0.97]',
+        default: 'bg-background-100 text-primary-500 hover:bg-background-100/70 active:scale-[0.97]',
+        primary: 'bg-secondary-500/10 text-secondary-500 hover:bg-secondary-500/20 active:scale-[0.97]',
+        secondary: 'bg-primary-200/10 text-primary-300 hover:bg-primary-200/20 active:scale-[0.97]',
+        success: 'bg-success-500/10 text-success-500 hover:bg-success-500/20 active:scale-[0.97]',
+        warning: 'bg-warning-500/10 text-warning-500 hover:bg-warning-500/20 active:scale-[0.97]',
         danger: 'bg-red-50 text-red-600 hover:bg-red-100 active:scale-[0.97]'
       },
       // Ghost 变体
       ghost: {
-        default: 'bg-transparent border border-border text-foreground hover:bg-foreground hover:text-background active:scale-[0.97]',
-        primary: 'bg-transparent border border-ring text-ring hover:bg-primary-gradient hover:text-white hover:border-transparent active:scale-[0.97]',
-        secondary: 'bg-transparent border border-secondary text-secondary hover:bg-secondary hover:text-white active:scale-[0.97]',
-        success: 'bg-transparent border border-green-500 text-green-600 hover:bg-green-500 hover:text-white active:scale-[0.97]',
-        warning: 'bg-transparent border border-yellow-500 text-yellow-600 hover:bg-yellow-500 hover:text-white active:scale-[0.97]',
-        danger: 'bg-transparent border border-red-500 text-red-600 hover:bg-red-500 hover:text-white active:scale-[0.97]'
+        default: 'bg-transparent border border-background-100 text-primary-500 hover:bg-primary-500 hover:text-white active:scale-[0.97]',
+        primary: 'bg-transparent border border-secondary-500 text-secondary-500 hover:bg-secondary-500 hover:text-white hover:border-transparent active:scale-[0.97]',
+        secondary: 'bg-transparent border border-primary-200 text-primary-300 hover:bg-primary-300 hover:text-white active:scale-[0.97]',
+        success: 'bg-transparent border border-success-500 text-success-500 hover:bg-success-500 hover:text-white active:scale-[0.97]',
+        warning: 'bg-transparent border border-warning-500 text-warning-500 hover:bg-warning-500 hover:text-white active:scale-[0.97]',
+        danger: 'bg-transparent border border-red-500 text-red-500 hover:bg-red-500 hover:text-white active:scale-[0.97]'
       }
     };
 
     return styles[variant]?.[color] || styles.solid.default;
   };
 
-  // Primary 颜色的渐变背景（仅 solid 变体）
+  // Primary 颜色的渐变背景 - 禁用，设计规范禁止紫色渐变
   const getPrimaryGradient = () => {
-    if (variant === 'solid' && color === 'primary') {
-      return {};  // 使用 CSS 类 bg-primary-gradient
-    }
-    if (variant === 'ghost' && color === 'primary') {
-      return {};  // 使用 CSS 类处理
-    }
     return {};
   };
 

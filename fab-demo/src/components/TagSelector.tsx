@@ -52,7 +52,7 @@ const TagSelector = ({
                   radius="full"
                   variant="bordered"
                   onClick={() => onTagSelect(tag)}
-                  className="bg-muted/50 hover:bg-muted hover:border-[hsl(262,83%,58%)] hover:text-[hsl(262,83%,58%)]"
+                  className="bg-muted/50 hover:bg-muted hover:border-accent hover:text-accent"
                 >
                   {tag}
                 </Button>
@@ -82,7 +82,7 @@ const TagSelector = ({
             {selectedTags.map((tag, index) => (
               <div
                 key={index}
-                className="h-7 px-3 flex items-center gap-2 text-xs font-medium rounded-full transition-all duration-150 text-white shadow-sm bg-primary-gradient"
+                className="h-7 px-3 flex items-center gap-2 text-xs font-medium rounded-full transition-all duration-150 text-white shadow-sm bg-primary-500"
               >
                 <span>{tag}</span>
                 <Button

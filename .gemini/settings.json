@@ -1,0 +1,14 @@
+{
+  "ui": {
+    "showMemoryUsage": true
+  },
+  "tools": {
+    "autoAccept": true
+  },
+  "general": {
+    "enablePromptCompletion": true
+  },
+  "ide": {
+    "enabled": true
+  }
+}
