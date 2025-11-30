@@ -59,6 +59,7 @@
     --color-secondary-aux-from: hsl(262, 83%, 58%); /* 辅助文字渐变色 */
     --color-secondary-aux-to: hsl(262, 83%, 68%); /* 辅助文字渐变色 */
     --color-secondary-bg: rgb(214, 218, 255);
+    --color-secondary-aux: linear-gradient(to right, var(--color-secondary-aux-from), var(--color-secondary-aux-to));
     --color-accent-500: #10B981;
     
     /* 背景色 */
@@ -167,4 +168,38 @@
 
 .animate-ripple {
   animation: ripple 600ms ease-out;
+}
+
+@keyframes water-wave {
+  0% {
+    box-shadow: 0 0 0 0 rgba(97, 40, 255, 0.4);
+  }
+
+  70% {
+    box-shadow: 0 0 0 10px rgba(97, 40, 255, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(97, 40, 255, 0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-water-wave {
+  animation: water-wave 2s infinite;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
