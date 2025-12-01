@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { TimelineNode } from './TimelineNode';
 import { CandidatePanel } from './CandidatePanel';
 import type { VersionData } from './types';
-import './styles.css';
+
 
 // Mock Data
 const MOCK_DATA: VersionData[] = [

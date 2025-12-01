@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles.css';
+
 
 interface CandidatePanelProps {
     isOpen: boolean;

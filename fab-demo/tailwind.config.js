@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: ["class"],
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -8,72 +9,78 @@ export default {
     "./src/components/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
+    },
     extend: {
       colors: {
-        // shadcn/ui 基础颜色系统 (来源: shadcn/ui 默认配置)
-        border: "rgba(var(--border), <alpha-value>)", // 边框色
-        input: "rgba(var(--input), <alpha-value>)", // 输入框边框色
-        ring: "rgba(var(--ring), <alpha-value>)", // 聚焦环颜色
-        background: "rgba(var(--background), <alpha-value>)", // 页面背景色
-        foreground: "rgba(var(--foreground), <alpha-value>)", // 前景文字色
+        /* --------------------------------------------------------------------------
+           Shadcn UI 基础映射
+           -------------------------------------------------------------------------- */
+        border: "rgba(var(--border), <alpha-value>)", 
+        input: "rgba(var(--input), <alpha-value>)", 
+        ring: "rgba(var(--ring), <alpha-value>)", 
+        background: "rgba(var(--background), <alpha-value>)", 
+        foreground: "rgba(var(--foreground), <alpha-value>)", 
         
-        // shadcn/ui 主要颜色
         primary: {
-          DEFAULT: "rgba(var(--primary), <alpha-value>)", // 主色调
-          foreground: "rgba(var(--primary-foreground), <alpha-value>)", // 主色调上的文字色
+          DEFAULT: "rgba(var(--primary), <alpha-value>)", 
+          foreground: "rgba(var(--primary-foreground), <alpha-value>)", 
         },
-        
-        // shadcn/ui 次要颜色
         secondary: {
-          DEFAULT: "rgba(var(--secondary), <alpha-value>)", // 次要色
-          foreground: "rgba(var(--secondary-foreground), <alpha-value>)", // 次要色上的文字色
+          DEFAULT: "rgba(var(--secondary), <alpha-value>)", 
+          foreground: "rgba(var(--secondary-foreground), <alpha-value>)", 
         },
-        
-        // shadcn/ui 危险/删除颜色
         destructive: {
-          DEFAULT: "rgba(var(--destructive), <alpha-value>)", // 危险操作色
-          foreground: "rgba(var(--destructive-foreground), <alpha-value>)", // 危险操作文字色
+          DEFAULT: "rgba(var(--destructive), <alpha-value>)", 
+          foreground: "rgba(var(--destructive-foreground), <alpha-value>)", 
         },
-        
-        // shadcn/ui 弱化颜色
         muted: {
-          DEFAULT: "rgba(var(--muted), <alpha-value>)", // 弱化背景色
-          foreground: "rgba(var(--muted-foreground), <alpha-value>)", // 弱化文字色
+          DEFAULT: "rgba(var(--muted), <alpha-value>)", 
+          foreground: "rgba(var(--muted-foreground), <alpha-value>)", 
         },
-        
-        // shadcn/ui 强调颜色
         accent: {
-          DEFAULT: "rgba(var(--accent), <alpha-value>)", // 强调色
-          foreground: "rgba(var(--accent-foreground), <alpha-value>)", // 强调色上的文字色
+          DEFAULT: "rgba(var(--accent), <alpha-value>)", 
+          foreground: "rgba(var(--accent-foreground), <alpha-value>)", 
         },
-        
-        // shadcn/ui 弹出层颜色
         popover: {
-          DEFAULT: "rgba(var(--popover), <alpha-value>)", // 弹出层背景色
-          foreground: "rgba(var(--popover-foreground), <alpha-value>)", // 弹出层文字色
+          DEFAULT: "rgba(var(--popover), <alpha-value>)", 
+          foreground: "rgba(var(--popover-foreground), <alpha-value>)", 
         },
-        
-        // shadcn/ui 卡片颜色
         card: {
-          DEFAULT: "rgba(var(--card), <alpha-value>)", // 卡片背景色
-          foreground: "rgba(var(--card-foreground), <alpha-value>)", // 卡片文字色
+          DEFAULT: "rgba(var(--card), <alpha-value>)", 
+          foreground: "rgba(var(--card-foreground), <alpha-value>)", 
         },
-        // Gemini Tokens - Colors
+
+        /* --------------------------------------------------------------------------
+           Gemini 扩展颜色系统映射
+           -------------------------------------------------------------------------- */
         'primary-500': 'var(--color-primary-500)',
         'primary-400': 'var(--color-primary-400)',
         'primary-300': 'var(--color-primary-300)',
         'primary-200': 'var(--color-primary-200)',
+        
         'secondary-500': 'var(--color-secondary-500)',
         'secondary-aux': 'var(--color-secondary-aux)',
         'secondary-bg': 'var(--color-secondary-bg)',
+        
         'accent-500': 'var(--color-accent-500)',
+        
         'background-50': 'var(--color-background-50)',
         'background-100': 'var(--color-background-100)',
         'background-sub': 'var(--color-background-sub)',
+        
         'success-500': 'var(--color-success-500)',
         'warning-500': 'var(--color-warning-500)',
       },
       spacing: {
+        /* --------------------------------------------------------------------------
+           Gemini 间距系统
+           -------------------------------------------------------------------------- */
         'space-1': 'var(--space-1)',
         'space-2': 'var(--space-2)',
         'space-3': 'var(--space-3)',
@@ -85,6 +92,9 @@ export default {
         'space-9': 'var(--space-9)',
       },
       fontFamily: {
+        /* --------------------------------------------------------------------------
+           字体配置
+           -------------------------------------------------------------------------- */
         sans: ['"D-DIN Exp"', '"DM Sans"', 'Arial', '"Microsoft YaHei"', 'sans-serif'],
         primary: ['"D-DIN Exp"', '"DM Sans"', 'Arial', 'sans-serif'],
         gemini: ['var(--font-family-gemini)'],
@@ -99,24 +109,27 @@ export default {
         '3xl': ['48px', { lineHeight: '54px' }],
       },
       borderRadius: {
-        none: '0',
-        sm: '2px',
-        DEFAULT: '4px',
-        md: '6px',
-        lg: '8px',
-        xl: '12px',
-        '2xl': '16px',
-        full: '9999px',
+        /* --------------------------------------------------------------------------
+           圆角配置
+           -------------------------------------------------------------------------- */
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+        
         // Gemini Tokens
         'gemini-md': 'var(--radius-md-gemini)',
         'gemini-lg': 'var(--radius-lg-gemini)',
         'gemini-full': 'var(--radius-full-gemini)',
       },
       boxShadow: {
+        /* --------------------------------------------------------------------------
+           阴影配置
+           -------------------------------------------------------------------------- */
         'sm': '0 1px 2px rgba(0, 0, 0, 0.05)',
         DEFAULT: '0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06)',
         'md': '0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.06)',
         'lg': '0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05)',
+        
         // Gemini Tokens
         'gemini-sm': 'var(--shadow-sm-gemini)',
         'gemini-md': 'var(--shadow-md-gemini)',
@@ -128,11 +141,19 @@ export default {
         'normal': '200ms',
         'slow': '300ms',
       },
-      transitionTimingFunction: {
-        DEFAULT: 'ease',
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
       },
-      backgroundImage: {
-        'primary-gradient': 'linear-gradient(135deg, rgb(97, 40, 255), rgb(80, 30, 220))',
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
   },

@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ==========================================================================
+       DESIGN TOKENS (设计令牌)
+       包含颜色、间距、字体、圆角、阴影等核心变量
+       ========================================================================== */
+
+    /* --------------------------------------------------------------------------
+       Shadcn UI 基础系统
+       用于组件库的基础语义化颜色
+       -------------------------------------------------------------------------- */
+    /* 背景色 (Background) - rgb(255, 255, 255) */
+    --background: 255, 255, 255;
+    /* 前景色/文本色 (Foreground) - rgba(0, 0, 0, 0.96) */
+    --foreground: 0, 0, 0;
+
+    /* 卡片 (Card) */
+    --card: 255, 255, 255;
+    --card-foreground: 0, 0, 0;
+
+    /* 弹出层 (Popover) */
+    --popover: 255, 255, 255;
+    --popover-foreground: 0, 0, 0;
+
+    /* 主色 (Primary) - 按钮等 */
+    --primary: 0, 0, 0;
+    --primary-foreground: 255, 255, 255;
+
+    /* 次要色 (Secondary) */
+    --secondary: 255, 255, 255;
+    --secondary-foreground: 0, 0, 0;
+
+    /* 强调/弱化色 (Muted) - Surface rgb(229, 231, 235) */
+    --muted: 229, 231, 235;
+    --muted-foreground: 10, 13, 51; /* Base: 10, 13, 51 */
+
+    /* 品牌强调色 (Accent) - Brand rgb(97, 40, 255) */
+    --accent: 97, 40, 255;
+    --accent-foreground: 255, 255, 255;
+
+    /* 破坏性/危险色 (Destructive) */
+    --destructive: 239, 68, 68;
+    --destructive-foreground: 255, 255, 255;
+
+    /* 边框与输入框 (Border & Input) */
+    --border: 229, 231, 235;
+    --input: 229, 231, 235;
+    --ring: 97, 40, 255;
+
+    /* 基础圆角 (Radius) - 12px for cards */
+    --radius: 0.75rem;
+
+
+    /* --------------------------------------------------------------------------
+       Gemini 扩展颜色系统 (Extended Color System)
+       基于 StyleGuide.md & gemini_produce.css
+       -------------------------------------------------------------------------- */
+    
+    /* 黑色/灰色主调 (Primary Grayscale) */
+    --color-primary-500: rgba(0, 0, 0, 0.96);
+    --color-primary-400: rgba(0, 0, 0, 0.8);
+    --color-primary-300: rgba(10, 13, 51, 0.6);
+    --color-primary-200: rgba(10, 13, 51, 0.45);
+    
+    /* 品牌色与辅助色 (Brand & Auxiliary) */
+    --color-secondary-500: rgb(97, 40, 255); /* Sider 品牌紫 */
+    --color-secondary-aux-from: hsl(262, 83%, 58%);
+    --color-secondary-aux-to: hsl(262, 83%, 68%);
+    --color-secondary-bg: rgb(214, 218, 255);
+    --color-secondary-aux: linear-gradient(to right, var(--color-secondary-aux-from), var(--color-secondary-aux-to));
+    --color-accent-500: #10B981;
+    
+    /* 背景色系列 (Backgrounds) */
+    --color-background-50: #FFFFFF;
+    --color-background-100: rgb(229, 231, 235);
+    --color-background-sub: #FAFAFA; /* 子版本背景 */
+    
+    /* 状态色 (Status) */
+    --color-success-500: #22C55E;
+    --color-warning-500: #F59E0B;
+
+
+    /* --------------------------------------------------------------------------
+       布局与排版 (Layout & Typography)
+       -------------------------------------------------------------------------- */
+    
+    /* 间距系统 (Spacing) - DesignGuide 4px 基准 */
+    --space-1: 4px;
+    --space-2: 6px;
+    --space-3: 8px;
+    --space-4: 12px;
+    --space-5: 16px;
+    --space-6: 20px;
+    --space-7: 24px;
+    --space-8: 32px;
+    --space-9: 48px;
+
+    /* 字体 (Fonts) */
+    --font-family-gemini: "D-DIN Exp", "DM Sans", Arial, "Microsoft YaHei", sans-serif;
+    --font-family: var(--font-family-gemini); /* Alias */
+
+    /* 阴影 (Shadows) */
+    --shadow-sm-gemini: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md-gemini: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg-gemini: 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-selected-gemini: 0 10px 25px -5px rgba(97, 40, 255, 0.15);
+    
+    /* Aliases for VersionManager compatibility */
+    --shadow-sm: var(--shadow-sm-gemini);
+    --shadow-md: var(--shadow-md-gemini);
+    --shadow-lg: var(--shadow-lg-gemini);
+    --shadow-selected: var(--shadow-selected-gemini);
+
+    /* 圆角 (Radius) */
+    --radius-md-gemini: 8px;
+    --radius-lg-gemini: 12px;
+    --radius-full-gemini: 9999px;
+
+    /* Aliases for VersionManager compatibility */
+    --radius-md: var(--radius-md-gemini);
+    --radius-lg: var(--radius-lg-gemini);
+    --radius-full: var(--radius-full-gemini);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-family-gemini);
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}
+
+@layer utilities {
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* 品牌渐变背景 */
+  .bg-primary-gradient {
+    background: linear-gradient(135deg, rgb(97, 40, 255), rgb(80, 30, 220));
+  }
+  
+  /* 字体粗细工具类 */
+  .font-thin { font-weight: 100; }
+  .font-light { font-weight: 300; }
+  .font-normal { font-weight: 400; }
+  .font-medium { font-weight: 500; }
+  .font-semibold { font-weight: 600; }
+  .font-bold { font-weight: 700; }
+  .font-extrabold { font-weight: 800; }
+}
+
+/* --------------------------------------------------------------------------
+   全局动画与滚动条 (Global Animations & Scrollbar)
+   -------------------------------------------------------------------------- */
+
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(var(--muted), 1);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(var(--border), 1);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(var(--muted-foreground), 0.6);
+}
+
+@keyframes ripple {
+  0% { transform: scale(0); opacity: 0.35; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+.animate-ripple {
+  animation: ripple 600ms ease-out;
+}
+
+@keyframes water-wave {
+  0% { box-shadow: 0 0 0 0 rgba(97, 40, 255, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(97, 40, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(97, 40, 255, 0); }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.animate-water-wave {
+  animation: water-wave 2s infinite;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --------------------------------------------------------------------------
+   组件样式 (Component Styles)
+   已迁移至 src/styles/components.css
+   -------------------------------------------------------------------------- */
+

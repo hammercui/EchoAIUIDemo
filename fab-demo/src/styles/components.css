@@ -1,0 +1,223 @@
+/* --------------------------------------------------------------------------
+   组件样式 (Component Styles)
+   迁移自 VersionManager/styles.css
+   -------------------------------------------------------------------------- */
+@layer components {
+  /* Core Layout (Split View) */
+  .app-container {
+    @apply flex font-sans bg-background-50 text-primary-500 overflow-hidden;
+  }
+
+  /* Left: Timeline Area */
+  .timeline-area {
+    @apply flex-1 flex flex-col items-center overflow-y-auto relative p-8 px-4 transition-all duration-300 bg-background-50;
+  }
+
+  /* Right: Candidate Panel */
+  .candidate-panel {
+    @apply w-[380px] flex flex-col p-6 z-10 bg-white border-l border-background-100 animate-slide-in-right;
+  }
+
+  /* Timeline Component Styles */
+  .btn-add-version {
+    @apply sticky top-0 z-20 bg-primary-500 text-white py-3 px-6 rounded-full font-semibold text-sm flex items-center gap-2 shadow-md mb-12 transition-all duration-200;
+  }
+  .btn-add-version:hover {
+    @apply -translate-y-0.5 bg-primary-400;
+  }
+
+  .timeline-track {
+    @apply relative w-full max-w-[900px] py-4 mx-auto;
+  }
+  .timeline-track::before {
+    content: '';
+    @apply absolute left-1/2 top-0 bottom-0 w-0.5 bg-background-100 -translate-x-1/2 z-0;
+  }
+
+  .timeline-node {
+    @apply flex justify-center relative mb-12 w-full;
+  }
+
+  .node-dot {
+    @apply w-4 h-4 bg-background-50 border-2 border-primary-300 rounded-full absolute left-1/2 top-[28px] -translate-x-1/2 z-[2] transition-all duration-300 cursor-pointer;
+  }
+
+  .node-connector {
+    @apply absolute h-0.5 bg-background-100 top-[35px] w-[60px] z-[1];
+  }
+
+  .content-wrapper {
+    @apply w-[42%] relative flex flex-col;
+  }
+
+  .version-card {
+    @apply w-full bg-background-50 border border-background-100 rounded-lg p-5 shadow-sm transition-all duration-300 cursor-grab relative z-[2];
+  }
+  .version-card:hover {
+    @apply shadow-md border-primary-200 -translate-y-0.5;
+  }
+
+  /* Zigzag Layout Logic */
+  .timeline-node.right .content-wrapper {
+    margin-left: auto;
+  }
+  .timeline-node.right .node-connector {
+    left: 50%;
+  }
+
+  .timeline-node.left .content-wrapper {
+    margin-right: auto;
+  }
+  .timeline-node.left .node-connector {
+    right: 50%;
+  }
+
+  /* Sub-Version Design */
+  .sub-version-group {
+    @apply mt-4 flex flex-col gap-3 relative pl-8;
+  }
+  .sub-version-group::before {
+    content: '';
+    @apply absolute top-[-12px] left-[12px] bottom-[24px] w-0 border-l-2 border-dashed border-background-100;
+  }
+
+  .sub-card {
+    @apply relative bg-background-sub border border-background-100 rounded-md py-3 px-4 text-[13px] text-primary-300 transition-all duration-200 cursor-pointer;
+  }
+  .sub-card:hover {
+    @apply border-primary-300 bg-white shadow-sm;
+  }
+  .sub-card::before {
+    content: '';
+    @apply absolute -left-5 top-1/2 w-5 h-0 border-t-2 border-dashed border-background-100;
+  }
+
+  /* Selected State */
+  .timeline-node.selected .node-dot {
+    @apply bg-secondary-500 border-secondary-500 animate-water-wave;
+    box-shadow: 0 0 0 4px rgba(97, 40, 255, 0.2);
+  }
+  .timeline-node.selected .version-card {
+    @apply border-secondary-500 shadow-selected;
+  }
+  .timeline-node.selected > .node-connector {
+    @apply bg-secondary-500;
+  }
+
+  /* Candidate Panel Components */
+  .panel-header {
+    @apply flex justify-between items-center mb-6;
+  }
+  .panel-title {
+    @apply font-bold text-lg text-primary-500;
+    font-family: var(--font-family-gemini);
+  }
+  .btn-close {
+    @apply text-primary-200 text-2xl leading-none p-1 rounded hover:bg-background-100 hover:text-primary-400;
+  }
+
+  .search-box {
+    @apply relative mb-5;
+  }
+  .search-input {
+    @apply w-full py-3 px-4 pl-9 border border-background-100 rounded-md bg-background-sub text-sm outline-none transition-all duration-200 focus:border-secondary-500 focus:bg-white;
+  }
+  .search-icon {
+    @apply absolute left-3 top-1/2 -translate-y-1/2 text-primary-200 text-sm;
+  }
+
+  .filter-section {
+    @apply mb-6;
+  }
+  .filter-label {
+    @apply text-[11px] font-bold text-primary-200 mb-3 block tracking-wide;
+  }
+  .filter-tags {
+    @apply flex flex-wrap gap-2;
+  }
+  .filter-chip {
+    @apply text-xs py-1 px-2.5 border border-background-100 rounded-full cursor-pointer transition-all duration-200 text-primary-300 hover:border-primary-300;
+  }
+  .filter-chip.active {
+    @apply bg-primary-500 text-white border-primary-500;
+  }
+
+  .candidate-list {
+    @apply flex-grow overflow-y-auto flex flex-col gap-3 pr-1;
+  }
+  .candidate-list::-webkit-scrollbar {
+    width: 4px;
+  }
+  .candidate-list::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded;
+  }
+
+  .candidate-item {
+    @apply p-4 border border-background-100 rounded-md cursor-pointer transition-all duration-200 hover:border-secondary-500 hover:bg-[#F9F9FF];
+  }
+  .candidate-text {
+    @apply text-sm text-primary-400 mb-2 leading-relaxed;
+  }
+  .candidate-meta {
+    @apply text-[11px] text-primary-200 flex justify-between;
+  }
+
+  /* Common Content Styles */
+  .card-header {
+    @apply flex justify-between items-center mb-2;
+  }
+  .version-title {
+    @apply text-base font-bold flex items-center gap-2;
+  }
+  .status-badge {
+    @apply text-[10px] px-1.5 py-0.5 rounded font-semibold uppercase;
+  }
+  .status-badge.dev {
+    @apply bg-background-100 text-primary-300;
+  }
+  .status-badge.live {
+    @apply bg-[#DCFCE7] text-success-500;
+  }
+  
+  .card-body {
+    @apply text-sm text-primary-300 mb-3;
+  }
+  .card-tags {
+    @apply flex gap-2 flex-wrap;
+  }
+  .tag {
+    @apply text-[11px] text-primary-300 bg-background-100 px-2 py-0.5 rounded-md;
+  }
+
+  /* Mobile Adaptation */
+  @media (max-width: 768px) {
+    .app-container {
+      @apply flex-col;
+    }
+    .timeline-area {
+      @apply w-full;
+    }
+    .candidate-panel {
+      @apply w-full h-[50vh] border-l-0 border-t border-background-100 shadow-lg;
+    }
+    .timeline-track::before {
+      left: 24px;
+    }
+    .node-dot {
+      left: 24px;
+    }
+    .content-wrapper {
+      width: calc(100% - 70px);
+    }
+    .timeline-node.left .content-wrapper,
+    .timeline-node.right .content-wrapper {
+      margin-left: 60px;
+      margin-right: 10px;
+    }
+    .node-connector {
+      left: 24px !important;
+      right: auto !important;
+      width: 36px;
+    }
+  }
+}

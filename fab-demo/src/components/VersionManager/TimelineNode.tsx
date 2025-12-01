@@ -1,6 +1,6 @@
 import React from 'react';
 import type { VersionData } from './types';
-import './styles.css';
+
 
 interface TimelineNodeProps {
     data: VersionData;
