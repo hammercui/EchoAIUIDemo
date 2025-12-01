@@ -22,7 +22,7 @@ const FABButton = ({ isOpen, onClick, position }) => {
       aria-label={isOpen ? '关闭面板' : '打开面板'}
     >
       <span
-        className={`text-xl transition-transform duration-[180ms] inline-block ${isOpen ? 'rotate-180' : 'rotate-0'
+        className={`text-xl transition-transform duration-180 inline-block ${isOpen ? 'rotate-180' : 'rotate-0'
           }`}
       >
         {isOpen ? '✕' : '✨'}

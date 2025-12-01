@@ -140,6 +140,7 @@ export default {
         'fast': '150ms',
         'normal': '200ms',
         'slow': '300ms',
+        '180': '180ms',
       },
       keyframes: {
         "accordion-down": {

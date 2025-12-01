@@ -136,7 +136,7 @@ const FABDemo = () => {
 
       {/* 背景遮罩层 */}
       <div
-        className={`fixed inset-0 transition-opacity duration-[180ms] z-[50] ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+        className={`fixed inset-0 transition-opacity duration-180 z-[50] ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
           }`}
         style={{
           background: 'linear-gradient(0deg, #00000080, #00000080), #fff3'
