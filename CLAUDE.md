@@ -14,15 +14,16 @@ rules:
   - 按照单一职能原则，代码应该短小整洁
   - 按照mvp最小可实现原则，只实现功能，不要过度设计，不要过早优化
 
-
 ## Frontend Development Guidelines
 frontend:
   tech_stack:
     - React - 前端框架
+    - TypeScript - 开发语言
     - Tailwind CSS - 样式框架
-    - shadcn/ui - UI组件库 
+    - shadcn/ui (Radix UI) - UI组件库 
     - Vite - 构建工具
     - Framer Motion - 动效库
+    - Lucide React - 图标库
   design_principles:
     - 使用现代、专业的前端设计，避免AI生成的典型特征
     - 禁止使用紫色渐变背景
@@ -45,44 +46,35 @@ frontend:
     - 动画时长控制在0.2-0.6秒之间，保持专业感
 
 ## Project Structure
-快速命令（按子工程）
-- FAB 演示（TS, Vite）
-  - 位置: [fab-demo](fab-demo/)
-  - 安装依赖: cd fab-demo && npm install
-  - 启动开发: npm run dev
-  - 构建生产: npm run build
-  - 预览构建: npm run preview
-  - 查看脚本: [fab-demo/package.json:5-9](fab-demo/package.json#L5-L9)
 
-- Version Timeline 演示（TS, Vite + tsc）
-  - 位置: [version-demo](version-demo/)
-  - 安装依赖: cd version-demo && npm install
-  - 启动开发: npm run dev
-  - 构建生产（包含 TypeScript 编译）: npm run build
-  - 预览构建: npm run preview
-  - 使用文档: [version-demo/USAGE.md](version-demo/USAGE.md)
-  - 查看脚本: [version-demo/package.json:6-9](version-demo/package.json#L6-L9)
+### 核心工程：FAB Demo
+目前项目主要包含一个核心前端工程：`fab-demo`。这是一个基于 React + TypeScript + Vite 的现代前端应用，重点展示 FAB (Floating Action Button) 与复杂面板的交互逻辑。
 
-注意：仓库根目录没有统一的 package.json 来管理多个子包。请在执行 npm 脚本前切换到对应子工程目录。
+#### 快速命令
+- **位置**: `cd fab-demo` (所有 npm 命令需在此目录下执行)
+- **安装依赖**: `npm install`
+- **启动开发**: `npm run dev`
+- **构建生产**: `npm run build` (包含 TypeScript 编译)
+- **预览构建**: `npm run preview`
 
-高层次代码架构（大局观）
-- 这是一个包含多个独立前端示例的仓库，主要两个子工程：
-  1. fab-demo/ —— React + TypeScript + Vite + Tailwind CSS 的演示（以组件化实现 FAB 与面板交互）。关键文件和目录：
-     - src/components/：UI 组件（FABButton、ActionButtons 等）
-     - src/panels/：主要功能面板（PromptPanel, EditPanel, VersionsPanel 等）
-     - src/main.tsx, src/FABDemo.tsx：入口与根组件
-     - tailwind.config.js, postcss.config.js, vite.config.ts：构建与样式配置
-     - mock 数据：src/data/mockData.ts
-     - 包脚本定义见 [fab-demo/package.json:5-9](fab-demo/package.json#L5-L9)
-     - 设计与行为约定（在 [fab-demo/README.md](fab-demo/README.md) 中）：动画时长 150-180ms、面板宽度与间距、shadcn/ui 变量系统等。
+#### 代码架构与关键路径
+- **入口文件**:
+  - `src/main.tsx`: 应用入口
+  - `src/FABDemo.tsx`: 主布局容器
+- **组件结构**:
+  - `src/components/`: 通用 UI 组件
+    - `ui/`: shadcn/ui 基础组件 (Button, Card, Input 等)
+    - 业务组件: `FABButton`, `SearchBar`, `PromptList` 等
+  - `src/panels/`: 功能面板组件 (PromptPanel, EditPanel, VersionsPanel 等)
+  - `src/components/VersionManager/`: 版本管理相关组件
+- **样式与配置**:
+  - `tailwind.config.js`: Tailwind 配置
+  - `src/styles/`: 全局样式 (globals.css) 与组件样式
+- **数据与工具**:
+  - `src/data/mockData.ts`: 模拟数据
+  - `src/lib/utils.ts`: 工具函数 (cn 等)
 
-  2. version-demo/ —— React + TypeScript + Vite 的演示（版本时间线）。关键文件和目录：
-     - src/components/：TypeScript 组件（VersionCard、TimelineNode 等）
-     - src/main.tsx, src/App.tsx：入口与根组件
-     - types/ 与 lib/：类型定义与工具函数
-     - 包脚本定义见 [version-demo/package.json:6-9](version-demo/package.json#L6-L9)
-     - 使用说明见 [version-demo/USAGE.md](version-demo/USAGE.md)
-
-- 共同约定/设计系统
-  - 两个子工程都使用 Vite 与 Tailwind CSS，为快速运行优先使用各自的 dev 脚本。
-  - UI 设计遵循仓库文档中提到的 shadcn/ui 变量系统、统一动画时长/间距等约定（详见各自 README）。
+#### 约定与规范
+- **样式系统**: 遵循 shadcn/ui 的变量系统与 Tailwind CSS 类名。
+- **动画规范**: 使用 Framer Motion，标准动画时长约 150-300ms。
+- **文件命名**: 组件文件使用 PascalCase (如 `FABButton.tsx`)，工具文件使用 camelCase。
