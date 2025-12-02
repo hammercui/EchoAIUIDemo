@@ -1,10 +1,10 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
-import PromptListHeader from '../components/PromptListHeader';
-import SearchBar from '../components/SearchBar';
-import TagSelector from '../components/TagSelector';
-import SortAndPaginationBar from '../components/SortAndPaginationBar';
-import SearchResultBar from '../components/SearchResultBar';
-import PromptList from '../components/PromptList';
+import PromptListHeader from '@/features/PromptLibrary/components/PromptListHeader';
+import SearchBar from '@/features/PromptLibrary/components/SearchBar';
+import TagSelector from '@/features/TagSystem/components/TagSelector';
+import SortAndPaginationBar from '@/features/PromptLibrary/components/SortAndPaginationBar';
+import SearchResultBar from '@/features/PromptLibrary/components/SearchResultBar';
+import PromptList from '@/features/PromptLibrary/components/PromptList';
 
 /**
  * 提示词面板 - 第一段提示词列表主页面

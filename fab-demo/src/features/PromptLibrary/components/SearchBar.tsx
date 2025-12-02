@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import Button from './Button';
+import Button from '@/components/common/LegacyButton';
 
 /**
  * 搜索栏组件 - HeroUI 风格

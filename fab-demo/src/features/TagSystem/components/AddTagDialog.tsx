@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Modal from './Modal';
-import Button from './Button';
+import Modal from '@/components/common/LegacyModal';
+import Button from '@/components/common/LegacyButton';
 import { X, Check } from 'lucide-react';
 
 /**

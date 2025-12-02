@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import FABButton from './components/FABButton';
+import FABButton from '@/components/common/FABButton';
 import PromptPanel from './panels/PromptPanel';
 import EditPanel from './panels/EditPanel';
-import Toast from './components/Toast';
+import Toast from '@/components/common/Toast';
 import { mockPrompts } from './data/mockData';
 
 /**
@@ -19,7 +19,7 @@ import { mockPrompts } from './data/mockData';
  * - 动画时长: 150-180ms
  * - 配色: bg-primary (紫色), bg-muted, text-foreground
  */
-const FABDemo = () => {
+const App = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showEditPanel, setShowEditPanel] = useState(false);
   const [selectedPrompt, setSelectedPrompt] = useState<any>(null);
@@ -203,4 +203,4 @@ const FABDemo = () => {
   );
 };
 
-export default FABDemo;
+export default App;

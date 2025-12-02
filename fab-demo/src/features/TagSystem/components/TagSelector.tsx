@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from './Button';
+import Button from '@/components/common/LegacyButton';
 
 /**
  * 标签选择器组件 - HeroUI 风格

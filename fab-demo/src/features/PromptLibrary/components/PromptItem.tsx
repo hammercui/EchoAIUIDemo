@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Tooltip } from '@heroui/tooltip';
 import { ThumbsUp, ThumbsDown } from 'lucide-react';
-import ActionButtons from './ActionButtons';
-import { AddTagDialog, DeleteTagDialog } from './TagDialog';
-import { SOURCE_ICONS, getSourceName } from './SourceLogos';
+import ActionButtons from '@/components/common/ActionButtons';
+import { AddTagDialog, DeleteTagDialog } from '@/features/TagSystem/components/TagDialog';
+import { SOURCE_ICONS, getSourceName } from '@/components/common/SourceLogos';
 
 /**
  * 提示词卡片组件

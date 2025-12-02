@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Copy, Check } from 'lucide-react';
 import { Tooltip } from '@heroui/tooltip';
-import { SOURCE_ICONS } from '../components/SourceLogos';
+import { SOURCE_ICONS } from '@/components/common/SourceLogos';
 import SingleAnswerView from './SingleAnswerView';
 
 /**

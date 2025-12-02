@@ -8,7 +8,7 @@
  * - DeleteTagDialog.jsx - 删除标签确认对话框
  */
 
-export { default as Modal } from './Modal';
+export { default as Modal } from '@/components/common/LegacyModal';
 export { default as AddTagDialog } from './AddTagDialog';
 export { default as DeleteTagDialog } from './DeleteTagDialog';
 

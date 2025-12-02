@@ -1,5 +1,5 @@
 import React from 'react';
-import { VersionManager } from '../components/VersionManager';
+import { VersionManager } from '@/features/VersionManager';
 
 /**
  * 版本管理面板

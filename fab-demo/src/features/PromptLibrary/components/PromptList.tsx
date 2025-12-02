@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PromptItem from './PromptItem';
-import EmptyState from './EmptyState';
+import EmptyState from '@/components/common/EmptyState';
 import ScrollButton from './ScrollButton';
 
 /**

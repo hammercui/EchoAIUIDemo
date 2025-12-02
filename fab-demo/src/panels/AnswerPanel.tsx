@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Tooltip } from '@heroui/tooltip';
 import { Copy, Check, GitCompare, X } from 'lucide-react';
-import { SOURCE_ICONS, getSourceName } from '../components/SourceLogos';
+import { SOURCE_ICONS, getSourceName } from '@/components/common/SourceLogos';
 import { motion } from 'framer-motion';
-import SingleAnswerView from './SingleAnswerView';
-import CompareAnswerView from './CompareAnswerView';
+import SingleAnswerView from '@/features/AnswerViewer/components/SingleAnswerView';
+import CompareAnswerView from '@/features/AnswerViewer/components/CompareAnswerView';
 
 /**
  * 答案查看面板 - HeroUI 风格

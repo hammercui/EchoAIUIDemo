@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import FABDemo from './FABDemo';
+import App from './App';
 import './styles/globals.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -81,7 +81,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       </div>
 
       {/* FAB Demo 组件 */}
-      <FABDemo />
+      <App />
     </div>
   </React.StrictMode>
 );

@@ -1,6 +1,6 @@
 import React from 'react';
-import SortDropdown from '../components/SortDropdown';
-import Pagination from '../components/Pagination';
+import SortDropdown from './SortDropdown';
+import Pagination from './Pagination';
 
 /**
  * 排序和分页工具栏

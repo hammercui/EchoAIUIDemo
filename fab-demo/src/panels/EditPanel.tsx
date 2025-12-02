@@ -1,9 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Tags, Lightbulb, GitBranch, X } from 'lucide-react';
-import TagsPanel from '../panels/TagsPanel';
-import AnswerPanel from '../panels/AnswerPanel';
-import VersionsPanel from '../panels/VersionsPanel';
+import TagsPanel from './TagsPanel';
+import AnswerPanel from './AnswerPanel';
+import VersionsPanel from './VersionsPanel';
 
 /**
  * 编辑管理面板组件 - HeroUI 风格
