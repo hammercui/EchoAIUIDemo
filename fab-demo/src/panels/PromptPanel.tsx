@@ -1,24 +1,21 @@
-import React, { useState, useMemo, useEffect, useRef } from 'react';
+import React, { useMemo, useEffect, useRef } from 'react';
 import PromptListHeader from '@/features/PromptLibrary/components/PromptListHeader';
 import SearchBar from '@/features/PromptLibrary/components/SearchBar';
 import TagSelector from '@/features/TagSystem/components/TagSelector';
 import SortAndPaginationBar from '@/features/PromptLibrary/components/SortAndPaginationBar';
 import SearchResultBar from '@/features/PromptLibrary/components/SearchResultBar';
 import PromptList from '@/features/PromptLibrary/components/PromptList';
+import { usePromptListStore } from '@/stores/usePromptListStore';
 
 /**
  * 提示词面板 - 第一段提示词列表主页面
  * 
- * 作为 Panel 级别的组件，整合：
- * - Header（Tab页签）
- * - 搜索功能（提示词/标签）
- * - 排序和分页
- * - 提示词列表展示
+ * Refactored with Zustand:
+ * - 搜索、筛选、排序、分页状态已移至 usePromptListStore
+ * - 组件专注于数据计算（过滤/排序逻辑）和渲染
  * 
- * 规范要求:
- * - 面板宽度: 400px
- * - 最大高度: 80vh
- * - 垂直滚动
+ * 注意：虽然数据计算（Filtering/Sorting）也可以放入 Store，
+ * 但为了 keeping Store lean 和利用 React Memoization，这里保留在组件内计算。
  */
 const PromptPanel = ({
   prompts,
@@ -30,26 +27,21 @@ const PromptPanel = ({
   onLike,
   onUpdateTags
 }) => {
+  // 从 Store 获取状态和 Actions
+  const {
+    searchMode, setSearchMode,
+    promptQuery, setPromptQuery,
+    tagQuery, setTagQuery,
+    selectedTags, addSelectedTag, removeSelectedTag, clearSelectedTags,
+    sortBy, setSortBy,
+    currentPage, setCurrentPage, itemsPerPage
+  } = usePromptListStore();
 
-
-  // 搜索状态
-  const [searchMode, setSearchMode] = useState('prompt'); // 'prompt' | 'tag'
-  const [promptQuery, setPromptQuery] = useState('');     // 提示词模式的输入缓存
-  const [tagQuery, setTagQuery] = useState('');           // 标签模式的输入缓存
-  const [selectedTags, setSelectedTags] = useState<any[]>([]);   // 已选标签
-
-  // 排序状态
-  const [sortBy, setSortBy] = useState('newest'); // 'newest' | 'oldest' | 'mostLiked' | 'mostUsed'
-
-  // 分页状态
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
-
-  // Debounce 状态
-  const [debouncedPromptQuery, setDebouncedPromptQuery] = useState('');
+  // Debounce 状态（仍然保留在组件内，因为它是 UI 交互细节）
+  const [debouncedPromptQuery, setDebouncedPromptQuery] = React.useState('');
   const debounceTimerRef = useRef<any>(null);
 
-  // 搜索框引用（用于快捷键聚焦）
+  // 搜索框引用
   const searchInputRef = useRef<any>(null);
 
   // Debounce 提示词搜索（300ms）
@@ -57,11 +49,9 @@ const PromptPanel = ({
     if (debounceTimerRef.current) {
       clearTimeout(debounceTimerRef.current);
     }
-
     debounceTimerRef.current = setTimeout(() => {
       setDebouncedPromptQuery(promptQuery);
     }, 300);
-
     return () => {
       if (debounceTimerRef.current) {
         clearTimeout(debounceTimerRef.current);
@@ -69,16 +59,14 @@ const PromptPanel = ({
     };
   }, [promptQuery]);
 
-  // 快捷键支持：Ctrl/Cmd + F 聚焦搜索框
+  // 快捷键支持
   useEffect(() => {
     const handleKeyDown = (e) => {
-      // Ctrl+F (Windows/Linux) 或 Cmd+F (Mac)
       if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
         e.preventDefault();
         searchInputRef.current?.focus();
       }
     };
-
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
@@ -98,17 +86,15 @@ const PromptPanel = ({
   // 提示词搜索
   const searchPrompts = (prompts, query) => {
     if (!query.trim()) return prompts;
-
     return prompts.filter(prompt =>
       fuzzyMatch(prompt.title, query) ||
       fuzzyMatch(prompt.description, query)
     );
   };
 
-  // 根据已选标签过滤（OR 关系）
+  // 根据已选标签过滤
   const filterByTags = (prompts, selectedTags) => {
     if (selectedTags.length === 0) return prompts;
-
     return prompts.filter(prompt =>
       prompt.tags.some(tag => selectedTags.includes(tag))
     );
@@ -118,13 +104,12 @@ const PromptPanel = ({
   const candidateTags = useMemo(() => {
     if (searchMode !== 'tag') return [];
     if (!tagQuery.trim()) return allTags.slice(0, 10);
-
     return allTags
       .filter(tag => fuzzyMatch(tag, tagQuery))
-      .slice(0, 10); // 最多 10 个
+      .slice(0, 10);
   }, [allTags, tagQuery, searchMode]);
 
-  // 过滤后的提示词列表（使用 debounced query）
+  // 过滤后的提示词列表
   const filteredPrompts = useMemo(() => {
     let result;
     if (searchMode === 'prompt') {
@@ -138,7 +123,6 @@ const PromptPanel = ({
   // 排序后的列表
   const sortedPrompts = useMemo(() => {
     const sorted = [...filteredPrompts];
-
     switch (sortBy) {
       case 'newest':
         sorted.sort((a, b) => b.dateTimestamp - a.dateTimestamp);
@@ -155,7 +139,6 @@ const PromptPanel = ({
       default:
         break;
     }
-
     return sorted;
   }, [filteredPrompts, sortBy]);
 
@@ -168,28 +151,6 @@ const PromptPanel = ({
 
   // 总页数
   const totalPages = Math.ceil(sortedPrompts.length / itemsPerPage);
-
-  // 当过滤条件变化时，重置到第一页
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [searchMode, debouncedPromptQuery, selectedTags, sortBy]);
-
-  // 处理标签选择
-  const handleTagSelect = (tag) => {
-    if (!selectedTags.includes(tag)) {
-      setSelectedTags([...selectedTags, tag]);
-    }
-  };
-
-  // 处理标签移除
-  const handleTagRemove = (tag) => {
-    setSelectedTags(selectedTags.filter(t => t !== tag));
-  };
-
-  // 清空所有标签
-  const handleClearAllTags = () => {
-    setSelectedTags([]);
-  };
 
   // 判断是否有搜索条件
   const hasQuery = (searchMode === 'prompt' && promptQuery) || (searchMode === 'tag' && selectedTags.length > 0);
@@ -218,9 +179,9 @@ const PromptPanel = ({
           <TagSelector
             candidateTags={candidateTags}
             selectedTags={selectedTags}
-            onTagSelect={handleTagSelect}
-            onTagRemove={handleTagRemove}
-            onClearAll={handleClearAllTags}
+            onTagSelect={addSelectedTag}
+            onTagRemove={removeSelectedTag}
+            onClearAll={clearSelectedTags}
           />
         </div>
       )}

@@ -4,18 +4,20 @@ import { Tags, Lightbulb, GitBranch, X } from 'lucide-react';
 import TagsPanel from './TagsPanel';
 import AnswerPanel from './AnswerPanel';
 import VersionsPanel from './VersionsPanel';
+import { useUIStore } from '@/stores/useUIStore';
 
 /**
  * 编辑管理面板组件 - HeroUI 风格
  * 
- * 规范要求:
- * - 面板宽度: 400px
- * - 高度: 80vh
- * - 使用HeroUI Tabs组件
- * - Lucide React图标
+ * Refactored:
+ * - 使用 useUIStore 管理 activeTab
+ * - 仍然接收 prompt 属性（因为这取决于选中状态）
  */
 
-const EditPanel = ({ prompt, activeTab, onTabChange, onClose, onCopy }) => {
+const EditPanel = ({ prompt, onClose, onCopy }) => {
+  // 从 Store 获取状态和 Actions
+  const { activeTab, setActiveTab } = useUIStore();
+
   // Tab 配置
   const tabs = [
     { key: 'answer', label: '答案', icon: Lightbulb },
@@ -27,7 +29,7 @@ const EditPanel = ({ prompt, activeTab, onTabChange, onClose, onCopy }) => {
     <div className="flex flex-col h-[80vh] bg-background rounded-xl overflow-hidden shadow-lg">
       {/* 头部 - Tab导航与关闭按钮同行 */}
       <div className="h-[42px] px-6 border-b border-border flex justify-between items-center bg-muted/30 gap-3">
-        {/* Tab 导航 - 源码实现 HeroUI 风格 + Framer Motion 动效 */}
+        {/* Tab 导航 */}
         <div
           className="relative flex gap-1 p-1 bg-muted rounded-full"
           role="tablist"
@@ -41,7 +43,7 @@ const EditPanel = ({ prompt, activeTab, onTabChange, onClose, onCopy }) => {
                 key={tab.key}
                 role="tab"
                 aria-selected={isSelected}
-                onClick={() => onTabChange(tab.key)}
+                onClick={() => setActiveTab(tab.key)}
                 className={`
                   relative h-7 px-3 rounded-full text-xs font-medium
                   flex items-center gap-1.5
@@ -105,21 +107,6 @@ const EditPanel = ({ prompt, activeTab, onTabChange, onClose, onCopy }) => {
         {activeTab === 'answer' && <AnswerPanel prompt={prompt} onCopy={onCopy} />}
         {activeTab === 'versions' && <VersionsPanel prompt={prompt} />}
       </div>
-
-      {/* 底部操作按钮 */}
-      {/* <div className="p-4 border-t border-border bg-muted/30 flex gap-3">
-        <button 
-          className="flex-1 h-10 px-6 text-sm font-semibold rounded-full transition-all duration-150 text-white border-0 cursor-pointer hover:opacity-90 active:scale-95 shadow-sm"
-          style={{
-            background: 'linear-gradient(135deg, hsl(262, 83%, 58%), hsl(262, 83%, 48%))'
-          }}
-        >
-          保存更改
-        </button>
-        <button className="flex-1 h-10 px-6 text-sm font-semibold rounded-full transition-all duration-150 bg-background text-foreground border border-border cursor-pointer hover:bg-muted active:scale-95">
-          取消
-        </button>
-      </div> */}
     </div>
   );
 };
