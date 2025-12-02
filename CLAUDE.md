@@ -46,7 +46,7 @@ frontend:
 
 ## Project Structure
 快速命令（按子工程）
-- FAB 演示（JS, Vite）
+- FAB 演示（TS, Vite）
   - 位置: [fab-demo](fab-demo/)
   - 安装依赖: cd fab-demo && npm install
   - 启动开发: npm run dev
@@ -67,11 +67,12 @@ frontend:
 
 高层次代码架构（大局观）
 - 这是一个包含多个独立前端示例的仓库，主要两个子工程：
-  1. fab-demo/ —— React + Vite + Tailwind CSS 的 JS 演示（以组件化实现 FAB 与面板交互）。关键文件和目录：
-     - src/components/：UI 组件（FABButton、PromptPanel、EditPanel 等）
-     - src/main.jsx, src/App.jsx：入口与根组件
-     - tailwind.config.js, postcss.config.js, vite.config.js：构建与样式配置
-     - mock 数据：src/data/mockData.js
+  1. fab-demo/ —— React + TypeScript + Vite + Tailwind CSS 的演示（以组件化实现 FAB 与面板交互）。关键文件和目录：
+     - src/components/：UI 组件（FABButton、ActionButtons 等）
+     - src/panels/：主要功能面板（PromptPanel, EditPanel, VersionsPanel 等）
+     - src/main.tsx, src/FABDemo.tsx：入口与根组件
+     - tailwind.config.js, postcss.config.js, vite.config.ts：构建与样式配置
+     - mock 数据：src/data/mockData.ts
      - 包脚本定义见 [fab-demo/package.json:5-9](fab-demo/package.json#L5-L9)
      - 设计与行为约定（在 [fab-demo/README.md](fab-demo/README.md) 中）：动画时长 150-180ms、面板宽度与间距、shadcn/ui 变量系统等。
 

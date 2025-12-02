@@ -1,6 +1,8 @@
 {
   "ui": {
-    "showMemoryUsage": true
+    "showMemoryUsage": true,
+    "showStatusInTitle": true,
+    "showModelInfoInChat": true
   },
   "tools": {
     "autoAccept": true
@@ -10,5 +12,10 @@
   },
   "ide": {
     "enabled": true
+  },
+  "security": {
+    "folderTrust": {
+      "enabled": true
+    }
   }
 }
