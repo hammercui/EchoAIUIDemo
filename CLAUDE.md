@@ -17,13 +17,16 @@ rules:
 ## Frontend Development Guidelines
 frontend:
   tech_stack:
-    - React - 前端框架
+    - React 18 - 前端框架
     - TypeScript - 开发语言
     - Tailwind CSS - 样式框架
-    - shadcn/ui (Radix UI) - UI组件库 
+    - shadcn/ui (Radix UI) - 基础UI组件库
+    - HeroUI - 补充UI组件库
     - Vite - 构建工具
     - Framer Motion - 动效库
+    - Zustand - 状态管理
     - Lucide React - 图标库
+    - React Markdown - Markdown渲染
   design_principles:
     - 使用现代、专业的前端设计，避免AI生成的典型特征
     - 禁止使用紫色渐变背景
@@ -48,7 +51,7 @@ frontend:
 ## Project Structure
 
 ### 核心工程：FAB Demo
-目前项目主要包含一个核心前端工程：`fab-demo`。这是一个基于 React + TypeScript + Vite 的现代前端应用，重点展示 FAB (Floating Action Button) 与复杂面板的交互逻辑。
+目前项目主要包含一个核心前端工程：`fab-demo`。这是一个基于 React + TypeScript + Vite 的现代前端应用，采用 Feature-based 架构，重点展示 FAB (Floating Action Button) 与复杂面板的交互逻辑。
 
 #### 快速命令
 - **位置**: `cd fab-demo` (所有 npm 命令需在此目录下执行)
@@ -60,21 +63,28 @@ frontend:
 #### 代码架构与关键路径
 - **入口文件**:
   - `src/main.tsx`: 应用入口
-  - `src/FABDemo.tsx`: 主布局容器
-- **组件结构**:
-  - `src/components/`: 通用 UI 组件
+  - `src/App.tsx`: 主应用组件
+- **目录结构**:
+  - `src/features/`: **[核心架构]** 按业务功能划分的模块
+    - `AnswerViewer/`: 答案展示与对比逻辑
+    - `PromptLibrary/`: 提示词库管理
+    - `TagSystem/`: 标签管理系统
+    - `VersionManager/`: 版本控制与时间轴展示
+  - `src/stores/`: **[状态管理]** Zustand 全局状态
+    - `useUIStore.ts`: UI 状态（面板显隐、主题等）
+    - `usePromptStore.ts`: 提示词相关状态
+    - `usePromptListStore.ts`: 列表与筛选状态
+  - `src/panels/`: **[主要视图]** 高层级的功能面板容器
+    - `PromptPanel`, `EditPanel`, `VersionsPanel` 等
+  - `src/components/`: 通用组件
     - `ui/`: shadcn/ui 基础组件 (Button, Card, Input 等)
-    - 业务组件: `FABButton`, `SearchBar`, `PromptList` 等
-  - `src/panels/`: 功能面板组件 (PromptPanel, EditPanel, VersionsPanel 等)
-  - `src/components/VersionManager/`: 版本管理相关组件
-- **样式与配置**:
-  - `tailwind.config.js`: Tailwind 配置
-  - `src/styles/`: 全局样式 (globals.css) 与组件样式
-- **数据与工具**:
-  - `src/data/mockData.ts`: 模拟数据
-  - `src/lib/utils.ts`: 工具函数 (cn 等)
+    - `common/`: 项目级通用组件 (FABButton, Toast, ActionButtons 等)
+  - `src/data/`: 模拟数据
+  - `src/lib/`: 工具函数
 
 #### 约定与规范
+- **架构模式**: 采用 Feature-Sliced Design 的简化版。业务逻辑尽量内聚在 `features` 目录下的对应模块中。
+- **状态管理**: 优先使用 Zustand 处理跨组件状态，简单的局部状态使用 React `useState`。
 - **样式系统**: 遵循 shadcn/ui 的变量系统与 Tailwind CSS 类名。
 - **动画规范**: 使用 Framer Motion，标准动画时长约 150-300ms。
-- **文件命名**: 组件文件使用 PascalCase (如 `FABButton.tsx`)，工具文件使用 camelCase。
+- **文件命名**: 组件文件使用 PascalCase (如 `FABButton.tsx`)，Hook 和工具文件使用 camelCase (如 `useUIStore.ts`)。

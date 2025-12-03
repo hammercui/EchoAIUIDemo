@@ -14,15 +14,18 @@ rules:
   - 按照单一职能原则，代码应该短小整洁
   - 按照mvp最小可实现原则，只实现功能，不要过度设计，不要过早优化
 
-
 ## Frontend Development Guidelines
 frontend:
   tech_stack:
-    - React - 前端框架
+    - React 18 - 前端框架
+    - TypeScript - 开发语言
     - Tailwind CSS - 样式框架
-    - shadcn/ui - UI组件库 
+    - shadcn/ui (Radix UI) - 基础UI组件库
+    - HeroUI - 补充UI组件库
     - Vite - 构建工具
     - Framer Motion - 动效库
+    - Zustand - 状态管理
+    - Lucide React - 图标库
   design_principles:
     - 使用现代、专业的前端设计，避免AI生成的典型特征
     - 禁止使用紫色渐变背景
@@ -45,43 +48,48 @@ frontend:
     - 动画时长控制在0.2-0.6秒之间，保持专业感
 
 ## Project Structure
-快速命令（按子工程）
-- FAB 演示（JS, Vite）
-  - 位置: [fab-demo](fab-demo/)
-  - 安装依赖: cd fab-demo && npm install
-  - 启动开发: npm run dev
-  - 构建生产: npm run build
-  - 预览构建: npm run preview
-  - 查看脚本: [fab-demo/package.json:5-9](fab-demo/package.json#L5-L9)
 
-- Version Timeline 演示（TS, Vite + tsc）
-  - 位置: [version-demo](version-demo/)
-  - 安装依赖: cd version-demo && npm install
-  - 启动开发: npm run dev
-  - 构建生产（包含 TypeScript 编译）: npm run build
-  - 预览构建: npm run preview
-  - 使用文档: [version-demo/USAGE.md](version-demo/USAGE.md)
-  - 查看脚本: [version-demo/package.json:6-9](version-demo/package.json#L6-L9)
+### 核心工程：FAB Demo
+位置: `fab-demo/`
+这是一个基于 React + TypeScript + Vite 的现代前端应用。
 
-注意：仓库根目录没有统一的 package.json 来管理多个子包。请在执行 npm 脚本前切换到对应子工程目录。
+#### 快速命令
+注意：所有命令需在 `fab-demo/` 目录下执行。
+- 安装依赖: `cd fab-demo && npm install`
+- 启动开发: `npm run dev`
+- 构建生产: `npm run build`
+- 预览构建: `npm run preview`
 
-高层次代码架构（大局观）
-- 这是一个包含多个独立前端示例的仓库，主要两个子工程：
-  1. fab-demo/ —— React + Vite + Tailwind CSS 的 JS 演示（以组件化实现 FAB 与面板交互）。关键文件和目录：
-     - src/components/：UI 组件（FABButton、PromptPanel、EditPanel 等）
-     - src/main.jsx, src/App.jsx：入口与根组件
-     - tailwind.config.js, postcss.config.js, vite.config.js：构建与样式配置
-     - mock 数据：src/data/mockData.js
-     - 包脚本定义见 [fab-demo/package.json:5-9](fab-demo/package.json#L5-L9)
-     - 设计与行为约定（在 [fab-demo/README.md](fab-demo/README.md) 中）：动画时长 150-180ms、面板宽度与间距、shadcn/ui 变量系统等。
+#### 高层次代码架构（大局观）
+该项目采用了 Feature-based 架构模式，结合了 Zustand 状态管理。
 
-  2. version-demo/ —— React + TypeScript + Vite 的演示（版本时间线）。关键文件和目录：
-     - src/components/：TypeScript 组件（VersionCard、TimelineNode 等）
-     - src/main.tsx, src/App.tsx：入口与根组件
-     - types/ 与 lib/：类型定义与工具函数
-     - 包脚本定义见 [version-demo/package.json:6-9](version-demo/package.json#L6-L9)
-     - 使用说明见 [version-demo/USAGE.md](version-demo/USAGE.md)
+1.  **Features (src/features/)**:
+    核心业务逻辑按功能模块划分：
+    - `AnswerViewer`: 负责答案的展示、单视图/双视图切换。
+    - `PromptLibrary`: 提示词列表、搜索、排序、分页。
+    - `TagSystem`: 标签的增删改查与选择。
+    - `VersionManager`: 版本时间轴、差异对比逻辑。
 
-- 共同约定/设计系统
-  - 两个子工程都使用 Vite 与 Tailwind CSS，为快速运行优先使用各自的 dev 脚本。
-  - UI 设计遵循仓库文档中提到的 shadcn/ui 变量系统、统一动画时长/间距等约定（详见各自 README）。
+2.  **Stores (src/stores/)**:
+    使用 Zustand 进行全局状态管理：
+    - `useUIStore`: 控制全局 UI 状态（如当前激活的面板、主题模式、Toast）。
+    - `usePromptStore`: 管理当前编辑的 Prompt 数据。
+    - `usePromptListStore`: 管理 Prompt 列表数据与筛选状态。
+
+3.  **Panels (src/panels/)**:
+    UI 的主要容器，通常对应屏幕上的大块区域：
+    - `PromptPanel`: 提示词输入与设置。
+    - `EditPanel`: 编辑区域。
+    - `VersionsPanel`: 版本历史侧边栏。
+    - `AnswerPanel`: 结果展示区域。
+
+4.  **UI Components (src/components/)**:
+    - `ui/`: shadcn/ui 风格的基础原子组件 (Button, Input, Card 等)。
+    - `common/`: 项目特定的通用业务组件 (FABButton, Toast 等)。
+
+#### 验证与最佳实践
+当前架构遵循现代 React 开发的最佳实践：
+- **关注点分离**: 业务逻辑 (Features) 与 UI 展示 (Components/Panels) 分离。
+- **状态管理**: 使用轻量级的 Zustand 替代复杂的 Context 或 Redux，适合中型应用。
+- **类型安全**: 全面使用 TypeScript。
+- **样式方案**: 结合 Tailwind CSS 的原子类与 shadcn/ui 的组件化设计，兼顾开发效率与可定制性。
