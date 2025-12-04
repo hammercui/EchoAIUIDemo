@@ -65,25 +65,85 @@ export default UserCard;
 - ✅ **代码分割** - 使用 React.lazy 和 Suspense
 `;
 
-// 提示词模拟数据
-export const mockPrompts = [
+// =============================================================================
+// 1. 数据库表结构模拟 (Relational Data Model)
+// =============================================================================
+
+// VersionTree表
+const db_version_trees = [
+  { tree_id: 't1', tree_title: '代码生成 - React 组件' }
+];
+
+// VersionTreeNode表
+const db_version_tree_nodes = [
+  { prompt_id: 1, tree_id: 't1', version_num: '5.0', status: 'live' },
+  { prompt_id: 11, tree_id: 't1', version_num: '4.0' },
+  { prompt_id: 12, tree_id: 't1', version_num: '3.0' },
+  { prompt_id: 13, tree_id: 't1', version_num: '2.0' },
+  { prompt_id: 14, tree_id: 't1', version_num: '1.0' },
+  { prompt_id: 15, tree_id: 't1', version_num: '1.2' }, // Sub of 1.0
+  { prompt_id: 16, tree_id: 't1', version_num: '1.1' }  // Sub of 1.0
+];
+
+// Prompt表
+const db_prompts = [
   {
-    id: 1,
-    title: '代码生成 - React 组件',
-    description: '根据需求生成符合最佳实践的 React 函数组件\n支持 Hooks、TypeScript 类型定义和完整的 Props 验证\n自动生成组件文档和使用示例，提升开发效率',
-    tags: ['前端', '组件'],
-    date: '2 天前',
-    dateTimestamp: Date.now() - 2 * 24 * 60 * 60 * 1000,
-    likes: 12,
-    isLiked: false,
-    usageCount: 25,
-    sources: ['deepseek', 'kimi'],
-    answer: commonAnswer
+    prompt_id: 1, tree_id: 't1',
+    description: 'Latest release with major refactoring.', tags: ['前端', '组件', 'Stable'],
+    date: '今天', dateTimestamp: Date.now(),
+    likes: 12, isLiked: false, usageCount: 25,
+    sources: ['deepseek', 'kimi'], answer: commonAnswer
   },
+  {
+    prompt_id: 11, tree_id: 't1',
+    description: 'UI update and performance improvements.', tags: ['前端', 'UI', 'Perf'],
+    date: '昨天', dateTimestamp: Date.now() - 86400000,
+    likes: 8, isLiked: true, usageCount: 20,
+    sources: ['chatgpt'], answer: commonAnswer
+  },
+  {
+    prompt_id: 12, tree_id: 't1',
+    description: 'Bug fixes for dashboard.', tags: ['Fix'],
+    date: '2天前', dateTimestamp: Date.now() - 86400000 * 2,
+    likes: 5, isLiked: false, usageCount: 15,
+    sources: ['deepseek'], answer: commonAnswer
+  },
+  {
+    prompt_id: 13, tree_id: 't1',
+    description: 'Feature expansion.', tags: ['Feature'],
+    date: '3天前', dateTimestamp: Date.now() - 86400000 * 3,
+    likes: 3, isLiked: false, usageCount: 10,
+    sources: ['kimi'], answer: commonAnswer
+  },
+  {
+    prompt_id: 14, tree_id: 't1',
+    description: 'Initial release.', tags: ['Init'],
+    date: '1周前', dateTimestamp: Date.now() - 86400000 * 7,
+    likes: 10, isLiked: false, usageCount: 50,
+    sources: ['deepseek'], answer: commonAnswer
+  },
+  {
+    prompt_id: 15, tree_id: 't1',
+    description: 'Security patch.', tags: ['Patch', 'Security'],
+    date: '5天前', dateTimestamp: Date.now() - 86400000 * 5,
+    likes: 2, isLiked: false, usageCount: 5,
+    sources: ['claude'], answer: commonAnswer
+  },
+  {
+    prompt_id: 16, tree_id: 't1',
+    description: 'Minor fixes.', tags: ['Fix'],
+    date: '6天前', dateTimestamp: Date.now() - 86400000 * 6,
+    likes: 1, isLiked: false, usageCount: 2,
+    sources: ['chatgpt'], answer: commonAnswer
+  }
+];
+
+// 其他无关数据 (ID 2-10, 保留用于展示)
+const other_prompts = [
   {
     id: 2,
     title: '代码重构 - 优化函数',
-    description: '优化现有函数以提高性能和可读性\n通过提取重复逻辑、简化条件语句和优化算法复杂度\n使代码更易维护，减少潜在 bug，提升团队协作效率',
+    description: '优化现有函数以提高性能和可读性\n通过提取重复逻辑、简化条件语句和优化算法复杂度',
     tags: ['后端', '重构'],
     date: '1 天前',
     dateTimestamp: Date.now() - 1 * 24 * 60 * 60 * 1000,
@@ -93,108 +153,96 @@ export const mockPrompts = [
     sources: ['chatgpt', 'claude', 'kimi'],
     answer: commonAnswer
   },
-  {
-    id: 3,
-    title: 'Bug 修复 - 错误排查',
-    description: '修复异步请求的错误处理逻辑\n添加完善的异常捕获机制和重试策略\n确保系统稳定性，提供友好的错误提示和日志记录',
-    tags: ['后端', '调试'],
-    date: '1 天前',
-    dateTimestamp: Date.now() - 1 * 24 * 60 * 60 * 1000,
-    likes: 15,
-    isLiked: false,
-    usageCount: 32,
-    sources: ['deepseek'],
-    answer: '## Bug 修复方案\n\n1. 检查错误处理\n2. 添加重试机制'
-  },
-  {
-    id: 4,
-    title: '性能优化 - 渲染优化',
-    description: '优化大量数据的渲染性能\n采用虚拟滚动、懒加载和分页策略减少 DOM 操作\n提升用户体验，降低内存占用，支持万级数据流畅展示',
-    tags: ['性能', '前端'],
-    date: '3 天前',
-    dateTimestamp: Date.now() - 3 * 24 * 60 * 60 * 1000,
-    likes: 20,
-    isLiked: false,
-    usageCount: 45,
-    sources: ['chatgpt', 'deepseek', 'kimi', 'claude'],
-    answer: '使用虚拟滚动技术...'
-  },
-  {
-    id: 5,
-    title: '测试用例 - 单元测试',
-    description: '为关键业务逻辑编写单元测试',
-    tags: ['测试', '质量'],
-    date: '4 天前',
-    dateTimestamp: Date.now() - 4 * 24 * 60 * 60 * 1000,
-    likes: 5,
-    isLiked: false,
-    usageCount: 12,
-    sources: ['claude', 'chatgpt'],
-    answer: '## 测试用例\n\n1. 边界条件测试\n2. 异常处理测试'
-  },
-  {
-    id: 6,
-    title: '文档生成 - API 文档',
-    description: '自动生成 RESTful API 文档',
-    tags: ['文档', 'API'],
-    date: '5 天前',
-    dateTimestamp: Date.now() - 5 * 24 * 60 * 60 * 1000,
-    likes: 3,
-    isLiked: false,
-    usageCount: 8,
-    sources: ['chatgpt', 'deepseek', 'kimi', 'claude', 'deepseek', 'chatgpt'], // 测试超过5个的情况
-    answer: '使用 Swagger 生成文档...'
-  },
-  {
-    id: 7,
-    title: 'API 设计 - REST接口',
-    description: '设计完整的用户认证和权限系统',
-    tags: ['后端', 'API'],
-    date: '5 天前',
-    dateTimestamp: Date.now() - 5 * 24 * 60 * 60 * 1000,
-    likes: 18,
-    isLiked: true,
-    usageCount: 40,
-    sources: ['kimi', 'deepseek'],
-    answer: '数据库表设计方案...'
-  },
-  {
-    id: 8,
-    title: '数据库查询 - SQL优化',
-    description: '优化复杂查询语句提高执行效率',
-    tags: ['数据库', '优化'],
-    date: '1 周前',
-    dateTimestamp: Date.now() - 7 * 24 * 60 * 60 * 1000,
-    likes: 10,
-    isLiked: false,
-    usageCount: 22,
-    sources: ['chatgpt'],
-    answer: '使用索引和查询优化...'
-  },
-  {
-    id: 9,
-    title: 'UI 组件 - 表单设计',
-    description: '实现移动端和桌面端自适应布局',
-    tags: ['前端', 'UI'],
-    date: '1 周前',
-    dateTimestamp: Date.now() - 7 * 24 * 60 * 60 * 1000,
-    likes: 14,
-    isLiked: false,
-    usageCount: 28,
-    sources: ['claude', 'kimi', 'deepseek'],
-    answer: '响应式布局最佳实践...'
-  },
-  {
-    id: 10,
-    title: '算法实现 - 排序算法',
-    description: '实现高效的排序算法解决业务问题',
-    tags: ['算法', '数据结构'],
-    date: '2 周前',
-    dateTimestamp: Date.now() - 14 * 24 * 60 * 60 * 1000,
-    likes: 7,
-    isLiked: false,
-    usageCount: 15,
-    sources: ['deepseek', 'chatgpt', 'claude'],
-    answer: '快速排序算法实现...'
-  }
+  // ... 可以根据需要添加更多静态数据
 ];
+
+
+// =============================================================================
+// 2. 业务逻辑：构建 Mock 数据 (Business Logic / Transformation)
+// =============================================================================
+
+const getPromptData = (id) => db_prompts.find(p => p.prompt_id === id);
+
+const buildVersionLineage = (treeId) => {
+  // 1. 获取该树下的所有节点
+  const nodes = db_version_tree_nodes.filter(n => n.tree_id === treeId);
+  
+  const mainNodes: any[] = [];
+  const subNodesMap = {}; // parentVersion -> [nodes]
+
+  // 2. 遍历节点，构建 UI 所需的 VersionData 对象
+  nodes.forEach(node => {
+      const p = getPromptData(node.prompt_id);
+      if (!p) return;
+
+      const uiNode = {
+          id: node.prompt_id.toString(),
+          version: `V${node.version_num}`,
+          status: node.status, // 'live' etc.
+          date: p.date,
+          desc: p.description,
+          tags: p.tags,
+          subVersions: []
+      };
+
+      // 简单逻辑判断主/子版本：以 .0 结尾为主版本
+      if (node.version_num.endsWith('.0')) {
+          mainNodes.push(uiNode);
+      } else {
+          // 找到父版本 (例如 1.1 -> 1.0)
+          const major = node.version_num.split('.')[0] + '.0';
+          if (!subNodesMap[major]) subNodesMap[major] = [];
+          subNodesMap[major].push(uiNode);
+      }
+  });
+
+  // 3. 排序主版本 (倒序)
+  mainNodes.sort((a, b) => b.version.localeCompare(a.version));
+
+  // 4. 挂载子版本
+  mainNodes.forEach(main => {
+      const majorKey = main.version.replace('V', '');
+      if (subNodesMap[majorKey]) {
+          // 子版本倒序
+          main.subVersions = subNodesMap[majorKey].sort((a, b) => b.version.localeCompare(a.version));
+      }
+  });
+
+  return mainNodes;
+};
+
+// 生成最终的 mockPrompts
+const generateMockPrompts = () => {
+  const result: any[] = [];
+
+  // 1. 处理 DB 中的 Prompt (它们属于 VersionTree)
+  db_prompts.forEach(p => {
+      const tree = db_version_trees.find(t => t.tree_id === p.tree_id);
+      const node = db_version_tree_nodes.find(n => n.prompt_id === p.prompt_id);
+      
+      // 构建完整的版本树
+      const versions = buildVersionLineage(p.tree_id);
+
+      result.push({
+          id: p.prompt_id,
+          title: tree && node ? `[V${node.version_num}] ${tree.tree_title}` : (tree?.tree_title || 'Unknown'),
+          description: p.description,
+          tags: p.tags,
+          date: p.date,
+          dateTimestamp: p.dateTimestamp,
+          likes: p.likes,
+          isLiked: p.isLiked,
+          usageCount: p.usageCount,
+          sources: p.sources,
+          answer: p.answer,
+          // 关联：当前 Item 的 ID 就是当前版本 ID
+          currentVersionId: p.prompt_id.toString(),
+          versions: versions
+      });
+  });
+
+  // 2. 合并其他静态数据
+  return [...result, ...other_prompts];
+};
+
+export const mockPrompts = generateMockPrompts();

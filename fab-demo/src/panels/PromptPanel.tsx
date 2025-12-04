@@ -208,7 +208,7 @@ const PromptPanel = ({
       )}
 
       {/* 提示词列表 */}
-      <div className="flex-1 overflow-hidden">
+      <div className="flex-1 overflow-hidden flex flex-col">
         <PromptList
           prompts={paginatedPrompts}
           selectedId={selectedId}

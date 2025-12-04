@@ -97,8 +97,11 @@
     @apply bg-secondary-500 border-secondary-500 animate-water-wave;
     box-shadow: 0 0 0 4px rgba(97, 40, 255, 0.2);
   }
-  .timeline-node.selected .version-card {
+  .version-card.selected-card {
     @apply border-secondary-500 shadow-selected;
+  }
+  .sub-card.selected-card {
+    @apply border-secondary-500 shadow-selected bg-white;
   }
   .timeline-node.selected > .node-connector {
     @apply bg-secondary-500;

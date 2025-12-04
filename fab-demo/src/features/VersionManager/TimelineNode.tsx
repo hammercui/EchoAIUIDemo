@@ -6,7 +6,7 @@ import AddTagButton from '@/components/common/AddTagButton';
 interface TimelineNodeProps {
     data: VersionData;
     position: 'left' | 'right';
-    isSelected: boolean;
+    selectedId?: string;
     onSelect: (id: string) => void;
     onUpdateTags?: (versionId: string, newTags: string[]) => void;
     allAvailableTags?: string[];
@@ -15,7 +15,7 @@ interface TimelineNodeProps {
 export const TimelineNode: React.FC<TimelineNodeProps> = ({
     data,
     position,
-    isSelected,
+    selectedId,
     onSelect,
     onUpdateTags,
     allAvailableTags = []
@@ -25,6 +25,10 @@ export const TimelineNode: React.FC<TimelineNodeProps> = ({
     const [showDeleteDialog, setShowDeleteDialog] = useState(false);
     const [tagToDelete, setTagToDelete] = useState('');
     const [editingVersionId, setEditingVersionId] = useState<string | null>(null);
+
+    const isMainSelected = data.id === selectedId;
+    const isSubSelected = data.subVersions?.some(s => s.id === selectedId);
+    const isNodeSelected = isMainSelected || isSubSelected;
 
     const getCurrentTags = () => {
         if (editingVersionId === data.id) return data.tags || [];
@@ -103,20 +107,20 @@ export const TimelineNode: React.FC<TimelineNodeProps> = ({
 
     return (
         <div
-            className={`timeline-node ${position} ${isSelected ? 'selected' : ''}`}
+            className={`timeline-node ${position} ${isNodeSelected ? 'selected' : ''}`}
             onClick={handleBackgroundClick}
         >
             <div className="node-dot" tabIndex={0} />
             <div className="node-connector" />
             <div className="content-wrapper">
                 {/* Main Card */}
-                <div className="version-card">
+                <div className={`version-card ${isMainSelected ? 'selected-card' : ''}`}>
                     <div className="card-header">
                         <span className="version-title">
                             {data.version}
                             {data.status && (
                                 <span className={`status-badge ${data.status.toLowerCase()}`}>
-                                    {data.status}
+                                    {data.status === 'live' ? '当前' : data.status}
                                 </span>
                             )}
                         </span>
@@ -134,7 +138,10 @@ export const TimelineNode: React.FC<TimelineNodeProps> = ({
                 {data.subVersions && data.subVersions.length > 0 && (
                     <div className="sub-version-group">
                         {data.subVersions.map(sub => (
-                            <div key={sub.id} className="sub-card">
+                            <div 
+                                key={sub.id} 
+                                className={`sub-card ${sub.id === selectedId ? 'selected-card' : ''}`}
+                            >
                                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
                                     <strong>{sub.version}</strong>
                                     <span className="text-[10px] text-muted-foreground">
