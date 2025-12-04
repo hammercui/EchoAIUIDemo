@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Tooltip } from '@heroui/tooltip';
 import { ThumbsUp, ThumbsDown } from 'lucide-react';
 import ActionButtons from '@/components/common/ActionButtons';
+import AddTagButton from '@/components/common/AddTagButton';
 import { AddTagDialog, DeleteTagDialog } from '@/features/TagSystem/components/TagDialog';
 import { SOURCE_ICONS, getSourceName } from '@/components/common/SourceLogos';
 
@@ -126,12 +127,12 @@ const PromptItem = ({
               {prompt.tags.map((tag, idx) => (
                 <span
                   key={idx}
-                  className={`relative px-1.5 py-0.5 rounded-md border border-accent/50 text-accent bg-transparent transition-all duration-150 ${isDeleteMode ? 'pr-4' : ''
+                  className={`relative px-1.5 py-0.5 rounded-md border border-background-100 text-accent bg-white transition-all duration-150 ${isDeleteMode ? 'pr-4' : ''
                     }`}
                   onContextMenu={(e) => handleTagRightClick(e, tag)}
                   onClick={(e) => isDeleteMode && handleDeleteTag(e, tag)}
                 >
-                  {tag}
+                  #{tag}
                   {/* 删除模式：显示×按钮 */}
                   {isDeleteMode && (
                     <button
@@ -144,13 +145,7 @@ const PromptItem = ({
                 </span>
               ))}
               {/* + 按钮 */}
-              <button
-                onClick={handleAddTag}
-                className="w-5 h-5 border border-dashed border-accent/50 text-accent rounded-md flex items-center justify-center hover:bg-accent/10 transition-colors duration-150"
-                title="添加标签"
-              >
-                +
-              </button>
+              <AddTagButton onClick={handleAddTag} title="添加标签" />
             </div>
 
             {/* 右侧：来源 + 点赞 + 时间 */}
