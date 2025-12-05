@@ -5,6 +5,7 @@ export interface SubVersion {
     version: string;
     date: string;
     desc: string;
+    tags?: string[];
 }
 
 export interface VersionData {

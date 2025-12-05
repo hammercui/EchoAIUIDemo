@@ -25,7 +25,7 @@ const App = () => {
   const { 
     isPanelOpen, setPanelOpen, 
     showEditPanel, setShowEditPanel,
-    fabPosition, toggleFabPosition,
+    fabPosition, setFabPosition,
     activeTab, setActiveTab,
     toast, hideToast, showToast
   } = useUIStore();
@@ -98,14 +98,6 @@ const App = () => {
         />
       )}
 
-      {/* 位置切换按钮 */}
-      <button
-        className="absolute top-5 left-1/2 -translate-x-1/2 h-10 px-6 bg-background border border-border rounded-full cursor-pointer text-base font-semibold text-foreground transition-all duration-150 z-[200] hover:bg-muted hover:scale-105 active:scale-95 shadow-sm"
-        onClick={toggleFabPosition}
-      >
-        切换到 {fabPosition === 'left' ? '右侧' : '左侧'}
-      </button>
-
       {/* 背景遮罩层 */}
       <div
         className={`fixed inset-0 transition-opacity duration-180 z-[50] ${isPanelOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
@@ -121,6 +113,7 @@ const App = () => {
         isOpen={isPanelOpen}
         onClick={handleFABClick}
         position={fabPosition}
+        onPositionChange={setFabPosition}
       />
 
       {/* 面板容器 */}

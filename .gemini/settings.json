@@ -17,5 +17,41 @@
     "folderTrust": {
       "enabled": true
     }
+  },
+  "mcpServers": {
+    "context7": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp"
+      ]
+    },
+    "deepwiki": {
+      "type": "sse",
+			"url": "https://mcp.deepwiki.com/sse"
+    },
+    "oraios/serena": {
+      "type": "stdio",
+			"command": "uvx",
+			"args": [
+				"--from",
+				"git+https://github.com/oraios/serena",
+				"serena",
+				"start-mcp-server",
+				"serena==latest",
+				"--context",
+				"ide-assistant"
+			],
+			"gallery": "https://api.mcp.github.com/v0/servers/0658e342-7ae7-493a-b378-a324363ee322",
+			"version": "1.0.0"
+    },
+    "chrome-devtools-mcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "chrome-devtools-mcp@latest"
+      ]
+    }
   }
 }

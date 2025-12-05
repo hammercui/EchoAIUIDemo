@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { mockPrompts } from '../data/mockData';
+import type { VersionData } from '@/features/VersionManager/types';
 
 // 定义 Prompt 类型 (根据 mockData 推断，后续可提取到 types.ts)
 export interface Prompt {
@@ -12,9 +13,11 @@ export interface Prompt {
   usageCount: number;
   date: string;
   dateTimestamp: number;
+  version?: string;
   sources?: string[];
   answer?: string;
-  versions?: any[];
+  currentVersionId?: string;
+  versions?: VersionData[];
 }
 
 interface PromptState {
@@ -31,7 +34,7 @@ interface PromptState {
 }
 
 export const usePromptStore = create<PromptState>((set) => ({
-  prompts: mockPrompts,
+  prompts: mockPrompts as Prompt[],
   selectedPrompt: null,
 
   setSelectedPrompt: (prompt) => set({ selectedPrompt: prompt }),

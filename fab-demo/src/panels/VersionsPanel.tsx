@@ -7,7 +7,10 @@ import { VersionManager } from '@/features/VersionManager';
 const VersionsPanel = ({ prompt }) => {
   return (
     <div className="w-full h-full">
-      <VersionManager />
+      <VersionManager 
+        versions={prompt?.versions} 
+        currentVersionId={prompt?.currentVersionId}
+      />
     </div>
   );
 };

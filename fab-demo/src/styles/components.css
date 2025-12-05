@@ -51,7 +51,7 @@
   }
 
   .version-card {
-    @apply w-full bg-background-50 border border-background-100 rounded-lg p-5 shadow-sm transition-all duration-300 cursor-grab relative z-[2];
+    @apply w-full bg-muted border border-border rounded-xl p-5 shadow-sm transition-all duration-300 cursor-grab relative z-[2];
   }
   .version-card:hover {
     @apply shadow-md border-primary-200 -translate-y-0.5;
@@ -97,8 +97,11 @@
     @apply bg-secondary-500 border-secondary-500 animate-water-wave;
     box-shadow: 0 0 0 4px rgba(97, 40, 255, 0.2);
   }
-  .timeline-node.selected .version-card {
+  .version-card.selected-card {
     @apply border-secondary-500 shadow-selected;
+  }
+  .sub-card.selected-card {
+    @apply border-secondary-500 shadow-selected bg-white;
   }
   .timeline-node.selected > .node-connector {
     @apply bg-secondary-500;
@@ -167,7 +170,7 @@
     @apply flex justify-between items-center mb-2;
   }
   .version-title {
-    @apply text-base font-bold flex items-center gap-2;
+    @apply text-base font-bold flex items-center gap-2 text-foreground;
   }
   .status-badge {
     @apply text-[10px] px-1.5 py-0.5 rounded font-semibold uppercase;
@@ -180,13 +183,13 @@
   }
   
   .card-body {
-    @apply text-sm text-primary-300 mb-3;
+    @apply text-sm text-muted-foreground mb-3;
   }
   .card-tags {
     @apply flex gap-2 flex-wrap;
   }
   .tag {
-    @apply text-[11px] text-primary-300 bg-background-100 px-2 py-0.5 rounded-md;
+    @apply text-[11px] text-primary-400 bg-white border border-background-100 px-2 py-0.5 rounded-md;
   }
 
   /* Mobile Adaptation */
