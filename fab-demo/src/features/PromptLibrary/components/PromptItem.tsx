@@ -55,10 +55,9 @@ const PromptItem = ({
     setShowAddDialog(true);
   };
 
-  const handleConfirmAddTag = (newTags) => {
-    // newTags 是一个数组，包含所有要添加的标签
-    const updatedTags = [...new Set([...prompt.tags, ...newTags])]; // 去重
-    onUpdateTags?.(prompt.id, updatedTags);
+  const handleConfirmAddTag = (finalTags) => {
+    // finalTags 是最终确定的标签列表（包含新增和保留的旧标签）
+    onUpdateTags?.(prompt.id, finalTags);
   };
 
   // 处理删除标签（右键触发删除模式）
