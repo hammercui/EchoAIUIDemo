@@ -142,7 +142,6 @@ const db_prompts = [
 const other_prompts = [
   {
     id: 2,
-    title: '代码重构 - 优化函数',
     description: '优化现有函数以提高性能和可读性\n通过提取重复逻辑、简化条件语句和优化算法复杂度',
     tags: ['后端', '重构'],
     date: '1 天前',
@@ -237,7 +236,10 @@ const generateMockPrompts = () => {
           answer: p.answer,
           // 关联：当前 Item 的 ID 就是当前版本 ID
           currentVersionId: p.prompt_id.toString(),
-          versions: versions
+          versions: versions,
+          tree_id: p.tree_id,
+          version_num: node?.version_num,
+          tree_title: tree?.tree_title
       });
   });
 

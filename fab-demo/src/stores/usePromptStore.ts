@@ -18,6 +18,9 @@ export interface Prompt {
   answer?: string;
   currentVersionId?: string;
   versions?: VersionData[];
+  tree_id?: string;
+  version_num?: string;
+  tree_title?: string;
 }
 
 interface PromptState {
@@ -31,6 +34,7 @@ interface PromptState {
   // Actions
   likePrompt: (promptId: number, delta: number) => void;
   updatePromptTags: (promptId: number, newTags: string[], incrementUsage?: boolean) => void;
+  updateTreeTitle: (treeId: string, newTitle: string) => void;
 }
 
 export const usePromptStore = create<PromptState>((set) => ({
@@ -71,4 +75,20 @@ export const usePromptStore = create<PromptState>((set) => ({
         }
       : state.selectedPrompt
   })),
+
+  updateTreeTitle: (treeId, newTitle) => set((state) => {
+    const updatedPrompts = state.prompts.map((p) => {
+      if (p.tree_id === treeId) {
+        return { ...p, tree_title: newTitle };
+      }
+      return p;
+    });
+
+    return {
+      prompts: updatedPrompts,
+      selectedPrompt: state.selectedPrompt?.tree_id === treeId
+        ? { ...state.selectedPrompt, tree_title: newTitle }
+        : state.selectedPrompt
+    };
+  }),
 }));

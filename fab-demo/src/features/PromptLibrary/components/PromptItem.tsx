@@ -102,9 +102,11 @@ const PromptItem = ({
         {/* 3 行文本结构 - 统一 px-3 py-3 左右边距 */}
         <div className="px-3 py-3 pointer-events-none">
           {/* 第 1 行: 标题（靠近顶部边缘） */}
-          <h3 className="text-xs font-semibold text-foreground mb-1.5 leading-tight">
-            {prompt.title}
-          </h3>
+          {prompt.tree_id && (
+            <h3 className="text-xs font-semibold text-foreground mb-1.5 leading-tight">
+              {prompt.tree_title} v-{prompt.version_num}
+            </h3>
+          )}
 
           {/* 第 2 行: 描述 (3行省略) - 左右边距与标题一致 */}
           <Tooltip
