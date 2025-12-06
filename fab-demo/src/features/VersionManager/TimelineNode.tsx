@@ -42,11 +42,10 @@ export const TimelineNode: React.FC<TimelineNodeProps> = ({
         setShowAddDialog(true);
     };
 
-    const handleConfirmAddTag = (newTags: string[]) => {
+    const handleConfirmAddTag = (finalTags: string[]) => {
         if (!editingVersionId) return;
-        const currentTags = getCurrentTags();
-        const updatedTags = [...new Set([...currentTags, ...newTags])];
-        onUpdateTags?.(editingVersionId, updatedTags);
+        // finalTags 是最终确定的标签列表
+        onUpdateTags?.(editingVersionId, finalTags);
         setShowAddDialog(false);
     };
 

@@ -55,10 +55,9 @@ const PromptItem = ({
     setShowAddDialog(true);
   };
 
-  const handleConfirmAddTag = (newTags) => {
-    // newTags 是一个数组，包含所有要添加的标签
-    const updatedTags = [...new Set([...prompt.tags, ...newTags])]; // 去重
-    onUpdateTags?.(prompt.id, updatedTags);
+  const handleConfirmAddTag = (finalTags) => {
+    // finalTags 是最终确定的标签列表（包含新增和保留的旧标签）
+    onUpdateTags?.(prompt.id, finalTags);
   };
 
   // 处理删除标签（右键触发删除模式）
@@ -102,9 +101,11 @@ const PromptItem = ({
         {/* 3 行文本结构 - 统一 px-3 py-3 左右边距 */}
         <div className="px-3 py-3 pointer-events-none">
           {/* 第 1 行: 标题（靠近顶部边缘） */}
-          <h3 className="text-xs font-semibold text-foreground mb-1.5 leading-tight">
-            {prompt.title}
-          </h3>
+          {prompt.tree_id && (
+            <h3 className="text-xs font-semibold text-foreground mb-1.5 leading-tight">
+              {prompt.tree_title} v-{prompt.version_num}
+            </h3>
+          )}
 
           {/* 第 2 行: 描述 (3行省略) - 左右边距与标题一致 */}
           <Tooltip
