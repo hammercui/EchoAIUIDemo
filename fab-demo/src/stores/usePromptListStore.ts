@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { SearchResult } from '../service/SemanticSearch';
 
 interface PromptListState {
   // 搜索状态
@@ -6,6 +7,11 @@ interface PromptListState {
   promptQuery: string;
   tagQuery: string;
   selectedTags: string[];
+
+  // 语义搜索状态
+  searchType: 'keyword' | 'semantic';  // 搜索类型：关键词 or 语义
+  semanticResults: SearchResult[];     // 语义搜索结果
+  isSemanticSearching: boolean;        // 语义搜索加载状态
 
   // 排序状态
   sortBy: 'newest' | 'oldest' | 'mostLiked' | 'mostUsed';
@@ -24,6 +30,12 @@ interface PromptListState {
   clearSelectedTags: () => void;
   setSortBy: (sortBy: 'newest' | 'oldest' | 'mostLiked' | 'mostUsed') => void;
   setCurrentPage: (page: number) => void;
+
+  // 语义搜索 Actions
+  setSearchType: (type: 'keyword' | 'semantic') => void;
+  setSemanticResults: (results: SearchResult[]) => void;
+  setIsSemanticSearching: (loading: boolean) => void;
+  clearSemanticResults: () => void;
 }
 
 export const usePromptListStore = create<PromptListState>((set) => ({
@@ -31,6 +43,11 @@ export const usePromptListStore = create<PromptListState>((set) => ({
   promptQuery: '',
   tagQuery: '',
   selectedTags: [],
+
+  // 语义搜索初始状态
+  searchType: 'keyword',
+  semanticResults: [],
+  isSemanticSearching: false,
 
   sortBy: 'newest',
 
@@ -40,11 +57,11 @@ export const usePromptListStore = create<PromptListState>((set) => ({
   setSearchMode: (mode) => set({ searchMode: mode, currentPage: 1 }),
   setPromptQuery: (query) => set({ promptQuery: query, currentPage: 1 }),
   setTagQuery: (query) => set({ tagQuery: query, currentPage: 1 }),
-  
+
   setSelectedTags: (tags) => set({ selectedTags: tags, currentPage: 1 }),
-  addSelectedTag: (tag) => set((state) => ({ 
-    selectedTags: state.selectedTags.includes(tag) 
-      ? state.selectedTags 
+  addSelectedTag: (tag) => set((state) => ({
+    selectedTags: state.selectedTags.includes(tag)
+      ? state.selectedTags
       : [...state.selectedTags, tag],
     currentPage: 1
   })),
@@ -56,4 +73,13 @@ export const usePromptListStore = create<PromptListState>((set) => ({
 
   setSortBy: (sortBy) => set({ sortBy, currentPage: 1 }),
   setCurrentPage: (page) => set({ currentPage: page }),
+
+  // 语义搜索 Actions
+  setSearchType: (type) => set({
+    searchType: type,
+    currentPage: 1
+  }),
+  setSemanticResults: (results) => set({ semanticResults: results }),
+  setIsSemanticSearching: (loading) => set({ isSemanticSearching: loading }),
+  clearSemanticResults: () => set({ semanticResults: [] }),
 }));
