@@ -61,31 +61,36 @@ frontend:
 - 预览构建: `npm run preview`
 
 #### 高层次代码架构（大局观）
-该项目采用了 Feature-based 架构模式，结合了 Zustand 状态管理。
+该项目采用了 **MVVM + Clean Architecture** 的分层架构模式，结合 Feature-based 模块化组织，并引入了 **Dependency Injection (DI)** 容器管理服务生命周期。
 
-1.  **Features (src/features/)**:
-    核心业务逻辑按功能模块划分：
-    - `AnswerViewer`: 负责答案的展示、单视图/双视图切换。
-    - `PromptLibrary`: 提示词列表、搜索、排序、分页。
-    - `TagSystem`: 标签的增删改查与选择。
-    - `VersionManager`: 版本时间轴、差异对比逻辑。
+1.  **View Layer (src/view/)**:
+    负责 UI 展示与用户交互，不包含复杂业务逻辑。
+    -   `pages/`: 页面级容器组件 (App, Panels)。
+    -   `features/`: 按业务功能划分的模块 (PromptLibrary, TagSystem 等)，包含其专用的 ViewModel (hooks) 和 Components。
+    -   `components/`: 通用组件 (ui/ 基础组件, common/ 业务通用组件)。
 
-2.  **Stores (src/stores/)**:
-    使用 Zustand 进行全局状态管理：
-    - `useUIStore`: 控制全局 UI 状态（如当前激活的面板、主题模式、Toast）。
-    - `usePromptStore`: 管理当前编辑的 Prompt 数据。
-    - `usePromptListStore`: 管理 Prompt 列表数据与筛选状态。
+2.  **Model Layer (src/model/)**:
+    负责业务逻辑、状态管理与实体定义。
+    -   `services/`: 核心业务逻辑 (PromptService, SemanticSearchService)，通过 DI 容器管理单例。
+    -   `stores/`: 全局状态管理 (Zustand)，处理响应式状态。
+    -   `entities/`: 统一的 TypeScript 实体接口定义 (Prompt, Tag, Version)。
 
-3.  **Panels (src/panels/)**:
-    UI 的主要容器，通常对应屏幕上的大块区域：
-    - `PromptPanel`: 提示词输入与设置。
-    - `EditPanel`: 编辑区域。
-    - `VersionsPanel`: 版本历史侧边栏。
-    - `AnswerPanel`: 结果展示区域。
+3.  **Infra Layer (src/infra/)**:
+    负责基础设施与外部数据交互。
+    -   `dao/`: 数据访问对象，如 IndexedDB 操作 (SemanticSearchDAO)。
+    -   `api/`: (可选) API 客户端封装。
 
-4.  **UI Components (src/components/)**:
-    - `ui/`: shadcn/ui 风格的基础原子组件 (Button, Input, Card 等)。
-    - `common/`: 项目特定的通用业务组件 (FABButton, Toast 等)。
+4.  **Common Layer (src/common/)**:
+    跨层级的公共模块。
+    -   `config/`: 全局配置，如 DI 容器初始化 (di.ts)。
+    -   `lib/`: 工具函数与第三方库封装。
+    -   `data/`: 模拟数据源。
+
+#### 验证与最佳实践
+-   **关注点分离**: 严格遵守 View -> Model -> Infra 的依赖方向。
+-   **依赖注入**: 使用 `tsyringe` 管理 Service 和 DAO 的依赖关系，实现解耦。
+-   **状态管理**: Zustand 用于 View 层的响应式状态，Service 用于处理复杂的无状态逻辑或持久化操作。
+-   **类型安全**: 全面使用 TypeScript，并在 Model 层定义统一的 Entities。
 
 #### 验证与最佳实践
 当前架构遵循现代 React 开发的最佳实践：

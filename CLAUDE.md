@@ -62,29 +62,24 @@ frontend:
 
 #### 代码架构与关键路径
 - **入口文件**:
-  - `src/main.tsx`: 应用入口
-  - `src/App.tsx`: 主应用组件
+  - `src/main.tsx`: 应用入口，包含 DI 容器初始化
 - **目录结构**:
-  - `src/features/`: **[核心架构]** 按业务功能划分的模块
-    - `AnswerViewer/`: 答案展示与对比逻辑
-    - `PromptLibrary/`: 提示词库管理
-    - `TagSystem/`: 标签管理系统
-    - `VersionManager/`: 版本控制与时间轴展示
-  - `src/stores/`: **[状态管理]** Zustand 全局状态
-    - `useUIStore.ts`: UI 状态（面板显隐、主题等）
-    - `usePromptStore.ts`: 提示词相关状态
-    - `usePromptListStore.ts`: 列表与筛选状态
-  - `src/panels/`: **[主要视图]** 高层级的功能面板容器
-    - `PromptPanel`, `EditPanel`, `VersionsPanel` 等
-  - `src/components/`: 通用组件
-    - `ui/`: shadcn/ui 基础组件 (Button, Card, Input 等)
-    - `common/`: 项目级通用组件 (FABButton, Toast, ActionButtons 等)
-  - `src/data/`: 模拟数据
-  - `src/lib/`: 工具函数
+  - `src/view/`: **[视图层]** UI 展示与交互
+    - `pages/`: 页面级容器 (App.tsx, PromptPanel.tsx 等)
+    - `features/`: 按业务功能划分的模块 (PromptLibrary, TagSystem 等)，包含 Components 和 ViewModel (hooks)
+    - `components/`: 通用组件 (ui/ 基础组件, common/ 业务通用组件)
+  - `src/model/`: **[模型层]** 业务逻辑与状态
+    - `services/`: 业务服务类 (SemanticSearchService, PromptService)，通过 DI 管理
+    - `stores/`: Zustand 全局状态 Store
+    - `entities/`: 实体类型定义
+  - `src/infra/`: **[基础设施层]** 数据访问与外部接口
+    - `dao/`: 数据访问对象 (SemanticSearchDAO)
+  - `src/common/`: **[公共层]**
+    - `config/`: 全局配置 (di.ts)
+    - `lib/`: 工具函数
 
 #### 约定与规范
-- **架构模式**: 采用 Feature-Sliced Design 的简化版。业务逻辑尽量内聚在 `features` 目录下的对应模块中。
-- **状态管理**: 优先使用 Zustand 处理跨组件状态，简单的局部状态使用 React `useState`。
-- **样式系统**: 遵循 shadcn/ui 的变量系统与 Tailwind CSS 类名。
-- **动画规范**: 使用 Framer Motion，标准动画时长约 150-300ms。
-- **文件命名**: 组件文件使用 PascalCase (如 `FABButton.tsx`)，Hook 和工具文件使用 camelCase (如 `useUIStore.ts`)。
+- **架构模式**: MVVM + Clean Architecture。View 层通过 ViewModel (Hooks) 与 Model 层交互。
+- **依赖注入**: 使用 `tsyringe` 管理 Service 和 DAO 的生命周期。
+- **状态管理**: 优先使用 Zustand 处理跨组件状态。
+- **文件命名**: 组件文件 PascalCase，Hook/Service/工具文件 camelCase。

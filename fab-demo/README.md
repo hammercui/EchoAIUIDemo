@@ -52,72 +52,29 @@ npm run preview
 fab-demo/
 ├── public/                 # 静态资源
 ├── src/
-│   ├── App.tsx             # 应用根组件
 │   ├── main.tsx            # React 入口文件
-│   ├── assets/             # 静态资源，如图片等
-│   ├── components/         # UI 组件
-│   │   ├── common/         # 项目特定的通用业务组件
-│   │   │   ├── ActionButtons.tsx
-│   │   │   ├── EmptyState.tsx
-│   │   │   ├── FABButton.tsx
-│   │   │   ├── LegacyButton.tsx
-│   │   │   ├── LegacyModal.tsx
-│   │   │   ├── SourceLogos.tsx
-│   │   │   └── Toast.tsx
-│   │   ├── providers/      # React Context Providers
-│   │   └── ui/             # shadcn/ui 风格的基础原子组件
-│   │       ├── badge.tsx
-│   │       ├── button.tsx
-│   │       ├── card.tsx
-│   │       ├── dialog.tsx
-│   │       ├── input.tsx
-│   │       ├── scroll-area.tsx
-│   │       └── separator.tsx
-│   ├── data/               # 模拟数据
-│   │   └── mockData.ts
-│   ├── features/           # 核心业务逻辑按功能模块划分
-│   │   ├── AnswerViewer/
-│   │   │   └── components/
-│   │   │       ├── CompareAnswerView.tsx
-│   │   │       └── SingleAnswerView.tsx
-│   │   ├── PromptLibrary/
-│   │   │   └── components/ # 提示词列表相关组件
-│   │   │       ├── Pagination.tsx
-│   │   │       ├── PromptItem.tsx
-│   │   │       ├── PromptList.tsx
-│   │   │       ├── PromptListHeader.tsx
-│   │   │       ├── ScrollButton.tsx
-│   │   │       ├── SearchBar.tsx
-│   │   │       ├── SearchResultBar.tsx
-│   │   │       ├── SortAndPaginationBar.tsx
-│   │   │       └── SortDropdown.tsx
-│   │   │   └── hooks/
-│   │   ├── TagSystem/
-│   │   │   └── components/ # 标签系统相关组件
-│   │   │       ├── AddTagDialog.tsx
-│   │   │       ├── DeleteTagDialog.tsx
-│   │   │       ├── TagDialog.tsx
-│   │   │       └── TagSelector.tsx
-│   │   └── VersionManager/ # 版本管理功能
-│   │       ├── CandidatePanel.tsx
-│   │       ├── index.tsx
-│   │       ├── TimelineNode.tsx
-│   │       └── types.ts
-│   ├── lib/                # 工具函数
-│   │   └── utils.ts
-│   ├── panels/             # UI 的主要容器，对应屏幕区域
-│   │   ├── AnswerPanel.tsx
-│   │   ├── EditPanel.tsx
-│   │   ├── PromptPanel.tsx
-│   │   ├── TagsPanel.tsx
-│   │   └── VersionsPanel.tsx
-│   ├── stores/             # Zustand 全局状态管理
-│   │   ├── usePromptListStore.ts
-│   │   ├── usePromptStore.ts
-│   │   └── useUIStore.ts
-│   └── styles/             # 样式文件
-│       ├── components.css
-│       └── globals.css
+│   ├── common/             # 公共模块
+│   │   ├── config/         # 配置文件 (DI 容器初始化)
+│   │   ├── data/           # 模拟数据
+│   │   └── lib/            # 通用工具函数
+│   ├── infra/              # 基础设施层
+│   │   └── dao/            # 数据访问对象 (IndexedDB 等)
+│   ├── model/              # 模型层 (业务逻辑与状态)
+│   │   ├── entities/       # 实体类型定义
+│   │   ├── services/       # 业务服务 (SemanticSearch, PromptService 等)
+│   │   └── stores/         # Zustand 全局状态 Store
+│   └── view/               # 视图层 (UI 展示)
+│       ├── assets/         # 静态资源 (Styles, Images)
+│       ├── components/     # 通用组件
+│       │   ├── common/     # 项目特定的通用业务组件
+│       │   ├── providers/  # React Context Providers
+│       │   └── ui/         # shadcn/ui 风格的基础原子组件
+│       ├── features/       # 核心业务功能模块
+│       │   ├── AnswerViewer/   # 答案展示与对比
+│       │   ├── PromptLibrary/  # 提示词列表管理
+│       │   ├── TagSystem/      # 标签系统
+│       │   └── VersionManager/ # 版本管理
+│       └── pages/          # 主要页面/面板容器 (App, Panels)
 ├── index.html              # HTML 入口
 ├── package.json            # 项目依赖和脚本
 ├── tailwind.config.js      # Tailwind CSS 配置
