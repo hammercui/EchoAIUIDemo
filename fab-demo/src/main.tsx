@@ -1,7 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
-import './styles/globals.css';
+import App from './view/pages/App';
+import './view/assets/styles/globals.css';
+
+import { initializeDI } from '@/common/config/di';
+
+// Initialize Dependency Injection
+initializeDI();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

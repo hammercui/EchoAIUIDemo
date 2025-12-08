@@ -22,6 +22,10 @@
         "noUnusedLocals": false,
         "noUnusedParameters": false,
         "noFallthroughCasesInSwitch": true,
+        /* Decorators */
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        /* Paths */
         "baseUrl": ".",
         "paths": {
             "@/*": [
