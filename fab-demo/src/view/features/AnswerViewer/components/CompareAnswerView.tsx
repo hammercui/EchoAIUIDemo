@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Copy, Check } from 'lucide-react';
-import { Tooltip } from '@heroui/tooltip';
+import { Tooltip, TooltipTrigger, TooltipContent } from '@/view/components/ui/tooltip';
 import { SOURCE_ICONS } from '@/view/components/common/SourceLogos';
 import SingleAnswerView from './SingleAnswerView';
 
@@ -51,31 +51,31 @@ const CompareAnswerView = ({ selectedSources = [] as any[], prompt }) => {
 
             {/* 底部复制按钮 */}
             <div className="flex justify-end mt-3">
-              <Tooltip
-                content={isCopied ? "已复制" : "复制答案"}
-                placement="top"
-                delay={0}
-                closeDelay={0}
-                classNames={{
-                  content: "bg-foreground text-background px-2 py-1 text-xs rounded-md shadow-lg"
-                }}
-              >
-                <button
-                  onClick={() => handleCopy(source)}
-                  className="flex items-center gap-1.5 h-8 px-3 rounded-lg bg-background border border-border cursor-pointer transition-all duration-200 text-muted-foreground hover:bg-muted hover:text-foreground hover:border-accent active:scale-95"
+              <Tooltip delayDuration={0}>
+                <TooltipTrigger asChild>
+                  <button
+                    onClick={() => handleCopy(source)}
+                    className="flex items-center gap-1.5 h-8 px-3 rounded-lg bg-background border border-border cursor-pointer transition-all duration-200 text-muted-foreground hover:bg-muted hover:text-foreground hover:border-accent active:scale-95"
+                  >
+                    {isCopied ? (
+                      <>
+                        <Check className="w-3.5 h-3.5 text-green-600" />
+                        <span className="text-xs">已复制</span>
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-3.5 h-3.5" />
+                        <span className="text-xs">复制</span>
+                      </>
+                    )}
+                  </button>
+                </TooltipTrigger>
+                <TooltipContent
+                  side="top"
+                  className="bg-foreground text-background px-2 py-1 text-xs rounded-md shadow-lg"
                 >
-                  {isCopied ? (
-                    <>
-                      <Check className="w-3.5 h-3.5 text-green-600" />
-                      <span className="text-xs">已复制</span>
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="w-3.5 h-3.5" />
-                      <span className="text-xs">复制</span>
-                    </>
-                  )}
-                </button>
+                  {isCopied ? "已复制" : "复制答案"}
+                </TooltipContent>
               </Tooltip>
             </div>
           </div>
@@ -116,25 +116,25 @@ const CompareAnswerView = ({ selectedSources = [] as any[], prompt }) => {
 
                   {/* 底部复制按钮 */}
                   <div className="flex justify-end mt-3">
-                    <Tooltip
-                      content={isCopied ? "已复制" : "复制答案"}
-                      placement="top"
-                      delay={0}
-                      closeDelay={0}
-                      classNames={{
-                        content: "bg-foreground text-background px-2 py-1 text-xs rounded-md shadow-lg"
-                      }}
-                    >
-                      <button
-                        onClick={() => handleCopy(source)}
-                        className="flex items-center gap-1 h-7 px-2.5 rounded-lg bg-background border border-border cursor-pointer transition-all duration-200 text-muted-foreground hover:bg-muted hover:text-foreground hover:border-accent active:scale-95"
+                    <Tooltip delayDuration={0}>
+                      <TooltipTrigger asChild>
+                        <button
+                          onClick={() => handleCopy(source)}
+                          className="flex items-center gap-1 h-7 px-2.5 rounded-lg bg-background border border-border cursor-pointer transition-all duration-200 text-muted-foreground hover:bg-muted hover:text-foreground hover:border-accent active:scale-95"
+                        >
+                          {isCopied ? (
+                            <Check className="w-3.5 h-3.5 text-green-600" />
+                          ) : (
+                            <Copy className="w-3.5 h-3.5" />
+                          )}
+                        </button>
+                      </TooltipTrigger>
+                      <TooltipContent
+                        side="top"
+                        className="bg-foreground text-background px-2 py-1 text-xs rounded-md shadow-lg"
                       >
-                        {isCopied ? (
-                          <Check className="w-3.5 h-3.5 text-green-600" />
-                        ) : (
-                          <Copy className="w-3.5 h-3.5" />
-                        )}
-                      </button>
+                        {isCopied ? "已复制" : "复制答案"}
+                      </TooltipContent>
                     </Tooltip>
                   </div>
                 </div>

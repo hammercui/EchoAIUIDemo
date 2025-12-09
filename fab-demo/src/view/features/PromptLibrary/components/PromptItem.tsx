@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Tooltip } from '@heroui/tooltip';
+import { Tooltip, TooltipTrigger, TooltipContent } from '@/view/components/ui/tooltip';
 import { ThumbsUp, ThumbsDown } from 'lucide-react';
 import ActionButtons from '@/view/components/common/ActionButtons';
 import AddTagButton from '@/view/components/common/AddTagButton';
@@ -108,17 +108,18 @@ const PromptItem = ({
           )}
 
           {/* 第 2 行: 描述 (3行省略) - 左右边距与标题一致 */}
-          <Tooltip
-            content={prompt.description}
-            placement="top"
-            classNames={{
-              base: "max-w-xs",
-              content: "bg-gray-900 text-white px-3 py-2 text-xs rounded-lg shadow-lg"
-            }}
-          >
-            <p className="text-xs text-muted-foreground mb-2.5 leading-tight line-clamp-3 pointer-events-auto">
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <p className="text-xs text-muted-foreground mb-2.5 leading-tight line-clamp-3 pointer-events-auto">
+                {prompt.description}
+              </p>
+            </TooltipTrigger>
+            <TooltipContent
+              side="top"
+              className="max-w-xs bg-gray-900 text-white px-3 py-2 text-xs rounded-lg shadow-lg"
+            >
               {prompt.description}
-            </p>
+            </TooltipContent>
           </Tooltip>
 
           {/* 第 3 行: 标签 + 点赞 + 时间 - 左右边距与标题一致 */}
@@ -160,27 +161,36 @@ const PromptItem = ({
                       const IconComponent = SOURCE_ICONS[source];
                       if (!IconComponent) return null;
                       return (
-                        <Tooltip
-                          key={idx}
-                          content={getSourceName(source)}
-                          placement="top"
-                          classNames={{
-                            content: "bg-gray-900 text-white px-2 py-1 text-xs rounded"
-                          }}
-                        >
-                          <div
-                            className="w-5 h-5 rounded-full bg-white border border-border flex items-center justify-center hover:z-10 transition-transform hover:scale-110"
-                            style={{ zIndex: 3 - idx }}
+                        <Tooltip key={idx}>
+                          <TooltipTrigger asChild>
+                            <div
+                              className="w-5 h-5 rounded-full bg-white border border-border flex items-center justify-center hover:z-10 transition-transform hover:scale-110"
+                              style={{ zIndex: 3 - idx }}
+                            >
+                              <IconComponent className="w-3.5 h-3.5" />
+                            </div>
+                          </TooltipTrigger>
+                          <TooltipContent
+                            side="top"
+                            className="bg-gray-900 text-white px-2 py-1 text-xs rounded"
                           >
-                            <IconComponent className="w-3.5 h-3.5" />
-                          </div>
+                            {getSourceName(source)}
+                          </TooltipContent>
                         </Tooltip>
                       );
                     })}
                     {/* 如果超过3个，显示+N */}
                     {prompt.sources.length > 3 && (
-                      <Tooltip
-                        content={
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <div className="w-5 h-5 rounded-full bg-muted-foreground/20 border border-border flex items-center justify-center text-[10px] font-medium text-muted-foreground hover:bg-muted-foreground/30 hover:z-10 transition-all cursor-pointer">
+                            +{prompt.sources.length - 3}
+                          </div>
+                        </TooltipTrigger>
+                        <TooltipContent
+                          side="top"
+                          className="bg-gray-900 text-white px-2 py-1.5 rounded"
+                        >
                           <div className="flex flex-col gap-1">
                             {prompt.sources.slice(3).map((source, idx) => (
                               <div key={idx} className="flex items-center gap-1.5">
@@ -189,15 +199,7 @@ const PromptItem = ({
                               </div>
                             ))}
                           </div>
-                        }
-                        placement="top"
-                        classNames={{
-                          content: "bg-gray-900 text-white px-2 py-1.5 rounded"
-                        }}
-                      >
-                        <div className="w-5 h-5 rounded-full bg-muted-foreground/20 border border-border flex items-center justify-center text-[10px] font-medium text-muted-foreground hover:bg-muted-foreground/30 hover:z-10 transition-all cursor-pointer">
-                          +{prompt.sources.length - 3}
-                        </div>
+                        </TooltipContent>
                       </Tooltip>
                     )}
                   </div>

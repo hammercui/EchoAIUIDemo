@@ -9,7 +9,15 @@ interface CandidatePanelProps {
 }
 
 // Mock Data for Demonstration
-const mockCandidates = [
+interface Candidate {
+    id: string;
+    text: string;
+    tags: string[];
+    score?: number;
+    matchedKeywords?: string[];
+}
+
+const mockCandidates: Candidate[] = [
     { id: '1', text: 'Add rate limiting to API endpoints.', tags: ['Security', 'High Priority'] },
     { id: '2', text: 'Optimize image lazy-loading.', tags: ['Frontend', 'Performance'] },
     { id: '3', text: 'Unit tests for payment gateway.', tags: ['Testing', 'Backend'] },
@@ -85,11 +93,11 @@ export const CandidatePanel: React.FC<CandidatePanelProps> = ({ isOpen, onClose 
     };
 
     // Determine items to display
-    const displayItems = query.trim()
+    const displayItems: Candidate[] = query.trim()
         ? results.map(r => {
             const candidate = mockCandidates.find(c => c.id === r.id);
             return candidate ? { ...candidate, score: r.score, matchedKeywords: r.matchedKeywords } : null;
-        }).filter((item): item is (typeof mockCandidates[0] & { score?: number, matchedKeywords?: string[] }) => !!item)
+        }).filter((item) => item !== null) as Candidate[]
         : mockCandidates;
 
     if (!isOpen) return null;

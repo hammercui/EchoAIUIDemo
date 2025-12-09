@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './view/pages/App';
 import './view/assets/styles/globals.css';
+import { TooltipProvider } from '@/view/components/ui/tooltip';
 
 import { initializeDI } from '@/common/config/di';
 
@@ -10,7 +11,8 @@ initializeDI();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <div className="min-h-screen bg-[#f6f6f6] p-8">
+    <TooltipProvider>
+      <div className="min-h-screen bg-[#f6f6f6] p-8">
       <div className="max-w-4xl mx-auto space-y-8">
         {/* 项目介绍 */}
         <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
@@ -88,5 +90,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       {/* FAB Demo 组件 */}
       <App />
     </div>
+    </TooltipProvider>
   </React.StrictMode>
 );

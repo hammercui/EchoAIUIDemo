@@ -1,4 +1,4 @@
-import { Tooltip } from '@heroui/tooltip';
+import { Tooltip, TooltipTrigger, TooltipContent } from '@/view/components/ui/tooltip';
 import { Copy, Eye, Settings } from 'lucide-react';
 
 /**
@@ -6,7 +6,7 @@ import { Copy, Eye, Settings } from 'lucide-react';
  *
  * 优化内容:
  * - 使用 lucide-react 图标
- * - 使用 @heroui/tooltip 快速提示
+ * - 使用 Tooltip 快速提示
  * - 固定在右侧的悬浮形态，不占用内容空间
  * - 仅 hover 时显示，平滑过渡
  * - 垂直居中对齐
@@ -25,55 +25,55 @@ const ActionButtons = ({ onCopy, onView, onManage, onUsage }) => {
 
   return (
     <div className="absolute top-1/2 right-0 -translate-y-1/2 flex flex-col gap-1 opacity-0 scale-95 transition-all duration-200 group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto pointer-events-none">
-      <Tooltip
-        content="复制"
-        placement="left"
-        delay={0}
-        closeDelay={0}
-        classNames={{
-          content: "bg-foreground text-background px-2 py-1 text-xs rounded-md shadow-lg"
-        }}
-      >
-        <button
-          className={buttonClass}
-          onClick={handleClick(onCopy)}
+      <Tooltip delayDuration={0}>
+        <TooltipTrigger asChild>
+          <button
+            className={buttonClass}
+            onClick={handleClick(onCopy)}
+          >
+            <Copy className="w-3.5 h-3.5" />
+          </button>
+        </TooltipTrigger>
+        <TooltipContent
+          side="left"
+          className="bg-foreground text-background px-2 py-1 text-xs rounded-md shadow-lg"
         >
-          <Copy className="w-3.5 h-3.5" />
-        </button>
+          复制
+        </TooltipContent>
       </Tooltip>
 
-      <Tooltip
-        content="查看答案"
-        placement="left"
-        delay={0}
-        closeDelay={0}
-        classNames={{
-          content: "bg-foreground text-background px-2 py-1 text-xs rounded-md shadow-lg"
-        }}
-      >
-        <button
-          className={buttonClass}
-          onClick={handleClick(onView)}
+      <Tooltip delayDuration={0}>
+        <TooltipTrigger asChild>
+          <button
+            className={buttonClass}
+            onClick={handleClick(onView)}
+          >
+            <Eye className="w-3.5 h-3.5" />
+          </button>
+        </TooltipTrigger>
+        <TooltipContent
+          side="left"
+          className="bg-foreground text-background px-2 py-1 text-xs rounded-md shadow-lg"
         >
-          <Eye className="w-3.5 h-3.5" />
-        </button>
+          查看答案
+        </TooltipContent>
       </Tooltip>
 
-      <Tooltip
-        content="管理"
-        placement="left"
-        delay={0}
-        closeDelay={0}
-        classNames={{
-          content: "bg-foreground text-background px-2 py-1 text-xs rounded-md shadow-lg"
-        }}
-      >
-        <button
-          className={buttonClass}
-          onClick={handleClick(onManage)}
+      <Tooltip delayDuration={0}>
+        <TooltipTrigger asChild>
+          <button
+            className={buttonClass}
+            onClick={handleClick(onManage)}
+          >
+            <Settings className="w-3.5 h-3.5" />
+          </button>
+        </TooltipTrigger>
+        <TooltipContent
+          side="left"
+          className="bg-foreground text-background px-2 py-1 text-xs rounded-md shadow-lg"
         >
-          <Settings className="w-3.5 h-3.5" />
-        </button>
+          管理
+        </TooltipContent>
       </Tooltip>
     </div>
   );

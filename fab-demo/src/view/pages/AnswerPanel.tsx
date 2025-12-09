@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Tooltip } from '@heroui/tooltip';
+import { Tooltip, TooltipTrigger, TooltipContent } from '@/view/components/ui/tooltip';
 import { Copy, Check, GitCompare, X } from 'lucide-react';
 import { SOURCE_ICONS, getSourceName } from '@/view/components/common/SourceLogos';
 import { motion } from 'framer-motion';
@@ -204,21 +204,21 @@ const AnswerPanel = ({ prompt, onCopy }) => {
       <div className="mb-4 relative">
         {/* 固定位置浮动复制按钮 - 仅在单选模式显示 */}
         {!isCompareMode && (
-          <Tooltip
-            content={copied ? "已复制" : "复制答案"}
-            placement="left"
-            delay={0}
-            closeDelay={0}
-            classNames={{
-              content: "bg-foreground text-background px-2 py-1 text-xs rounded-md shadow-lg"
-            }}
-          >
-            <button
-              onClick={handleCopy}
-              className="fixed top-20 right-6 z-[100] w-10 h-10 rounded-lg bg-background/95 backdrop-blur-md border border-border shadow-lg cursor-pointer flex items-center justify-center transition-all duration-200 text-muted-foreground hover:bg-primary-500 hover:text-white hover:border-primary-500 hover:shadow-xl active:scale-95"
+          <Tooltip delayDuration={0}>
+            <TooltipTrigger asChild>
+              <button
+                onClick={handleCopy}
+                className="fixed top-20 right-6 z-[100] w-10 h-10 rounded-lg bg-background/95 backdrop-blur-md border border-border shadow-lg cursor-pointer flex items-center justify-center transition-all duration-200 text-muted-foreground hover:bg-primary-500 hover:text-white hover:border-primary-500 hover:shadow-xl active:scale-95"
+              >
+                {copied ? <Check className="w-4 h-4 text-green-600" /> : <Copy className="w-4 h-4" />}
+              </button>
+            </TooltipTrigger>
+            <TooltipContent 
+              side="left"
+              className="bg-foreground text-background px-2 py-1 text-xs rounded-md shadow-lg"
             >
-              {copied ? <Check className="w-4 h-4 text-green-600" /> : <Copy className="w-4 h-4" />}
-            </button>
+              {copied ? "已复制" : "复制答案"}
+            </TooltipContent>
           </Tooltip>
         )}
 
